@@ -17,12 +17,12 @@ public class DBContext {
     }
     /*Insert your other code right after this comment*/
  /*Change/update information of your database connection, DO NOT change name of instance variables in this class*/
-    private final String serverName = "LAPTOP-9KPF5SGI\\SQLEXPRESS";
-    private final String dbName = "SWP391_OnlineShop";
+    private final String serverName = "DESKTOP-IQBH901\\MSSQLSERVERDBW";
+    private final String dbName = "Shop_Online";
     private final String portNumber = "1433";
     private final String instance = "";//LEAVE THIS ONE EMPTY IF YOUR SQL IS A SINGLE INSTANCE
     private final String userID = "sa";
-    private final String password = "khanh123";
+    private final String password = "123";
 
     public static void main(String[] args) {
         try {
