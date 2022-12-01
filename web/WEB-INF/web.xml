@@ -6,7 +6,35 @@
     </servlet>
     <servlet>
         <servlet-name>AddDiscount</servlet-name>
-        <servlet-class>controlller.AddDiscount</servlet-class>
+        <servlet-class>controlller.AddDiscountServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewDiscountServlet</servlet-name>
+        <servlet-class>controlller.ViewDiscountServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateDiscountServlet</servlet-name>
+        <servlet-class>controlller.UpdateDiscountServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteDiscountServlet</servlet-name>
+        <servlet-class>controlller.DeleteDiscountServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddComingProductServlet</servlet-name>
+        <servlet-class>controlller.AddComingProductServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewComingProductServlet</servlet-name>
+        <servlet-class>controlller.ViewComingProductServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateComingProductServlet</servlet-name>
+        <servlet-class>controlller.UpdateComingProductServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteComingProductServlet</servlet-name>
+        <servlet-class>controlller.DeleteComingProductServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>NewServlet</servlet-name>
@@ -15,6 +43,34 @@
     <servlet-mapping>
         <servlet-name>AddDiscount</servlet-name>
         <url-pattern>/AddDiscount</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewDiscountServlet</servlet-name>
+        <url-pattern>/ViewDiscount</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateDiscountServlet</servlet-name>
+        <url-pattern>/UpdateDiscount</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteDiscountServlet</servlet-name>
+        <url-pattern>/DeleteDiscount</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddComingProductServlet</servlet-name>
+        <url-pattern>/AddComingProduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewComingProductServlet</servlet-name>
+        <url-pattern>/ViewComingProduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateComingProductServlet</servlet-name>
+        <url-pattern>/UpdateComingProduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteComingProductServlet</servlet-name>
+        <url-pattern>/DeleteComingProduct</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
