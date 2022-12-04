@@ -36,6 +36,10 @@
         <servlet-name>DeleteComingProductServlet</servlet-name>
         <servlet-class>controlller.DeleteComingProductServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewOrderInformation</servlet-name>
+        <servlet-class>controlller.VIewOrderCart</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>NewServlet</servlet-name>
         <url-pattern>/NewServlet</url-pattern>
@@ -71,6 +75,10 @@
     <servlet-mapping>
         <servlet-name>DeleteComingProductServlet</servlet-name>
         <url-pattern>/DeleteComingProduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewOrderInformation</servlet-name>
+        <url-pattern>/ViewOrderInformation</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
