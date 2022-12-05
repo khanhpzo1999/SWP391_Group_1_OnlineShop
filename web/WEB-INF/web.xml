@@ -40,6 +40,22 @@
         <servlet-name>ViewOrderInformation</servlet-name>
         <servlet-class>controlller.VIewOrderCart</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewProductServlet</servlet-name>
+        <servlet-class>controlller.ViewProductServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>addProductServlet</servlet-name>
+        <servlet-class>controlller.AddProductServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteProductServlet</servlet-name>
+        <servlet-class>controlller.DeleteProductServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateProductServlet</servlet-name>
+        <servlet-class>controlller.UpdateProductServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>NewServlet</servlet-name>
         <url-pattern>/NewServlet</url-pattern>
@@ -80,9 +96,23 @@
         <servlet-name>ViewOrderInformation</servlet-name>
         <url-pattern>/ViewOrderInformation</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewProductServlet</servlet-name>
+        <url-pattern>/list</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>addProductServlet</servlet-name>
+        <url-pattern>/addProduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteProductServlet</servlet-name>
+        <url-pattern>/deleteProduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateProductServlet</servlet-name>
+        <url-pattern>/updateProduct</url-pattern>
+    </servlet-mapping>
     <session-config>
-        <session-timeout>
-            30
-        </session-timeout>
+        <session-timeout>30</session-timeout>
     </session-config>
 </web-app>
