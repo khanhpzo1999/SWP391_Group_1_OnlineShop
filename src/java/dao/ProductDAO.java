@@ -44,11 +44,11 @@ public class ProductDAO {
         return list;
     }
 
-    public static void main(String[] args) throws Exception {
-        ProductDAO dao = new ProductDAO();
-        ArrayList<Product> list = dao.getAllProduct();
-        for (Product product : list) {
-            System.out.println(product.getProduct_name());
-        }
-    }
+//    public static void main(String[] args) throws Exception {
+//        ProductDAO dao = new ProductDAO();
+//        ArrayList<Product> list = dao.getAllProduct();
+//        for (Product product : list) {
+//            System.out.println(product.getProduct_name());
+//        }
+//    }
 }
