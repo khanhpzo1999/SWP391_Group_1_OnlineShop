@@ -9,56 +9,37 @@ package model;
  * @author hung tran
  */
 public class ComingProduct {
-    private int id, product_quantity, category_id;
-    private float product_price;
-    private String product_name, product_thumbnail, product_description;
-    private boolean product_status, product_coming;
+    private int pid;
+    private String product_name;
+    private double product_price;
+    private boolean product_coming;
+    private String product_thumbnail;
+    private boolean product_status;
+    private String product_description;
+    private int product_quatity;
+    private int category_id;
 
     public ComingProduct() {
     }
 
-    public ComingProduct(int id, int product_quantity, int category_id, float product_price, String product_name, String product_thumbnail, String product_description, boolean product_status, boolean product_coming) {
-        this.id = id;
-        this.product_quantity = product_quantity;
-        this.category_id = category_id;
-        this.product_price = product_price;
+    public ComingProduct(int pid, String product_name, double product_price, boolean product_coming, String product_thumbnail, boolean product_status, String product_description, int product_quatity, int category_id) {
+        this.pid = pid;
         this.product_name = product_name;
-        this.product_thumbnail = product_thumbnail;
-        this.product_description = product_description;
-        this.product_status = product_status;
+        this.product_price = product_price;
         this.product_coming = product_coming;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getProduct_quantity() {
-        return product_quantity;
-    }
-
-    public void setProduct_quantity(int product_quantity) {
-        this.product_quantity = product_quantity;
-    }
-
-    public int getCategory_id() {
-        return category_id;
-    }
-
-    public void setCategory_id(int category_id) {
+        this.product_thumbnail = product_thumbnail;
+        this.product_status = product_status;
+        this.product_description = product_description;
+        this.product_quatity = product_quatity;
         this.category_id = category_id;
     }
 
-    public float getProduct_price() {
-        return product_price;
+    public int getPid() {
+        return pid;
     }
 
-    public void setProduct_price(float product_price) {
-        this.product_price = product_price;
+    public void setPid(int pid) {
+        this.pid = pid;
     }
 
     public String getProduct_name() {
@@ -69,20 +50,28 @@ public class ComingProduct {
         this.product_name = product_name;
     }
 
+    public double getProduct_price() {
+        return product_price;
+    }
+
+    public void setProduct_price(double product_price) {
+        this.product_price = product_price;
+    }
+
+    public boolean isProduct_coming() {
+        return product_coming;
+    }
+
+    public void setProduct_coming(boolean product_coming) {
+        this.product_coming = product_coming;
+    }
+
     public String getProduct_thumbnail() {
         return product_thumbnail;
     }
 
     public void setProduct_thumbnail(String product_thumbnail) {
         this.product_thumbnail = product_thumbnail;
-    }
-
-    public String getProduct_description() {
-        return product_description;
-    }
-
-    public void setProduct_description(String product_description) {
-        this.product_description = product_description;
     }
 
     public boolean isProduct_status() {
@@ -93,12 +82,28 @@ public class ComingProduct {
         this.product_status = product_status;
     }
 
-    public boolean isProduct_coming() {
-        return product_coming;
+    public String getProduct_description() {
+        return product_description;
     }
 
-    public void setProduct_coming(boolean product_coming) {
-        this.product_coming = product_coming;
+    public void setProduct_description(String product_description) {
+        this.product_description = product_description;
+    }
+
+    public int getProduct_quatity() {
+        return product_quatity;
+    }
+
+    public void setProduct_quatity(int product_quatity) {
+        this.product_quatity = product_quatity;
+    }
+
+    public int getCategory_id() {
+        return category_id;
+    }
+
+    public void setCategory_id(int category_id) {
+        this.category_id = category_id;
     }
     
     
