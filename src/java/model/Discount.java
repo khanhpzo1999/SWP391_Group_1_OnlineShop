@@ -10,16 +10,16 @@ package model;
  */
 public class Discount {
     private int id;
-    private float discount_number;
     private String discount_name;
-
-    public Discount(int id, float discount_number, String discount_name) {
-        this.id = id;
-        this.discount_number = discount_number;
-        this.discount_name = discount_name;
-    }
+    private float discount_number;
 
     public Discount() {
+    }
+
+    public Discount(int id, String discount_name, float discount_number) {
+        this.id = id;
+        this.discount_name = discount_name;
+        this.discount_number = discount_number;
     }
 
     public int getId() {
@@ -30,14 +30,6 @@ public class Discount {
         this.id = id;
     }
 
-    public float getDiscount_number() {
-        return discount_number;
-    }
-
-    public void setDiscount_number(float discount_number) {
-        this.discount_number = discount_number;
-    }
-
     public String getDiscount_name() {
         return discount_name;
     }
@@ -45,6 +37,17 @@ public class Discount {
     public void setDiscount_name(String discount_name) {
         this.discount_name = discount_name;
     }
+
+    public float getDiscount_number() {
+        return discount_number;
+    }
+
+    public void setDiscount_number(float discount_number) {
+        this.discount_number = discount_number;
+    }
+    
+
+    
     
     
 }
