@@ -56,6 +56,18 @@
         <servlet-name>UpdateProductServlet</servlet-name>
         <servlet-class>controlller.UpdateProductServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UserRegisterServlet</servlet-name>
+        <servlet-class>controlller.UserRegisterServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UserLoginServlet</servlet-name>
+        <servlet-class>controlller.UserLoginServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewCategoryServlet</servlet-name>
+        <servlet-class>controlller.ViewCategoryServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>NewServlet</servlet-name>
         <url-pattern>/NewServlet</url-pattern>
@@ -111,6 +123,18 @@
     <servlet-mapping>
         <servlet-name>UpdateProductServlet</servlet-name>
         <url-pattern>/updateProduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserRegisterServlet</servlet-name>
+        <url-pattern>/UserRegisterServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserLoginServlet</servlet-name>
+        <url-pattern>/UserLoginServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewCategoryServlet</servlet-name>
+        <url-pattern>/category</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
