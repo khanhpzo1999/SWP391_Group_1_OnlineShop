@@ -94,7 +94,11 @@ public class DAODiscount extends DBContext{
     public static void main(String[] args) {
         try {
             List<Discount> list = new DAODiscount().getAll();
-            System.out.println(list);
+            for(Discount d : list){
+                System.out.println(d.getDiscount_name());
+                System.out.println(d.getDiscount_number());
+            }
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
