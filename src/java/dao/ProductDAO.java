@@ -8,7 +8,10 @@ import context.DBContext;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Product;
 
 /**
@@ -34,7 +37,7 @@ public class ProductDAO {
                 product.setProduct_name(rs.getString("product_name"));
                 product.setProduct_description(rs.getString("product_description"));
                 product.setProduct_quatity(rs.getInt("product_quantity"));
-                product.setProduct_price(rs.getDouble("product_price"));
+                product.setProduct_price(rs.getFloat("product_price"));
                 list.add(product);
             }
             ps.close();
@@ -51,4 +54,7 @@ public class ProductDAO {
 //            System.out.println(product.getProduct_name());
 //        }
 //    }
+ 
+
+    
 }
