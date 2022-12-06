@@ -4,12 +4,14 @@
  */
 package controlller;
 
+import dao.DAODiscount;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Discount;
 
 /**
  *
@@ -69,7 +71,10 @@ public class AddDiscountServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String discount_name = request.getParameter("discount_name");
+        int discount_number = Integer.parseInt(request.getParameter("discount_number"));
+        new DAODiscount().insert(new Discount(1, discount_name, discount_number));
+        response.sendRedirect("");
     }
 
     /**
