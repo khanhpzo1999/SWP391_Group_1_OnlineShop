@@ -2,6 +2,10 @@ package context;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -13,12 +17,12 @@ public Connection connection;
     
     /*Insert your other code right after this comment*/
  /*Change/update information of your database connection, DO NOT change name of instance variables in this class*/
-    private final String serverName = "DESKTOP-IQBH901\\MSSQLSERVERDBW";
+    private final String serverName = "LAPTOP-9KPF5SGI\\SQLEXPRESS";
     private final String dbName = "Shop_Online";
     private final String portNumber = "1433";
     private final String instance = "";//LEAVE THIS ONE EMPTY IF YOUR SQL IS A SINGLE INSTANCE
     private final String userID = "sa";
-    private final String password = "123";
+    private final String password = "khanh123";
 
     public DBContext()
     {
@@ -37,6 +41,7 @@ public Connection connection;
     public static void main(String[] args) {
         try {
             DBContext db = new DBContext();
+            System.out.println(db.getConnection());
         } catch (Exception e) {
             e.printStackTrace();
         }
