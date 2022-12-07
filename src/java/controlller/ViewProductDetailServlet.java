@@ -5,21 +5,24 @@
  */
 package controlller;
 
+import dao.CategoryDAO;
 import dao.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Category;
 import model.Product;
 
 /**
  *
  * @author Nhat Anh
  */
-public class ViewProductDetail extends HttpServlet {
+public class ViewProductDetailServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,22 +35,8 @@ public class ViewProductDetail extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ViewProductDetail</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ViewProductDetail at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
-    
 
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -61,11 +50,13 @@ public class ViewProductDetail extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ProductDAO db = new ProductDAO();
-        ArrayList<Product> product = db.getAllProduct();
-        request.setAttribute("products", product);
+        processRequest(request, response);
+        String id = request.getParameter("id");
+        ProductDAO dao = new ProductDAO();
+        List<Product> listProductDetail = dao.getProductDetail(Integer.parseInt(id));
+        request.setAttribute("id", Integer.parseInt(id));
+        request.setAttribute("listProduct", listProductDetail);
         request.getRequestDispatcher("productdetail.jsp").forward(request, response);
-        
     }
 
     /**
