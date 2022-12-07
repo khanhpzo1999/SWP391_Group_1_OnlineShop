@@ -61,7 +61,7 @@ public class AddDiscountServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String discount_name = request.getParameter("discount_name");
-        int discount_number = Integer.parseInt(request.getParameter("discount_number"));
+        float discount_number = Float.parseFloat(request.getParameter("discount_number"));
         new DAODiscount().insert(new Discount(1, discount_name, discount_number));
         response.sendRedirect("view-discount.jsp");
     }
