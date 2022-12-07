@@ -33,8 +33,8 @@ public class DAODiscount extends DBContext{
         return list;
     }
     
-    public Discount getOne(String name){
-        String sql = "select * from Discount where discount_name = " + name;
+    public Discount getById(int id){
+        String sql = "select * from Discount where id = " + id;
         try (
                 PreparedStatement ps = connection.prepareStatement(sql);
                 ResultSet rs = ps.executeQuery();
@@ -46,6 +46,22 @@ public class DAODiscount extends DBContext{
         } catch (SQLException e) {
         }
         return null;
+    }
+    
+    public List<Discount> getByPage(List<Discount> list, int page){
+        List<Discount> dis = new ArrayList<>();
+        int discountPerPage = 9;
+        int start = (page * discountPerPage) - discountPerPage;
+        int end;
+        if(list.size() < page * discountPerPage){
+            end = list.size();
+        } else {
+            end = discountPerPage * page;
+        }
+        for(int i = start; i < end; i++){
+            dis.add(list.get(i));
+        }
+        return dis;
     }
     
     public void insert(Discount dis){

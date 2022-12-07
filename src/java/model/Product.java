@@ -12,7 +12,7 @@ public class Product {
 
     private int pid;
     private String product_name;
-    private double product_price;
+    private float product_price;
     private boolean product_coming;
     private String product_thumbnail;
     private boolean product_status;
@@ -23,7 +23,7 @@ public class Product {
     public Product() {
     }
 
-    public Product(int pid, String product_name, double product_price, boolean product_coming, String product_thumbnail, boolean product_status, String product_description, int product_quatity, int category_id) {
+    public Product(int pid, String product_name, float product_price, boolean product_coming, String product_thumbnail, boolean product_status, String product_description, int product_quatity, int category_id) {
         this.pid = pid;
         this.product_name = product_name;
         this.product_price = product_price;
@@ -55,7 +55,7 @@ public class Product {
         return product_price;
     }
 
-    public void setProduct_price(double product_price) {
+    public void setProduct_price(float product_price) {
         this.product_price = product_price;
     }
 

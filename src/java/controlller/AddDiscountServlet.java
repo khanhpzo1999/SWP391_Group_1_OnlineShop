@@ -31,18 +31,7 @@ public class AddDiscountServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet AddDiscount</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet AddDiscount at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+       
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -74,7 +63,7 @@ public class AddDiscountServlet extends HttpServlet {
         String discount_name = request.getParameter("discount_name");
         int discount_number = Integer.parseInt(request.getParameter("discount_number"));
         new DAODiscount().insert(new Discount(1, discount_name, discount_number));
-        response.sendRedirect("");
+        response.sendRedirect("view-discount.jsp");
     }
 
     /**

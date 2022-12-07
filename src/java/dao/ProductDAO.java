@@ -34,7 +34,7 @@ public class ProductDAO {
                 product.setProduct_name(rs.getString("product_name"));
                 product.setProduct_description(rs.getString("product_description"));
                 product.setProduct_quatity(rs.getInt("product_quantity"));
-                product.setProduct_price(rs.getDouble("product_price"));
+                product.setProduct_price(rs.getFloat("product_price"));
                 list.add(product);
             }
             ps.close();
