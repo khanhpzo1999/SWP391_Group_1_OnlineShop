@@ -35,7 +35,13 @@ public class Product {
         this.category_id = category_id;
     }
 
-   
+    public Product(int pid, String product_name, float product_price, String product_description, int product_quatity) {
+        this.pid = pid;
+        this.product_name = product_name;
+        this.product_price = product_price;
+        this.product_description = product_description;
+        this.product_quatity = product_quatity;
+    }
 
     public int getPid() {
         return pid;
