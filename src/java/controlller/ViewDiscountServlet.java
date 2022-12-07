@@ -48,15 +48,9 @@ public class ViewDiscountServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        String id = request.getParameter("id");
-        String page = request.getParameter("page");
         DAODiscount dao = new DAODiscount();
-        List<Discount> listAllDiscount = dao.getAll();
-        double discountSize = listAllDiscount.size();
-        double discountPerPage = 9;
-        request.setAttribute("id", Integer.parseInt(id));
-        request.setAttribute("totalPage", Math.ceil(discountSize / discountPerPage));
-        request.setAttribute("listAllDiscount", listAllDiscount);
+        List<Discount> listDiscount = dao.getAll();
+        request.setAttribute("listDiscount", listDiscount);
         request.getRequestDispatcher("view-discount.jsp").forward(request, response);
     }
 

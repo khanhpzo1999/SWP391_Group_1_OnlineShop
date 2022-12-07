@@ -111,48 +111,43 @@
             <div class="container">
                 <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
                     <div class="col-first">
-                        <h1>Shop Category page</h1>
-                        <nav class="d-flex align-items-center">
-                            <a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
-                            <a href="#">Shop<span class="lnr lnr-arrow-right"></span></a>
-                            <a href="category.html">Fashon Category</a>
-                        </nav>
+                        <h1>Manager Discount Page</h1>
                     </div>
                 </div>
             </div>
         </section>
         <!-- End Banner Area -->
-        <div class="container">
-            <div class="row">
-
-                <section>
-                    <div class="row">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Discount</th>
-                                    <th>Sale OFF</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <c:forEach items="${listAllDiscount}" var="discount">
-                                        <td>${discount.discount_name}</td>
-                                        <td>${discount.discount_number}</td>
-                                        <td><a>Edit</a>&nbsp;<a>Delete</a></td>
-                                    </c:forEach>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                    </div>
-                </section>
-
-               
-            </div>
-        </div>
-    </div>
+        
+        <!-- Start Banner Area -->
+        <section class="features-area section_gap" style="margin-top: 100px; width: 80% ; margin-left:auto;margin-right:auto">
+            <button class="click-btn btn btn-default" style="margin-bottom: 20px ; margin-left: 90% ; background-color: orange"><a href="add-discount.jsp" style="color: white">Add new discount</a></button>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Discount</th>
+                        <th>SALE OFF</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%
+                        List<Discount> list = new DAODiscount().getAll();
+                        for(Discount d : list){
+                    %>
+                    <tr>
+                        <td><%= d.getDiscount_name()%></td>
+                        <td><%= d.getDiscount_number()%></td>
+                        <td><a href="update-discount.jsp?id=<%= d.getId()%>">Edit</a></td>
+                        <td><a href="delete-discount.jsp?id=<%= d.getId()%>">Delete</a></td>
+                    </tr>
+                    <%
+                        }
+                    %>
+                </tbody>
+            </table>
+        </section>
+        <!-- End Banner Area -->
 
     <!-- Start related-product Area -->
     <section class="related-product-area section_gap">
