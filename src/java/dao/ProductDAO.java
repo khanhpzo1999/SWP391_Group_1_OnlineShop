@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Product;
@@ -47,6 +48,23 @@ public class ProductDAO {
         return list;
     }
 
+    public List<Product> getProductBypage(List<Product> list, int page) {
+        List<Product> arr = new ArrayList<>();
+        int productPerPage = 9;
+        int start = (page * productPerPage) - productPerPage;
+        int end;
+        if (list.size() < page * productPerPage) {
+            end = list.size();
+        } else {
+            end = productPerPage * page;
+        }
+        for (int i = start; i < end; i++) {
+            arr.add(list.get(i));
+        }
+        return arr;
+
+    }
+
 //    public static void main(String[] args) throws Exception {
 //        ProductDAO dao = new ProductDAO();
 //        ArrayList<Product> list = dao.getAllProduct();
@@ -54,7 +72,4 @@ public class ProductDAO {
 //            System.out.println(product.getProduct_name());
 //        }
 //    }
- 
-
-    
 }
