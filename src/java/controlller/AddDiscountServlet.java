@@ -62,7 +62,7 @@ public class AddDiscountServlet extends HttpServlet {
             throws ServletException, IOException {
         String discount_name = request.getParameter("discount_name");
         float discount_number = Float.parseFloat(request.getParameter("discount_number"));
-        new DAODiscount().insert(new Discount(1, discount_name, discount_number));
+        new DAODiscount().insert(new Discount(discount_name, discount_number));
         response.sendRedirect("view-discount.jsp");
     }
 
