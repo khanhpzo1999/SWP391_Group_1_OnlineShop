@@ -5,6 +5,7 @@ package model;
  * @author admin
  */
 public class User {
+    private int id;
     private String username;
     private String password;
     private String user_fullname;
@@ -12,6 +13,25 @@ public class User {
     private String user_phone;
     private String user_address;
     private int role_id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public User(int id, String username, String password, String user_fullname, String user_email, String user_phone, String user_address, int role_id) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.user_fullname = user_fullname;
+        this.user_email = user_email;
+        this.user_phone = user_phone;
+        this.user_address = user_address;
+        this.role_id = role_id;
+    }
 
     public User() {
     }

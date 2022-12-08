@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.Category;
 import model.Product;
 
 /**
@@ -48,6 +49,7 @@ public class ProductDAO {
         return list;
     }
 
+
     public List<Product> getProductBypage(List<Product> list, int page) {
         List<Product> arr = new ArrayList<>();
         int productPerPage = 9;
@@ -65,11 +67,44 @@ public class ProductDAO {
 
     }
 
-//    public static void main(String[] args) throws Exception {
-//        ProductDAO dao = new ProductDAO();
-//        ArrayList<Product> list = dao.getAllProduct();
-//        for (Product product : list) {
-//            System.out.println(product.getProduct_name());
-//        }
-//    }
+    public static void main(String[] args) throws Exception {
+        ProductDAO dao = new ProductDAO();
+        List<Product> list = dao.getProductDetail(10);
+        for (Product product : list) {
+            System.out.println(product.getCategory_id());
+        }
+    }
+    Connection conn = null;
+    PreparedStatement ps = null;
+    ResultSet rs = null;
+
+    public List<Product> getProductDetail(int product_id) {
+        List<Product> ListProduct = new ArrayList<>();
+        String query = "select *\n"
+                + "from Product, Category\n"
+                + "where Product.category_id = Category.id and Product.id = ?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, product_id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                ListProduct.add(new Product(
+                        rs.getInt(1),
+                        rs.getString(2),
+                        rs.getFloat(3),
+                        rs.getBoolean(4),
+                        rs.getString(5),
+                        rs.getBoolean(6),
+                        rs.getString(7),
+                        rs.getInt(8),
+                        rs.getInt(9),
+                        rs.getString(11)
+                ));
+            }
+        } catch (Exception e) {
+        }
+        return ListProduct;
+    }
+
 }

@@ -16,8 +16,18 @@ public class Discount {
     public Discount() {
     }
 
+    public Discount(int id) {
+        this.id = id;
+    }
+
+    
     public Discount(int id, String discount_name, float discount_number) {
         this.id = id;
+        this.discount_name = discount_name;
+        this.discount_number = discount_number;
+    }
+
+    public Discount(String discount_name, float discount_number) {
         this.discount_name = discount_name;
         this.discount_number = discount_number;
     }

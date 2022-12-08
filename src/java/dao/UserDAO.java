@@ -9,6 +9,8 @@ import context.DBContext;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 import model.User;
 
 /**
@@ -72,5 +74,67 @@ public class UserDAO {
         } catch (Exception e) {
         }
         return null;
+    }
+
+    public List<User> getListUser() {
+        List<User> listUser = new ArrayList<>();
+        String query = "Select * from Users";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                listUser.add(new User(
+                        rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getString(6),
+                        rs.getString(7),
+                        rs.getInt(8)
+                ));
+            }
+        } catch (Exception e) {
+        }
+        return listUser;
+    }
+
+    public User getUserById(String id) {
+        String query = "SELECT * FROM Users where id = ?";
+
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return new User(
+                        rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getString(6),
+                        rs.getString(7),
+                        rs.getInt(8)
+                );
+            }
+        } catch (Exception e) {
+        }
+        return null;
+    }
+
+    public void deleteUser(String id) {
+        String query = "Delete from Users where id = ?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+
+            ps.setString(1, id);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+
     }
 }

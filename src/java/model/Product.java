@@ -19,6 +19,7 @@ public class Product {
     private String product_description;
     private int product_quatity;
     private int category_id;
+    private String category_name;
 
     public Product() {
     }
@@ -42,6 +43,28 @@ public class Product {
         this.product_description = product_description;
         this.product_quatity = product_quatity;
     }
+
+    public Product(int pid, String product_name, float product_price, boolean product_coming, String product_thumbnail, boolean product_status, String product_description, int product_quatity, int category_id, String category_name) {
+        this.pid = pid;
+        this.product_name = product_name;
+        this.product_price = product_price;
+        this.product_coming = product_coming;
+        this.product_thumbnail = product_thumbnail;
+        this.product_status = product_status;
+        this.product_description = product_description;
+        this.product_quatity = product_quatity;
+        this.category_id = category_id;
+        this.category_name = category_name;
+    }
+
+    public void setCategory_name(String category_name) {
+        this.category_name = category_name;
+    }
+
+    public String getCategory_name() {
+        return category_name;
+    }
+    
 
     public int getPid() {
         return pid;
