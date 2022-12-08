@@ -20,7 +20,7 @@ import java.util.logging.Logger;
 public class DAODiscount extends DBContext{
     public List<Discount> getAll(){
         List<Discount> list = new ArrayList<>();
-        String sql = "select * from Discount";
+        String sql = "select * from Discount order by discount_number";
         try(
                 PreparedStatement ps = connection.prepareStatement(sql);
                 ResultSet rs = ps.executeQuery();
@@ -71,7 +71,7 @@ public class DAODiscount extends DBContext{
                 return ;
             }
         }
-        String sql = "insert into Discount (discount_name, discount_number) value(?, ?)";
+        String sql = "insert into Discount (discount_name, discount_number) values(?, ?)";
         try(
                 PreparedStatement ps = connection.prepareStatement(sql);
                 ){
@@ -98,9 +98,10 @@ public class DAODiscount extends DBContext{
     }
     
     public void delete(int id){
-        String sql = "delete from Discount where id = " + id;
+        String sql = "delete from Discount where id = "+id;
         try(
                 PreparedStatement ps= connection.prepareStatement(sql);
+               
                 ){
             ps.executeUpdate();
         }catch(SQLException e){

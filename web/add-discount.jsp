@@ -120,7 +120,7 @@
 
         <!-- Start Banner Area -->
         <section class="features-area section_gap" style="margin-top: 100px; width: 80% ; margin-left:auto;margin-right:auto">
-            <form action="" method="post">
+            <form action="AddDiscount" method="post">
                 <table>
                     <tr>
                         <th>Discount </th>
