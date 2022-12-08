@@ -9,7 +9,7 @@ package model;
  * @author hung tran
  */
 public class ComingProduct {
-    private int pid;
+    private int id;
     private String product_name;
     private float product_price;
     private boolean product_coming;
@@ -22,8 +22,8 @@ public class ComingProduct {
     public ComingProduct() {
     }
 
-    public ComingProduct(int pid, String product_name, float product_price, boolean product_coming, String product_thumbnail, boolean product_status, String product_description, int product_quatity, int category_id) {
-        this.pid = pid;
+    public ComingProduct(int id, String product_name, float product_price, boolean product_coming, String product_thumbnail, boolean product_status, String product_description, int product_quatity, int category_id) {
+        this.id = id;
         this.product_name = product_name;
         this.product_price = product_price;
         this.product_coming = product_coming;
@@ -34,12 +34,23 @@ public class ComingProduct {
         this.category_id = category_id;
     }
 
-    public int getPid() {
-        return pid;
+    public ComingProduct(String product_name, float product_price, boolean product_coming, String product_thumbnail, boolean product_status, String product_description, int product_quatity, int category_id) {
+        this.product_name = product_name;
+        this.product_price = product_price;
+        this.product_coming = product_coming;
+        this.product_thumbnail = product_thumbnail;
+        this.product_status = product_status;
+        this.product_description = product_description;
+        this.product_quatity = product_quatity;
+        this.category_id = category_id;
     }
 
-    public void setPid(int pid) {
-        this.pid = pid;
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getProduct_name() {
