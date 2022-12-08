@@ -88,4 +88,17 @@ public class DAOComingProduct extends DBContext{
         } catch(SQLException e){
         }
     }
+    
+    public static void main(String[] args) {
+        try {
+            List<ComingProduct> list = new DAOComingProduct().getAll();
+            for(ComingProduct p : list){
+                System.out.println(p.getProduct_name());
+                System.out.println(p.getProduct_price());
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -120,7 +120,7 @@
 
         <!-- Start Banner Area -->
         <section class="features-area section_gap" style="margin-top: 100px; width: 80% ; margin-left:auto;margin-right:auto">
-            <form action="DeleteDiscount" method="post">
+            
                 <table>
                     <%
                         String id = request.getParameter("id");
@@ -138,9 +138,9 @@
 
                 </table>
                 <div class="cupon_text d-flex align-items-center">
-                    <button class="click-btn btn btn-default" type="submit" style="background-color: orange; color: white">Delete Discount</button>
+                    <button class="click-btn btn btn-default" style="background-color: orange"><a href="DeleteDiscount?id=<%= dis.getId()%>" style="color: white">Delete Discount</a></button>
                 </div>
-            </form>
+            
 
         </section>
         <!-- End Banner Area -->
