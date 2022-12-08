@@ -49,6 +49,24 @@ public class ProductDAO {
         return list;
     }
 
+
+    public List<Product> getProductBypage(List<Product> list, int page) {
+        List<Product> arr = new ArrayList<>();
+        int productPerPage = 9;
+        int start = (page * productPerPage) - productPerPage;
+        int end;
+        if (list.size() < page * productPerPage) {
+            end = list.size();
+        } else {
+            end = productPerPage * page;
+        }
+        for (int i = start; i < end; i++) {
+            arr.add(list.get(i));
+        }
+        return arr;
+
+    }
+
     public static void main(String[] args) throws Exception {
         ProductDAO dao = new ProductDAO();
         List<Product> list = dao.getProductDetail(10);
