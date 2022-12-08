@@ -98,11 +98,12 @@ public class DAODiscount extends DBContext{
     }
     
     public void delete(int id){
-        String sql = "delete from Discount where id = "+id;
+        String sql = "delete from Discount where id = ?";
         try(
                 PreparedStatement ps= connection.prepareStatement(sql);
                
                 ){
+            ps.setInt(1, id);
             ps.executeUpdate();
         }catch(SQLException e){
         }

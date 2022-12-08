@@ -63,9 +63,10 @@ public class DeleteDiscountServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-        int id = Integer.parseInt(request.getParameter("id"));
-        new DAODiscount().delete(id);
+        String id = request.getParameter("id");
+        int did = Integer.parseInt(id);
+        System.out.println(id);
+        new DAODiscount().delete(did);
         response.sendRedirect("view-discount.jsp");
     }
 
