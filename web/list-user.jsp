@@ -1,4 +1,3 @@
-<%@page import="model.User"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
@@ -35,12 +34,7 @@
         <link rel="stylesheet" href="css/magnific-popup.css">
         <link rel="stylesheet" href="css/main.css">
     </head>
-    <%
-        if (session.getAttribute("admin-account") == null) {
-            response.sendRedirect("admin-login");
-        }
 
-    %>
     <body>
         <header class="header_area sticky-header">
             <div class="main_menu">
@@ -87,9 +81,6 @@
                                     </ul>
                                 </li>
                                 <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-                                    <%  if (session.getAttribute("admin-account") != null) {%>
-                                <li class="nav-item"><a class="nav-link" href="admin-logout">Log Out</a></li>
-                                    <% }%>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
                                 <li class="nav-item"><a href="#" class="cart"><span class="ti-bag"></span></a></li>
