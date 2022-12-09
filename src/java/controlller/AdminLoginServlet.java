@@ -8,18 +8,18 @@ package controlller;
 import dao.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.User;
 
 /**
  *
  * @author admin
  */
-public class ViewListUserServlet extends HttpServlet {
+public class AdminLoginServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,10 +33,20 @@ public class ViewListUserServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
         UserDAO dao = new UserDAO();
-        List<User> listUser = dao.getListUser();
-        request.setAttribute("listUser", listUser);
-        request.getRequestDispatcher("list-user.jsp").forward(request, response);
+        User user = dao.adminLogin(username, password);
+        if (user == null) {
+            request.setAttribute("errorMessage", "Wrong user or password !");
+            request.setAttribute("successMessage", "");
+            request.getRequestDispatcher("admin-login.jsp").forward(request, response);
+        } else {
+            HttpSession session = request.getSession();
+            session.setAttribute("admin-account", user);
+            session.setMaxInactiveInterval(3600);
+            request.getRequestDispatcher("list-user").forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -52,7 +62,6 @@ public class ViewListUserServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-
     }
 
     /**
