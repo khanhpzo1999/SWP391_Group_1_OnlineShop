@@ -4,12 +4,14 @@
  */
 package controlller;
 
+import dao.DAODiscount;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Discount;
 
 /**
  *
@@ -29,18 +31,6 @@ public class UpdateDiscountServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet UpdateDiscountServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet UpdateDiscountServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -70,6 +60,13 @@ public class UpdateDiscountServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        int id = Integer.parseInt(request.getParameter("id"));
+        String discount_name = request.getParameter("discount_name");
+        float discount_number =Float.parseFloat(request.getParameter("discount_number"));
+        
+        Discount d = new Discount(id, discount_name, discount_number);
+        new DAODiscount().update(d);
+        response.sendRedirect("view-discount.jsp");
     }
 
     /**

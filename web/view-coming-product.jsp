@@ -1,5 +1,5 @@
-<%@page import="model.Discount"%>
-<%@page import="dao.DAODiscount"%>
+<%@page import="dao.DAOComingProduct"%>
+<%@page import="model.ComingProduct"%>
 <%@page import="java.util.List"%>
 <%@page import="dao.DAO"%>
 
@@ -111,7 +111,7 @@
             <div class="container">
                 <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
                     <div class="col-first">
-                        <h1>Manager Discount Page</h1>
+                        <h1>Manager Coming Product Page</h1>
                     </div>
                 </div>
             </div>
@@ -120,26 +120,30 @@
         
         <!-- Start Banner Area -->
         <section class="features-area section_gap" style="margin-top: 100px; width: 80% ; margin-left:auto;margin-right:auto">
-            <button class="click-btn btn btn-default" style="margin-bottom: 20px ; margin-left: 90% ; background-color: orange"><a href="add-discount.jsp" style="color: white">Add new discount</a></button>
+            <button class="click-btn btn btn-default" style="margin-bottom: 20px ; margin-left: 90% ; background-color: orange"><a href="add-coming-product.jsp" style="color: white">Add new coming product</a></button>
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Discount</th>
-                        <th>SALE OFF</th>
+                        <th>Product Name</th>
+                        <th>Product Price</th>
+                        <th>Product Description</th>
+                        <th></th>
                         <th></th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <%
-                        List<Discount> list = new DAODiscount().getAll();
-                        for(Discount d : list){
+                    <% 
+                        List<ComingProduct> list = new DAOComingProduct().getAll();
+                        for(ComingProduct cp : list){
                     %>
                     <tr>
-                        <td><%= d.getDiscount_name()%></td>
-                        <td><%= d.getDiscount_number()%></td>
-                        <td><button class="click-btn btn btn-default" style="background-color: orange"><a style="color: white" href="update-discount.jsp?id=<%= d.getId()%>">Edit</a></button></td>
-                        <td><button class="click-btn btn btn-default" style="background-color: orange"><a style="color: white" href="delete-discount.jsp?id=<%= d.getId()%>">Delete</a></button></td>
+                        <td><%= cp.getProduct_name()%></td>
+                        <td><%= cp.getProduct_price()%></td>
+                        <td><%= cp.getProduct_description()%></td>
+                        <td><button class="click-btn btn btn-default" style="background-color: orange"><a style="color: white" href="view-detail-coming-product?id=<%= cp.getId()%>">Detail</a></button></td>
+                        <td><button class="click-btn btn btn-default" style="background-color: orange"><a style="color: white" href="update-coming-product?id=<%= cp.getId()%>">Edit</a></button></td>
+                        <td><button class="click-btn btn btn-default" style="background-color: orange"><a style="color: white" href="delete-coming-product?id=<%= cp.getId()%>">Delete</a></button></td>
                     </tr>
                     <%
                         }
