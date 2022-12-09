@@ -158,10 +158,10 @@
                                     <li><a class="active" href="category?id=${pd.category_id}"><span>Category</span> :  ${pd.category_name}</a></li>
                                         <c:choose>
                                             <c:when test="${pd.product_status == 'true'}">
-                                            <li><a><span>Availibility</span> :In Stock</a></li>
+                                            <li><a ><span>Availibility</span> : In Stock</a></li>
                                             </c:when>
                                             <c:when test="${pd.product_status == 'flase'}">
-                                            <li><a><span>Availibility</span> :  Out of stock</a></li> 
+                                                <li><a style="color: red"><span>Availibility</span> : Out of stock</a></li> 
                                             </c:when>
                                         </c:choose>
                                 </ul>

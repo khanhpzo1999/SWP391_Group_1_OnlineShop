@@ -24,6 +24,7 @@ public Connection connection;
     }
     /*Insert your other code right after this comment*/
  /*Change/update information of your database connection, DO NOT change name of instance variables in this class*/
+ 
     private final String serverName = "LAPTOP-9KPF5SGI\\SQLEXPRESS";
     private final String dbName = "Shop_Online";
     private final String portNumber = "1433";

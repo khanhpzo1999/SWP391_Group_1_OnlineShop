@@ -1,11 +1,14 @@
-<%@page import="model.Discount"%>
-<%@page import="dao.DAODiscount"%>
-<%@page import="java.util.List"%>
-<%@page import="dao.DAO"%>
+<%-- 
+    Document   : viewuserinformation
+    Created on : Dec 9, 2022, 9:28:25 AM
+    Author     : Nhat Anh
+--%>
 
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
 <html lang="zxx" class="no-js">
+
     <head>
         <!-- Mobile Specific Meta -->
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -23,19 +26,19 @@
         <title>Karma Shop</title>
 
         <!--
-            CSS
-            ============================================= -->
+                CSS
+                ============================================= -->
         <link rel="stylesheet" href="css/linearicons.css">
         <link rel="stylesheet" href="css/owl.carousel.css">
-        <link rel="stylesheet" href="css/font-awesome.min.css">
         <link rel="stylesheet" href="css/themify-icons.css">
+        <link rel="stylesheet" href="css/font-awesome.min.css">
         <link rel="stylesheet" href="css/nice-select.css">
         <link rel="stylesheet" href="css/nouislider.min.css">
         <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="css/main.css">
     </head>
 
-    <body id="category">
+    <body>
 
         <!-- Start Header Area -->
         <header class="header_area sticky-header">
@@ -54,11 +57,11 @@
                         <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                             <ul class="nav navbar-nav menu_nav ml-auto">
                                 <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                                <li class="nav-item submenu dropdown active">
+                                <li class="nav-item submenu dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                                        aria-expanded="false">Shop</a>
                                     <ul class="dropdown-menu">
-                                        <li class="nav-item active"><a class="nav-link" href="category.html">Shop Category</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="category.html">Shop Category</a></li>
                                         <li class="nav-item"><a class="nav-link" href="single-product.html">Product Details</a></li>
                                         <li class="nav-item"><a class="nav-link" href="checkout.html">Product Checkout</a></li>
                                         <li class="nav-item"><a class="nav-link" href="cart.html">Shopping Cart</a></li>
@@ -73,11 +76,11 @@
                                         <li class="nav-item"><a class="nav-link" href="single-blog.html">Blog Details</a></li>
                                     </ul>
                                 </li>
-                                <li class="nav-item submenu dropdown">
+                                <li class="nav-item submenu dropdown active">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                                        aria-expanded="false">Pages</a>
                                     <ul class="dropdown-menu">
-                                        <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
+                                        <li class="nav-item active"><a class="nav-link" href="login.html">Login</a></li>
                                         <li class="nav-item"><a class="nav-link" href="tracking.html">Tracking</a></li>
                                         <li class="nav-item"><a class="nav-link" href="elements.html">Elements</a></li>
                                     </ul>
@@ -111,176 +114,55 @@
             <div class="container">
                 <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
                     <div class="col-first">
-                        <h1>Delete Discount Page</h1>
+                        <h1>Login/Register</h1>
+                        <nav class="d-flex align-items-center">
+                            <a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
+                            <a href="category.html">Login/Register</a>
+                        </nav>
                     </div>
                 </div>
             </div>
         </section>
         <!-- End Banner Area -->
 
-        <!-- Start Banner Area -->
-        <section class="features-area section_gap" style="margin-top: 100px; width: 80% ; margin-left:auto;margin-right:auto">
-            
-                <table>
-                    <%
-                        String id = request.getParameter("id");
-                        DAODiscount dao = new DAODiscount();
-                        Discount dis = dao.getById(Integer.parseInt(id));
-                    %>
-                    <tr>
-                        <th>Discount </th>
-                        <td><%= dis.getDiscount_name()%></td>
-                    </tr>
-                    <tr>
-                        <th>SALE </th>
-                        <td><%= dis.getDiscount_number()%></td>
-                    </tr>
-
-                </table>
-                <div class="cupon_text d-flex align-items-center">
-                    <button class="click-btn btn btn-default" style="background-color: orange"><a href="DeleteDiscount?id=<%= dis.getId()%>" style="color: white">Delete Discount</a></button>
-                </div>
-            
-
-        </section>
-        <!-- End Banner Area -->
-
-        <!-- Start related-product Area -->
-        <section class="related-product-area section_gap">
+        <!--================Login Box Area =================-->
+        <section class="login_box_area section_gap">
             <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-6 text-center">
-                        <div class="section-title">
-                            <h1>Deals of the Week</h1>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                                magna aliqua.</p>
-                        </div>
-                    </div>
-                </div>
                 <div class="row">
-                    <div class="col-lg-9">
-                        <div class="row">
-                            <div class="col-lg-4 col-md-4 col-sm-6 mb-20">
-                                <div class="single-related-product d-flex">
-                                    <a href="#"><img src="img/r1.jpg" alt=""></a>
-                                    <div class="desc">
-                                        <a href="#" class="title">Black lace Heels</a>
-                                        <div class="price">
-                                            <h6>$189.00</h6>
-                                            <h6 class="l-through">$210.00</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-6 mb-20">
-                                <div class="single-related-product d-flex">
-                                    <a href="#"><img src="img/r2.jpg" alt=""></a>
-                                    <div class="desc">
-                                        <a href="#" class="title">Black lace Heels</a>
-                                        <div class="price">
-                                            <h6>$189.00</h6>
-                                            <h6 class="l-through">$210.00</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-6 mb-20">
-                                <div class="single-related-product d-flex">
-                                    <a href="#"><img src="img/r3.jpg" alt=""></a>
-                                    <div class="desc">
-                                        <a href="#" class="title">Black lace Heels</a>
-                                        <div class="price">
-                                            <h6>$189.00</h6>
-                                            <h6 class="l-through">$210.00</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-6 mb-20">
-                                <div class="single-related-product d-flex">
-                                    <a href="#"><img src="img/r5.jpg" alt=""></a>
-                                    <div class="desc">
-                                        <a href="#" class="title">Black lace Heels</a>
-                                        <div class="price">
-                                            <h6>$189.00</h6>
-                                            <h6 class="l-through">$210.00</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-6 mb-20">
-                                <div class="single-related-product d-flex">
-                                    <a href="#"><img src="img/r6.jpg" alt=""></a>
-                                    <div class="desc">
-                                        <a href="#" class="title">Black lace Heels</a>
-                                        <div class="price">
-                                            <h6>$189.00</h6>
-                                            <h6 class="l-through">$210.00</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-6 mb-20">
-                                <div class="single-related-product d-flex">
-                                    <a href="#"><img src="img/r7.jpg" alt=""></a>
-                                    <div class="desc">
-                                        <a href="#" class="title">Black lace Heels</a>
-                                        <div class="price">
-                                            <h6>$189.00</h6>
-                                            <h6 class="l-through">$210.00</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-6">
-                                <div class="single-related-product d-flex">
-                                    <a href="#"><img src="img/r9.jpg" alt=""></a>
-                                    <div class="desc">
-                                        <a href="#" class="title">Black lace Heels</a>
-                                        <div class="price">
-                                            <h6>$189.00</h6>
-                                            <h6 class="l-through">$210.00</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-6">
-                                <div class="single-related-product d-flex">
-                                    <a href="#"><img src="img/r10.jpg" alt=""></a>
-                                    <div class="desc">
-                                        <a href="#" class="title">Black lace Heels</a>
-                                        <div class="price">
-                                            <h6>$189.00</h6>
-                                            <h6 class="l-through">$210.00</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-6">
-                                <div class="single-related-product d-flex">
-                                    <a href="#"><img src="img/r11.jpg" alt=""></a>
-                                    <div class="desc">
-                                        <a href="#" class="title">Black lace Heels</a>
-                                        <div class="price">
-                                            <h6>$189.00</h6>
-                                            <h6 class="l-through">$210.00</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="col-lg-6">
+                        <div class="login_box_img">
+                            <img class="img-fluid" src="img/login.jpg" alt="">
                         </div>
                     </div>
-                    <div class="col-lg-3">
-                        <div class="ctg-right">
-                            <a href="#" target="_blank">
-                                <img class="img-fluid d-block mx-auto" src="img/category/c5.jpg" alt="">
-                            </a>
+                    <div class="col-lg-6">
+                        <div class="login_form_inner" style="padding-top:-50px;">
+                            <h3 >Profile Information</h3>
+                            <form class="row login_form" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
+                                <div class="col-md-12 form-group">
+                                    <input type="text" class="form-control" id="name" disabled name="name" placeholder="name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'">
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <input type="text" class="form-control" id="name" disabled name="email" placeholder="email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <input type="text" class="form-control" id="name" disabled name="phone" placeholder="phone" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <input type="text" class="form-control" id="name" disabled name="address" placeholder="address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <button type="submit" value="submit" class="primary-btn">Change Information</button>
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <button type="submit" value="submit" class="primary-btn">Change Password</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        <!-- End related-product Area -->
+        <!--================End Login Box Area =================-->
 
         <!-- start footer Area -->
         <footer class="footer-area section_gap">
@@ -361,36 +243,6 @@
             </div>
         </footer>
         <!-- End footer Area -->
-
-        <!-- Modal Quick Product View -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="container relative">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <div class="product-quick-view">
-                        <div class="row align-items-center">
-                            <div class="col-lg-6">
-                                <div class="quick-view-carousel">
-                                    <div class="item" style="background: url(img/organic-food/q1.jpg);">
-
-                                    </div>
-                                    <div class="item" style="background: url(img/organic-food/q1.jpg);">
-
-                                    </div>
-                                    <div class="item" style="background: url(img/organic-food/q1.jpg);">
-
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
 
 
         <script src="js/vendor/jquery-2.2.4.min.js"></script>
