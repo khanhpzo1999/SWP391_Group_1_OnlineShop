@@ -88,6 +88,14 @@
         <servlet-name>AdminViewUserDetailServlet</servlet-name>
         <servlet-class>controlller.AdminViewUserDetailServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewUserInformationServlet</servlet-name>
+        <servlet-class>controlller.ViewUserInformationServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewListComingProductServlet</servlet-name>
+        <servlet-class>controlller.ViewListComingProductServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>NewServlet</servlet-name>
         <url-pattern>/NewServlet</url-pattern>
@@ -175,6 +183,14 @@
     <servlet-mapping>
         <servlet-name>AdminViewUserDetailServlet</servlet-name>
         <url-pattern>/user-detail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewUserInformationServlet</servlet-name>
+        <url-pattern>/viewuserinformation</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewListComingProductServlet</servlet-name>
+           <url-pattern>/viewlistcomingproduct</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

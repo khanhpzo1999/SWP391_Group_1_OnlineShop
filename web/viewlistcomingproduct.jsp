@@ -1,14 +1,9 @@
-<%-- 
-    Document   : productdetail
-    Created on : Dec 4, 2022, 10:33:56 PM
-    Author     : long
---%>
-
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
 <%@page import="model.Product"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="dao.ProductDAO"%>
 <!DOCTYPE html>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html lang="zxx" class="no-js">
 
     <head>
@@ -26,22 +21,21 @@
         <meta charset="UTF-8">
         <!-- Site Title -->
         <title>Karma Shop</title>
+
         <!--
-                        CSS
-                        ============================================= -->
+            CSS
+            ============================================= -->
         <link rel="stylesheet" href="css/linearicons.css">
+        <link rel="stylesheet" href="css/owl.carousel.css">
         <link rel="stylesheet" href="css/font-awesome.min.css">
         <link rel="stylesheet" href="css/themify-icons.css">
-        <link rel="stylesheet" href="css/bootstrap.css">
-        <link rel="stylesheet" href="css/owl.carousel.css">
         <link rel="stylesheet" href="css/nice-select.css">
         <link rel="stylesheet" href="css/nouislider.min.css">
-        <link rel="stylesheet" href="css/ion.rangeSlider.css" />
-        <link rel="stylesheet" href="css/ion.rangeSlider.skinFlat.css" />
+        <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="css/main.css">
     </head>
 
-    <body>
+    <body id="category">
 
         <!-- Start Header Area -->
         <header class="header_area sticky-header">
@@ -50,8 +44,9 @@
                     <div class="container">
                         <!-- Brand and toggle get grouped for better mobile display -->
                         <a class="navbar-brand logo_h" href="index.html"><img src="img/logo.png" alt=""></a>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                aria-expanded="false" aria-label="Toggle navigation">
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
@@ -61,27 +56,32 @@
                             <ul class="nav navbar-nav menu_nav ml-auto">
                                 <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
                                 <li class="nav-item submenu dropdown active">
-                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                                       aria-expanded="false">Shop</a>
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                                       aria-haspopup="true" aria-expanded="false">Shop</a>
                                     <ul class="dropdown-menu">
-                                        <li class="nav-item"><a class="nav-link" href="category.html">Shop Category</a></li>
-                                        <li class="nav-item active"><a class="nav-link" href="single-product.html">Product Details</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="checkout.html">Product Checkout</a></li>
+                                        <li class="nav-item active"><a class="nav-link" href="category.html">Shop
+                                                Category</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="single-product.html">Product
+                                                Details</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="checkout.html">Product Checkout</a>
+                                        </li>
                                         <li class="nav-item"><a class="nav-link" href="cart.html">Shopping Cart</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="confirmation.html">Confirmation</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="confirmation.html">Confirmation</a>
+                                        </li>
                                     </ul>
                                 </li>
                                 <li class="nav-item submenu dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                                       aria-expanded="false">Blog</a>
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                                       aria-haspopup="true" aria-expanded="false">Blog</a>
                                     <ul class="dropdown-menu">
                                         <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="single-blog.html">Blog Details</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="single-blog.html">Blog Details</a>
+                                        </li>
                                     </ul>
                                 </li>
                                 <li class="nav-item submenu dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                                       aria-expanded="false">Pages</a>
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                                       aria-haspopup="true" aria-expanded="false">Pages</a>
                                     <ul class="dropdown-menu">
                                         <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
                                         <li class="nav-item"><a class="nav-link" href="tracking.html">Tracking</a></li>
@@ -117,199 +117,105 @@
             <div class="container">
                 <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
                     <div class="col-first">
-                        <h1>Product Details Page</h1>
-                        <nav class="d-flex align-items-center">
-                            <a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
-                            <a href="#">Shop<span class="lnr lnr-arrow-right"></span></a>
-                            <a href="single-product.html">product-details</a>
-                        </nav>
+                        <h1>Shop Product page</h1>
                     </div>
                 </div>
             </div>
         </section>
         <!-- End Banner Area -->
+        <div class="container">
+            <div class="row">
 
-        <!--================Single Product Area =================-->
-        <div class="product_image_area">
-            <div class="container">
-                <div class="row s_product_inner">
-                    <div class="col-lg-6">
-                        <c:forEach items="${listProduct}" var="pd">
-                            <div class="s_Product_carousel">
-                                <div class="single-prd-item">
-                                    <img class="img-fluid" src=${pd.product_thumbnail} alt="">
-                                </div>
-                                <div class="single-prd-item">
-                                    <img class="img-fluid" src=${pd.product_thumbnail} alt="">
-                                </div>
-                                <div class="single-prd-item">
-                                    <img class="img-fluid" src=${pd.product_thumbnail} alt="">
-                                </div>
-                            </div>
-                        </c:forEach>
-                    </div>
-                    <c:forEach items="${listProduct}" var="pd">
-                        <div class="col-lg-5 offset-lg-1">
-                            <div class="s_product_text">
-                                <h3>${pd.product_name}</h3>
-                                <h2>$${pd.product_price}</h2>
-                                
-
-                                <ul class="list">
-                                    <li><a class="active" href="category?id=${pd.category_id}"><span>Category</span> :  ${pd.category_name}</a></li>
-                                        <c:choose>
-                                            <c:when test="${pd.product_status == 'true'}">
-                                            <li><a ><span>Availibility</span> : In Stock</a></li>
-                                            </c:when>
-                                            <c:when test="${pd.product_status == 'flase'}">
-                                                <li><a style="color: red"><span>Availibility</span> : Out of stock</a></li> 
-                                            </c:when>
-                                        </c:choose>
-                                </ul>
-                                <p>${pd.product_description}</p>
-                                <div class="product_count">
-                                    <label for="qty">Quantity:</label>
-                                    <input type="text" name="qty" id="sst" maxlength="12" value="${pd.product_quatity}" title="Quantity:" class="input-text qty">
-                                    <button onclick="var result = document.getElementById('sst');
-                                            var sst = result.value;
-                                            if (!isNaN(sst))
-                                                result.value++;
-                                            return false;"
-                                            class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
-                                    <button onclick="var result = document.getElementById('sst'); var sst = result.value; if (!isNaN(sst) & amp; & amp; sst > 0) result.value--; return false;"
-                                            class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
-                                </div>
-                                <div class="card_area d-flex align-items-center">
-                                    <a class="primary-btn" href="#">Add to Cart</a>
-                                    <a class="icon_btn" href="#"><i class="lnr lnr lnr-diamond"></i></a>
-                                    <a class="icon_btn" href="#"><i class="lnr lnr lnr-heart"></i></a>
-                                </div>
-                            </div>
+                <div>
+                    <!-- Start Filter Bar -->
+                    <div class="filter-bar d-flex flex-wrap align-items-between">
+                        <div class="sorting">
+                            <select>
+                                <option value="1">Default sorting</option>
+                                <option value="1">Default sorting</option>
+                                <option value="1">Default sorting</option>
+                            </select>
                         </div>
-                    </c:forEach>
+                        <div class="pagination">
+                            <a href="#" class="prev-arrow"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
+                            <a href="#" class="active">1</a>
+                            <a href="#">2</a>
+                            <a href="#">3</a>
+                            <a href="#" class="dot-dot"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a>
+                            <a href="#">6</a>
+                            <a href="#" class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                    <!-- End Filter Bar -->
+                    <!-- Start Best Seller -->
+                    <section class="lattest-product-area pb-40 category-list">
+                        <div class="row">
+                            <c:forEach var="i" items="${listAllComingProduct}">
+                                <div class="col-lg-4 col-md-6">
+                                    <div class="single-product">
+                                        <img class="img-fluid" src="img/product/p1.jpg" alt="">
+                                        <div class="product-details">
+                                            <h6>${i.product_name}</h6>
+                                            <div class="price">
+                                                <h6>$${i.product_price}</h6>
+                                            </div>
+                                            <div class="prd-bottom">
+
+                                                <a href="" class="social-info">
+                                                    <span class="ti-bag"></span>
+                                                    <p class="hover-text">add to bag</p>
+                                                </a>
+                                                <a href="" class="social-info">
+                                                    <span class="lnr lnr-heart"></span>
+                                                    <p class="hover-text">Wishlist</p>
+                                                </a>
+                                                <a href="" class="social-info">
+                                                    <span class="lnr lnr-move"></span>
+                                                    <p class="hover-text">view more</p>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </c:forEach>                            
+                        </div>
+                    </section>
+                    <!-- End Best Seller -->
+                    <!-- Start Filter Bar -->
+                    <div class="filter-bar d-flex flex-wrap align-items-center">
+                        <div class="pagination">
+<!--                            <a href="#" class="prev-arrow"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
+                            <a href="#" class="active">1</a>
+                            <a href="#">2</a>
+                            <a href="#">3</a>
+                            <a href="#" class="dot-dot"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a>
+                            <a href="#">6</a>
+                            <a href="#" class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>-->
+                            <%
+                                String id = request.getParameter("id");
+                                ProductDAO dao = new ProductDAO();
+                                List<Product> listAllComingProduct = dao.getListComingProduct();
+                                double productSize = listAllComingProduct.size();
+                                double productPerPage = 6;
+                                for (int i = 1; i <= Math.ceil(productSize / productPerPage); i++) {%>
+                                <a class="" href = "list?id=<%=id%>&page=<%=i%>"> <%=i%> </a>
+                            <% }%>
+                        </div>
+                    </div>
+                    <!-- End Filter Bar -->
                 </div>
             </div>
         </div>
-        <!--================End Single Product Area =================-->
-
-        <!--================Product Description Area =================-->
-        <section class="product_description_area">
-            <div class="container">
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Description</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
-                           aria-selected="false">Specification</a>
-                    </li>
-
-                </ul>
-                <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
-                        <p>Beryl Cook is one of Britain’s most talented and amusing artists .Beryl’s pictures feature women of all shapes
-                            and sizes enjoying themselves .Born between the two world wars, Beryl Cook eventually left Kendrick School in
-                            Reading at the age of 15, where she went to secretarial school and then into an insurance office. After moving to
-                            London and then Hampton, she eventually married her next door neighbour from Reading, John Cook. He was an
-                            officer in the Merchant Navy and after he left the sea in 1956, they bought a pub for a year before John took a
-                            job in Southern Rhodesia with a motor company. Beryl bought their young son a box of watercolours, and when
-                            showing him how to use it, she decided that she herself quite enjoyed painting. John subsequently bought her a
-                            child’s painting set for her birthday and it was with this that she produced her first significant work, a
-                            half-length portrait of a dark-skinned lady with a vacant expression and large drooping breasts. It was aptly
-                            named ‘Hangover’ by Beryl’s husband and</p>
-                        <p>It is often frustrating to attempt to plan meals that are designed for one. Despite this fact, we are seeing
-                            more and more recipe books and Internet websites that are dedicated to the act of cooking for one. Divorce and
-                            the death of spouses or grown children leaving for college are all reasons that someone accustomed to cooking for
-                            more than one would suddenly need to learn how to adjust all the cooking practices utilized before into a
-                            streamlined plan of cooking that is more efficient for one person creating less</p>
-                    </div>
-                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                        <div class="table-responsive">
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <h5>Width</h5>
-                                        </td>
-                                        <td>
-                                            <h5>128mm</h5>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <h5>Height</h5>
-                                        </td>
-                                        <td>
-                                            <h5>508mm</h5>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <h5>Depth</h5>
-                                        </td>
-                                        <td>
-                                            <h5>85mm</h5>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <h5>Weight</h5>
-                                        </td>
-                                        <td>
-                                            <h5>52gm</h5>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <h5>Quality checking</h5>
-                                        </td>
-                                        <td>
-                                            <h5>yes</h5>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <h5>Freshness Duration</h5>
-                                        </td>
-                                        <td>
-                                            <h5>03days</h5>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <h5>When packeting</h5>
-                                        </td>
-                                        <td>
-                                            <h5>Without touch of hand</h5>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <h5>Each Box contains</h5>
-                                        </td>
-                                        <td>
-                                            <h5>60pcs</h5>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
-        </section>
-        <!--================End Product Description Area =================-->
 
         <!-- Start related-product Area -->
-        <section class="related-product-area section_gap_bottom">
+        <section class="related-product-area section_gap">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-6 text-center">
                         <div class="section-title">
                             <h1>Deals of the Week</h1>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                                labore et dolore
                                 magna aliqua.</p>
                         </div>
                     </div>
@@ -447,7 +353,8 @@
                         <div class="single-footer-widget">
                             <h6>About Us</h6>
                             <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore dolore
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
+                                ut labore dolore
                                 magna aliqua.
                             </p>
                         </div>
@@ -458,23 +365,27 @@
                             <p>Stay update with our latest</p>
                             <div class="" id="mc_embed_signup">
 
-                                <form target="_blank" novalidate="true" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
+                                <form target="_blank" novalidate="true"
+                                      action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
                                       method="get" class="form-inline">
 
                                     <div class="d-flex flex-row">
 
-                                        <input class="form-control" name="EMAIL" placeholder="Enter Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email '"
+                                        <input class="form-control" name="EMAIL" placeholder="Enter Email"
+                                               onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email '"
                                                required="" type="email">
 
 
-                                        <button class="click-btn btn btn-default"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></button>
+                                        <button class="click-btn btn btn-default"><i class="fa fa-long-arrow-right"
+                                                                                     aria-hidden="true"></i></button>
                                         <div style="position: absolute; left: -5000px;">
-                                            <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
+                                            <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value=""
+                                                   type="text">
                                         </div>
 
                                         <!-- <div class="col-lg-4 col-md-4">
-                                                                <button class="bb-btn btn"><span class="lnr lnr-arrow-right"></span></button>
-                                                        </div>  -->
+                                                                        <button class="bb-btn btn"><span class="lnr lnr-arrow-right"></span></button>
+                                                                </div>  -->
                                     </div>
                                     <div class="info"></div>
                                 </form>
@@ -510,8 +421,12 @@
                     </div>
                 </div>
                 <div class="footer-bottom d-flex justify-content-center align-items-center flex-wrap">
-                    <p class="footer-text m-0"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                    <p class="footer-text m-0">
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        Copyright &copy;
+                        <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is
+                        made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com"
+                                                                                         target="_blank">Colorlib</a>
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                     </p>
                 </div>
@@ -519,8 +434,84 @@
         </footer>
         <!-- End footer Area -->
 
+        <!-- Modal Quick Product View -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="container relative">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <div class="product-quick-view">
+                        <div class="row align-items-center">
+                            <div class="col-lg-6">
+                                <div class="quick-view-carousel">
+                                    <div class="item" style="background: url(img/organic-food/q1.jpg);">
+
+                                    </div>
+                                    <div class="item" style="background: url(img/organic-food/q1.jpg);">
+
+                                    </div>
+                                    <div class="item" style="background: url(img/organic-food/q1.jpg);">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="quick-view-content">
+                                    <div class="top">
+                                        <h3 class="head">Mill Oil 1000W Heater, White</h3>
+                                        <div class="price d-flex align-items-center"><span class="lnr lnr-tag"></span> <span
+                                                class="ml-10">$149.99</span></div>
+                                        <div class="category">Category: <span>Household</span></div>
+                                        <div class="available">Availibility: <span>In Stock</span></div>
+                                    </div>
+                                    <div class="middle">
+                                        <p class="content">Mill Oil is an innovative oil filled radiator with the most
+                                            modern technology. If you are
+                                            looking for something that can make your interior look awesome, and at the same
+                                            time give you the pleasant
+                                            warm feeling during the winter.</p>
+                                        <a href="#" class="view-full">View full Details <span
+                                                class="lnr lnr-arrow-right"></span></a>
+                                    </div>
+                                    <div class="bottom">
+                                        <div class="color-picker d-flex align-items-center">Color:
+                                            <span class="single-pick"></span>
+                                            <span class="single-pick"></span>
+                                            <span class="single-pick"></span>
+                                            <span class="single-pick"></span>
+                                            <span class="single-pick"></span>
+                                        </div>
+                                        <div class="quantity-container d-flex align-items-center mt-15">
+                                            Quantity:
+                                            <input type="text" class="quantity-amount ml-15" value="1" />
+                                            <div class="arrow-btn d-inline-flex flex-column">
+                                                <button class="increase arrow" type="button" title="Increase Quantity"><span
+                                                        class="lnr lnr-chevron-up"></span></button>
+                                                <button class="decrease arrow" type="button" title="Decrease Quantity"><span
+                                                        class="lnr lnr-chevron-down"></span></button>
+                                            </div>
+
+                                        </div>
+                                        <div class="d-flex mt-20">
+                                            <a href="#" class="view-btn color-2"><span>Add to Cart</span></a>
+                                            <a href="#" class="like-btn"><span class="lnr lnr-layers"></span></a>
+                                            <a href="#" class="like-btn"><span class="lnr lnr-heart"></span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
         <script src="js/vendor/jquery-2.2.4.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+                integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
         crossorigin="anonymous"></script>
         <script src="js/vendor/bootstrap.min.js"></script>
         <script src="js/jquery.ajaxchimp.min.js"></script>
@@ -533,7 +524,6 @@
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
         <script src="js/gmaps.min.js"></script>
         <script src="js/main.js"></script>
-
     </body>
 
 </html>
