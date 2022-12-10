@@ -7,6 +7,7 @@ package controlller;
 import dao.DAODiscount;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -31,6 +32,11 @@ public class UpdateDiscountServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String id = request.getParameter("id");
+
+        if (id == null) {
+            response.sendRedirect("view-discount.jsp");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -46,6 +52,10 @@ public class UpdateDiscountServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        DAODiscount dao = new DAODiscount();
+        List<Discount> list = dao.getAll();
+        request.setAttribute("list", list);
+        request.getRequestDispatcher("view-discount.jsp").forward(request, response);
     }
 
     /**
@@ -60,13 +70,17 @@ public class UpdateDiscountServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        int id = Integer.parseInt(request.getParameter("id"));
+        String id = request.getParameter("id");
+        if (id == null) {
+            response.sendRedirect("view-discount.jsp");
+        }
         String discount_name = request.getParameter("discount_name");
-        float discount_number =Float.parseFloat(request.getParameter("discount_number"));
-        
-        Discount d = new Discount(id, discount_name, discount_number);
+        float discount_number = Float.parseFloat(request.getParameter("discount_number"));
+        Discount d = new Discount(Integer.parseInt(id), discount_name, discount_number);
+
         new DAODiscount().update(d);
-        response.sendRedirect("view-discount.jsp");
+        request.getRequestDispatcher("ViewDiscount").forward(request, response);
+
     }
 
     /**

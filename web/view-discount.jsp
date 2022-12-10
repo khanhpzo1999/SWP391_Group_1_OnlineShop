@@ -130,20 +130,16 @@
                         <th></th>
                     </tr>
                 </thead>
+                
                 <tbody>
-                    <%
-                        List<Discount> list = new DAODiscount().getAll();
-                        for(Discount d : list){
-                    %>
-                    <tr>
-                        <td><%= d.getDiscount_name()%></td>
-                        <td><%= d.getDiscount_number()%></td>
-                        <td><button class="click-btn btn btn-default" style="background-color: orange"><a style="color: white" href="update-discount.jsp?id=<%= d.getId()%>">Edit</a></button></td>
-                        <td><button class="click-btn btn btn-default" style="background-color: orange"><a style="color: white" href="delete-discount.jsp?id=<%= d.getId()%>">Delete</a></button></td>
-                    </tr>
-                    <%
-                        }
-                    %>
+                    <c:forEach items="${list}" var="dis">
+                        <tr>
+                            <td>${dis.discount_name}</td>
+                            <td>${dis.discount_number}</td>
+                            <td><button class="click-btn btn btn-default" style="background-color: orange"><a style="color: white" href="update-discount.jsp?id=${dis.id}">Edit</a></button></td>
+                        <td><button class="click-btn btn btn-default" style="background-color: orange"><a style="color: white" href="delete-discount.jsp?id=${dis.id}">Delete</a></button></td>
+                        </tr>
+                    </c:forEach>
                 </tbody>
             </table>
         </section>

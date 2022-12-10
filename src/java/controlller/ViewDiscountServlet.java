@@ -48,7 +48,10 @@ public class ViewDiscountServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        
+        DAODiscount dao = new DAODiscount();
+        List<Discount> list = dao.getAll();
+        request.setAttribute("list", list);
+        request.getRequestDispatcher("view-discount.jsp").forward(request, response);
     }
 
     /**
