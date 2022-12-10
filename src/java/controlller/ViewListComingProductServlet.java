@@ -5,7 +5,7 @@
  */
 package controlller;
 
-import dao.UserDAO;
+import dao.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -13,13 +13,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.User;
+import model.Product;
 
 /**
  *
- * @author admin
+ * @author Nhat Anh
  */
-public class ViewListUserServlet extends HttpServlet {
+public class ViewListComingProductServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,10 +33,18 @@ public class ViewListUserServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        UserDAO dao = new UserDAO();
-        List<User> listUser = dao.getListUser();
-        request.setAttribute("listUser", listUser);
-        request.getRequestDispatcher("list-user.jsp").forward(request, response);
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet ViewListComingProductServlet</title>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet ViewListComingProductServlet at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -52,7 +60,30 @@ public class ViewListUserServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+//        String id = request.getParameter("id");
+//        String page = request.getParameter("page");
+//        ProductDAO dao = new ProductDAO();
+//        List<Product> listAllComingProduct = dao.getListComingProduct();
+//        if (page == null) {
+//            List<Product> listProductByCategory = dao.getProductBypage(listAllComingProduct, 1);
+//            request.setAttribute("listProductByCategory", listProductByCategory);
+//        } else {
+//            List<Product> listProductByCategory = dao.getProductBypage(listAllComingProduct, Integer.parseInt(page));
+//            request.setAttribute("listProductByCategory", listProductByCategory);
+//        }
+//        List<Product> listComingProduct= dao.getListComingProduct();
+//        double productSize = listAllComingProduct.size();
+//        double productPerPage = 9;
+//        request.setAttribute("id", Integer.parseInt(id));
+//        request.setAttribute("totalPage", Math.ceil(productSize / productPerPage));
+//        request.setAttribute("listCategory", listComingProduct);
+//        request.setAttribute("listAllComingProduct", listAllComingProduct);
+//        request.getRequestDispatcher("category.jsp").forward(request, response);
 
+        ProductDAO dao = new ProductDAO();
+        List<Product> listComingProduct = dao.getListComingProduct();
+        request.setAttribute("listAllComingProduct", listComingProduct);
+        request.getRequestDispatcher("viewlistcomingproduct.jsp").forward(request, response);
     }
 
     /**

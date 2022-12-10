@@ -1,12 +1,3 @@
-<%-- 
-    Document   : viewuserinformation
-    Created on : Dec 9, 2022, 9:28:25 AM
-    Author     : Nhat Anh
---%>
-
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
 
@@ -40,14 +31,13 @@
     </head>
 
     <body>
-
         <!-- Start Header Area -->
         <header class="header_area sticky-header">
             <div class="main_menu">
                 <nav class="navbar navbar-expand-lg navbar-light main_box">
                     <div class="container">
                         <!-- Brand and toggle get grouped for better mobile display -->
-                        <a class="navbar-brand logo_h" href="index.html"><img src="img/logo.png" alt=""></a>
+                        <a class="navbar-brand logo_h" href="login.jsp"><img src="img/logo.png" alt=""></a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="icon-bar"></span>
@@ -55,46 +45,7 @@
                             <span class="icon-bar"></span>
                         </button>
                         <!-- Collect the nav links, forms, and other content for toggling -->
-                        <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
-                            <ul class="nav navbar-nav menu_nav ml-auto">
-                                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                                <li class="nav-item submenu dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                                       aria-expanded="false">Shop</a>
-                                    <ul class="dropdown-menu">
-                                        <li class="nav-item"><a class="nav-link" href="category.html">Shop Category</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="single-product.html">Product Details</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="checkout.html">Product Checkout</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="cart.html">Shopping Cart</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="confirmation.html">Confirmation</a></li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item submenu dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                                       aria-expanded="false">Blog</a>
-                                    <ul class="dropdown-menu">
-                                        <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="single-blog.html">Blog Details</a></li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item submenu dropdown active">
-                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                                       aria-expanded="false">Pages</a>
-                                    <ul class="dropdown-menu">
-                                        <li class="nav-item active"><a class="nav-link" href="login.html">Login</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="tracking.html">Tracking</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="elements.html">Elements</a></li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-                            </ul>
-                            <ul class="nav navbar-nav navbar-right">
-                                <li class="nav-item"><a href="#" class="cart"><span class="ti-bag"></span></a></li>
-                                <li class="nav-item">
-                                    <button class="search"><span class="lnr lnr-magnifier" id="search"></span></button>
-                                </li>
-                            </ul>
-                        </div>
+
                     </div>
                 </nav>
             </div>
@@ -111,19 +62,7 @@
         <!-- End Header Area -->
 
         <!-- Start Banner Area -->
-        <section class="banner-area organic-breadcrumb">
-            <div class="container">
-                <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
-                    <div class="col-first">
-                        <h1>Login/Register</h1>
-                        <nav class="d-flex align-items-center">
-                            <a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
-                            <a href="category.html">Login/Register</a>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </section>
+
         <!-- End Banner Area -->
 
         <!--================Login Box Area =================-->
@@ -133,36 +72,33 @@
                     <div class="col-lg-6">
                         <div class="login_box_img">
                             <img class="img-fluid" src="img/login.jpg" alt="">
-                        </div>
-                    </div>
-                    <c:forEach items="${userinfor}" var="ui">
-                    <div class="col-lg-6">
-                            <div class="login_form_inner" style="padding-top:50px;">
-                                <h3 >Profile Information</h3>
-                                <form class="row login_form" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
-                                    <div class="col-md-12 form-group">
-                                        <input type="text" class="form-control" id="user_fullname" value="${ui.user_fullname}" disabled name="name" placeholder="name" onfocus="this.placeholder = ''" >
-                                    </div>
-                                    <div class="col-md-12 form-group">
-                                        <input type="text" class="form-control" id="user_email"  value="${ui.user_email}" disabled name="email" placeholder="email" onfocus="this.placeholder = ''" >
-                                    </div>
-                                    <div class="col-md-12 form-group">
-                                        <input type="text" class="form-control" id="user_phone" value="${ui.user_phone}" disabled name="phone" placeholder="phone" onfocus="this.placeholder = ''">
-                                    </div>
-                                    <div class="col-md-12 form-group">
-                                        <input type="text" class="form-control" id="user_address" value="${ui.user_address}" disabled name="address" placeholder="address" onfocus="this.placeholder = ''" >
-                                    </div>
-                         
-                                    <div class="col-md-12 form-group">
-                                        <button type="submit" value="submit" class="primary-btn">Change Information</button>
-                                    </div>
-                                    <div class="col-md-12 form-group">
-                                        <button type="submit" value="submit" class="primary-btn">Change Password</button>
-                                    </div>
-                                </form>
+                            <div class="hover">
+                                <h4>Admin Site</h4>
                             </div>
                         </div>
-                        </c:forEach>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="login_form_inner">
+                            <h3>Log in to enter</h3>
+                            <form class="row login_form" action="admin-login" method="post" id="contactForm" novalidate="novalidate">
+                                <div class="col-md-12 form-group">
+                                    <input type="text" class="form-control" id="name" name="username" placeholder="Username" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'">
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <input type="password" class="form-control" id="name" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
+                                </div>
+
+                                <div class="col-md-12 form-group">
+                                    <button type="submit" value="submit" class="primary-btn">Log In</button>
+
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <h4>${successMessage}</h4>
+                                    <h4>${errorMessage}</h4>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -250,8 +186,7 @@
 
 
         <script src="js/vendor/jquery-2.2.4.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
-        crossorigin="anonymous"></script>
+
         <script src="js/vendor/bootstrap.min.js"></script>
         <script src="js/jquery.ajaxchimp.min.js"></script>
         <script src="js/jquery.nice-select.min.js"></script>

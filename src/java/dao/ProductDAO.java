@@ -49,7 +49,6 @@ public class ProductDAO {
         return list;
     }
 
-
     public List<Product> getProductBypage(List<Product> list, int page) {
         List<Product> arr = new ArrayList<>();
         int productPerPage = 9;
@@ -69,7 +68,7 @@ public class ProductDAO {
 
     public static void main(String[] args) throws Exception {
         ProductDAO dao = new ProductDAO();
-        List<Product> list = dao.getProductDetail(10);
+        List<Product> list = dao.getListComingProduct();
         for (Product product : list) {
             System.out.println(product.getCategory_id());
         }
@@ -105,6 +104,33 @@ public class ProductDAO {
         } catch (Exception e) {
         }
         return ListProduct;
+    }
+
+    public List<Product> getListComingProduct() {
+        List<Product> ListComingProduct = new ArrayList<>();
+        String query = "select * from Product\n"
+                + "where product_coming = 'true'";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                ListComingProduct.add(new Product(
+                        rs.getInt(1),
+                        rs.getString(2),
+                        rs.getFloat(3),
+                        rs.getBoolean(4),
+                        rs.getString(5),
+                        rs.getBoolean(6),
+                        rs.getString(7),
+                        rs.getInt(8),
+                        rs.getInt(9)
+                    
+                ));
+            }
+        } catch (Exception e) {
+        }
+        return ListComingProduct;
     }
 
 }
