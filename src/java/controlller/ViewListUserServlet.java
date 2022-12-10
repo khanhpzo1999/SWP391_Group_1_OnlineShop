@@ -33,7 +33,10 @@ public class ViewListUserServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
+        UserDAO dao = new UserDAO();
+        List<User> listUser = dao.getListUser();
+        request.setAttribute("listUser", listUser);
+        request.getRequestDispatcher("list-user.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -49,10 +52,7 @@ public class ViewListUserServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        UserDAO dao = new UserDAO();
-        List<User> listUser = dao.getListUser();
-        request.setAttribute("listUser", listUser);
-        request.getRequestDispatcher("list-user.jsp").forward(request, response);
+
     }
 
     /**

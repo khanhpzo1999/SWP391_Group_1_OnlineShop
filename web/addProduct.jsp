@@ -20,8 +20,8 @@
         <!-- Site Title -->
         <title>Karma Shop</title>
         <!--
-                CSS
-                ============================================= -->
+                    CSS
+                    ============================================= -->
         <link rel="stylesheet" href="css/linearicons.css">
         <link rel="stylesheet" href="css/font-awesome.min.css">
         <link rel="stylesheet" href="css/themify-icons.css">
@@ -34,20 +34,19 @@
         <link rel="stylesheet" href="css/magnific-popup.css">
         <link rel="stylesheet" href="css/main.css">
     </head>
-    <%
-        if (session.getAttribute("admin-account") == null) {
-            response.sendRedirect("admin-login");
-        }
-    %>
+
     <body>
+
+        <!-- Start Header Area -->
         <header class="header_area sticky-header">
             <div class="main_menu">
                 <nav class="navbar navbar-expand-lg navbar-light main_box">
                     <div class="container">
                         <!-- Brand and toggle get grouped for better mobile display -->
                         <a class="navbar-brand logo_h" href="index.html"><img src="img/logo.png" alt=""></a>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                aria-expanded="false" aria-label="Toggle navigation">
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
@@ -57,37 +56,28 @@
                             <ul class="nav navbar-nav menu_nav ml-auto">
                                 <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
                                 <li class="nav-item submenu dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                                       aria-expanded="false">Shop</a>
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                                       aria-haspopup="true" aria-expanded="false">User</a>
+                                </li>
+                                <li class="nav-item submenu dropdown">
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                                       aria-haspopup="true" aria-expanded="false">Blog</a>
                                     <ul class="dropdown-menu">
-                                        <li class="nav-item"><a class="nav-link" href="category.html">Shop Category</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="single-product.html">Product Details</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="checkout.html">Product Checkout</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="cart.html">Shopping Cart</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="confirmation.html">Confirmation</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="">Blog</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="">Blog Details</a>
+                                        </li>
                                     </ul>
                                 </li>
                                 <li class="nav-item submenu dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                                       aria-expanded="false">Blog</a>
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                                       aria-haspopup="true" aria-expanded="false">Products</a>
                                     <ul class="dropdown-menu">
-                                        <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="single-blog.html">Blog Details</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="#">Product Management</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="#">Product Coming</a></li>
                                     </ul>
                                 </li>
-                                <li class="nav-item submenu dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                                       aria-expanded="false">Pages</a>
-                                    <ul class="dropdown-menu">
-                                        <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="tracking.html">Tracking</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="elements.html">Elements</a></li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-                                    <%  if (session.getAttribute("admin-account") != null) {%>
-                                <li class="nav-item"><a class="nav-link" href="admin-logout">Log Out</a></li>
-                                    <% }%>
+                                <li class="nav-item"><a class="nav-link" href="">Category</a></li>
+                                <li class="nav-item"><a class="nav-link" href="">Discount</a></li>
                             </ul>
                         </div>
                     </div>
@@ -103,38 +93,81 @@
                 </div>
             </div>
         </header>
-        <section class="features-area section_gap" style="margin-top: 100px; width: 80% ; margin-left:auto;margin-right:auto">
+        <!-- End Header Area -->
 
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Username</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <c:forEach items="${listUser}" var="user">
-                        <tr>
-                            <td>${user.id}</td>
-                            <td>${user.username}</td>
-                            <td>${user.user_fullname}</td>
-                            <td>${user.user_email}</td>
-                            <td><a href="user-detail?id=${user.id}">View</a></td>
-                            <td><a>Edit</a></td>
-                            <td><a href="delete-user?id=${user.id}">Delete</a></td>
-                        </tr>
-                    </c:forEach>
-                </tbody>
-            </table>
-
+        <!-- Title Area -->
+        <section style="padding-top: 75px;">
+            <div class="container">
+                <div class="row align-items-center justify-content-start" style="height: 300px;">
+                    <div class="">
+                        <h2>Add new product</h2>
+                    </div>
+                </div>
+            </div>
         </section>
 
+        <!-- start Add product -->
+        <div class="container">
+            <div class="row">
+                <!-- Image field -->
+                <div class="col">
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Image</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="text-center">
+                                <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src=""
+                                     alt="Add image here">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Form field -->
+                <div class="col">
+                    <form>
+                        <div class="row mb-4">
+                            <div class="col">
+                                <div class="form-outline">
+                                    <label class="form-label" for="form6Example1">Product name</label>
+                                    <input type="text" id="form6Example1" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-outline">
+                                    <label class="form-label" for="form6Example2">Self price</label>
+                                    <input type="text" id="form6Example2" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col">
+                                <label class="form-label" for="form6Example2">Select category</label>
+                                <select class="form-select">
+                                    <option selected hidden>Select Category</option>
+                                    <option value="1">Shoes</option>
+                                    <option value="2">Accessories</option>
+                                    <option value="3">T Shirt</option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <label class="form-label" for="form6Example4">Quantity</label>
+                                <input type="text" id="form6Example4" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="form6Example7">Description of product</label>
+                            <textarea class="form-control" id="form6Example7" rows="4"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block mb-4">Create Product</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- end Add product -->
+
+        <!-- start footer Area -->
         <footer class="footer-area section_gap">
             <div class="container">
                 <div class="row">
@@ -142,7 +175,8 @@
                         <div class="single-footer-widget">
                             <h6>About Us</h6>
                             <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore dolore
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
+                                ut labore dolore
                                 magna aliqua.
                             </p>
                         </div>
@@ -153,23 +187,23 @@
                             <p>Stay update with our latest</p>
                             <div class="" id="mc_embed_signup">
 
-                                <form target="_blank" novalidate="true" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
+                                <form target="_blank" novalidate="true"
+                                      action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
                                       method="get" class="form-inline">
 
                                     <div class="d-flex flex-row">
 
-                                        <input class="form-control" name="EMAIL" placeholder="Enter Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email '"
+                                        <input class="form-control" name="EMAIL" placeholder="Enter Email"
+                                               onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email '"
                                                required="" type="email">
 
 
-                                        <button class="click-btn btn btn-default"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></button>
+                                        <button class="click-btn btn btn-default"><i class="fa fa-long-arrow-right"
+                                                                                     aria-hidden="true"></i></button>
                                         <div style="position: absolute; left: -5000px;">
-                                            <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
+                                            <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value=""
+                                                   type="text">
                                         </div>
-
-                                        <!-- <div class="col-lg-4 col-md-4">
-                                                                <button class="bb-btn btn"><span class="lnr lnr-arrow-right"></span></button>
-                                                        </div>  -->
                                     </div>
                                     <div class="info"></div>
                                 </form>
@@ -205,8 +239,12 @@
                     </div>
                 </div>
                 <div class="footer-bottom d-flex justify-content-center align-items-center flex-wrap">
-                    <p class="footer-text m-0"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                    <p class="footer-text m-0">
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        Copyright &copy;
+                        <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is
+                        made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com"
+                                                                                         target="_blank">Colorlib</a>
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                     </p>
                 </div>
@@ -215,7 +253,8 @@
         <!-- End footer Area -->
 
         <script src="js/vendor/jquery-2.2.4.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+                integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
         crossorigin="anonymous"></script>
         <script src="js/vendor/bootstrap.min.js"></script>
         <script src="js/jquery.ajaxchimp.min.js"></script>

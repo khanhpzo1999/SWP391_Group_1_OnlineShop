@@ -29,7 +29,12 @@ public class ProductDAO {
         PreparedStatement ps = null;
         ResultSet rs = null;
         connection = (new DBContext().connection);
-        String sql = "select id, product_name, product_description, product_quantity, product_price from dbo.Product";
+        String sql = "select id, "
+                + "product_name, "
+                + "product_description, "
+                + "product_quantity, "
+                + "product_price "
+                + "from dbo.Product";
         try {
             ps = connection.prepareStatement(sql);
             rs = ps.executeQuery();
@@ -66,13 +71,6 @@ public class ProductDAO {
 
     }
 
-    public static void main(String[] args) throws Exception {
-        ProductDAO dao = new ProductDAO();
-        List<Product> list = dao.getListComingProduct();
-        for (Product product : list) {
-            System.out.println(product.getCategory_id());
-        }
-    }
     Connection conn = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
@@ -125,7 +123,6 @@ public class ProductDAO {
                         rs.getString(7),
                         rs.getInt(8),
                         rs.getInt(9)
-                    
                 ));
             }
         } catch (Exception e) {
@@ -133,4 +130,77 @@ public class ProductDAO {
         return ListComingProduct;
     }
 
+    public void addProduct(String name, float price, String thumbnail, String description, int quantity, int id) {
+        String sql = "INSERT INTO [dbo].[Product]\n"
+                + "           ([product_name]\n"
+                + "           ,[product_price]\n"
+                + "           ,[product_coming]\n"
+                + "           ,[product_thumbnail]\n"
+                + "           ,[product_status]\n"
+                + "           ,[product_description]\n"
+                + "           ,[product_quantity]\n"
+                + "           ,[category_id])\n"
+                + "     VALUES\n"
+                + "           (?,?,?,?,?,?,?,?)";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, name);
+            ps.setFloat(2, price);
+            ps.setBoolean(3, false);
+            ps.setString(4, thumbnail);
+            ps.setBoolean(5, true);
+            ps.setString(6, description);
+            ps.setInt(7, quantity);
+            ps.setInt(8, id);
+            ps.executeUpdate();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteProduct(String name) {
+        String sql = "Delete from Product where product_name = ?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, name);
+            ps.executeUpdate();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void update(String thumbnail, float price, boolean status, String description) {
+        String sql = "UPDATE [dbo].[Product]\n"
+                + "   SET [product_price] = ?\n"
+                + "      ,[product_thumbnail] = ?\n"
+                + "      ,[product_status] = ?\n"
+                + "      ,[product_description] = ?\n"
+                + " WHERE [product_name] = ?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setFloat(1, price);
+            ps.setString(2, thumbnail);
+            ps.setBoolean(3, status);
+            ps.setString(4, description);
+            ps.executeUpdate();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+//    public static void main(String[] args) throws Exception {
+//        ProductDAO dao = new ProductDAO();
+//        dao.addProduct("Blue jean", 56, "Blue jean", "desc", 60, 1);
+//        dao.deleteProduct("Jacket");
+//        List<Product> list = dao.getAllProduct();
+//        for (Product product : list) {
+//            System.out.println(product.getProduct_name());
+//        }
+//    }
 }
