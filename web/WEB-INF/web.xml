@@ -97,10 +97,10 @@
         <servlet-class>controlller.ViewListComingProductServlet</servlet-class>
     </servlet>
     <servlet>
-
         <servlet-name>UpdateUserInformationServlet</servlet-name>
         <servlet-class>controlller.UpdateUserInformationServlet</servlet-class>
-
+    </servlet>
+    <servlet>
         <servlet-name>AdminLoginServlet</servlet-name>
         <servlet-class>controlller.AdminLoginServlet</servlet-class>
     </servlet>
@@ -111,7 +111,6 @@
     <servlet>
         <servlet-name>ViewAdminDashboardServlet</servlet-name>
         <servlet-class>controlller.ViewAdminDashboardServlet</servlet-class>
-
     </servlet>
     <servlet-mapping>
         <servlet-name>NewServlet</servlet-name>
@@ -210,10 +209,10 @@
         <url-pattern>/viewlistcomingproduct</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-
         <servlet-name>UpdateUserInformationServlet</servlet-name>
         <url-pattern>/updateuserinformation</url-pattern>
-
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>AdminLoginServlet</servlet-name>
         <url-pattern>/admin-login</url-pattern>
     </servlet-mapping>
