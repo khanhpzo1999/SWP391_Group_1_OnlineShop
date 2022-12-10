@@ -83,8 +83,8 @@ public class DAODiscount extends DBContext {
 
     public void update(Discount dis) {
         String sql = "update Discount set discount_name = ?, discount_number = ? where id = ?";
-        try (
-                 PreparedStatement ps = connection.prepareStatement(sql);) {
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, dis.getDiscount_name());
             ps.setFloat(2, dis.getDiscount_number());
             ps.setInt(3, dis.getId());
