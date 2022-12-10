@@ -1,12 +1,11 @@
 <%-- 
-    Document   : viewuserinformation
-    Created on : Dec 9, 2022, 9:28:25 AM
+    Document   : updateuserinformation
+    Created on : Dec 10, 2022, 8:52:35 PM
     Author     : Nhat Anh
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
 
@@ -130,37 +129,38 @@
         <section class="login_box_area section_gap">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-6">
-                        <div class="login_box_img">
-                            <img class="img-fluid" src="img/login.jpg" alt="">
+
+                    <div class="col-lg-12">
+                        <div class="login_form_inner" style="padding-top:50px;">
+                            <h3 >Edit Profile Information</h3>
+                           
+                                <form class="row login_form" action="updateuserinformation" method="post" >
+                                     <div class="col-md-12 form-group">
+                                         <input type="hidden" class="form-control"  id="id" value="${userinfor.id}" name="id" placeholder="name" onfocus="this.placeholder = ''" >
+                                    </div>
+                                    <div class="col-md-12 form-group">
+                                        <input type="text" class="form-control" id="user_fullname" value="${userinfor.user_fullname}"  name="user_fullname" placeholder="name" onfocus="this.placeholder = ''" >
+                                    </div>
+                                    <div class="col-md-12 form-group">
+                                        <input type="text" class="form-control" id="user_email"  value="${userinfor.user_email}"  name="user_email" placeholder="email" onfocus="this.placeholder = ''" >
+                                    </div>
+                                    <div class="col-md-12 form-group">
+                                        <input type="text" class="form-control" id="user_phone" value="${userinfor.user_phone}"  name="user_phone" placeholder="phone" onfocus="this.placeholder = ''">
+                                    </div>
+                                    <div class="col-md-12 form-group">
+                                        <input type="text" class="form-control" id="user_address" value="${userinfor.user_address}"  name="user_address" placeholder="address" onfocus="this.placeholder = ''" >
+                                    </div>
+
+                                    <div class="col-md-12 form-group">
+                                        <button type="submit" value="submit" class="primary-btn">Save</button> 
+                                        <a style="color: white" href="viewuserinformation?id=${requestScope.id}" class="primary-btn">Cancel</a>
+                                    </div>
+                                        ${requestScope.message}
+                                  
+                                </form>
+                         
                         </div>
                     </div>
-                   
-                    <div class="col-lg-6">
-                            <div class="login_form_inner" style="padding-top:50px;">
-                                <h3 >Profile Information</h3>
-                                <form class="row login_form" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
-                                    <div class="col-md-12 form-group">
-                                        <input type="text" class="form-control" id="user_fullname" value="${userinfor.user_fullname}" disabled name="name" placeholder="name" onfocus="this.placeholder = ''" >
-                                    </div>
-                                    <div class="col-md-12 form-group">
-                                        <input type="text" class="form-control" id="user_email"  value="${userinfor.user_email}" disabled name="email" placeholder="email" onfocus="this.placeholder = ''" >
-                                    </div>
-                                    <div class="col-md-12 form-group">
-                                        <input type="text" class="form-control" id="user_phone" value="${userinfor.user_phone}" disabled name="phone" placeholder="phone" onfocus="this.placeholder = ''">
-                                    </div>
-                                    <div class="col-md-12 form-group">
-                                        <input type="text" class="form-control" id="user_address" value="${userinfor.user_address}" disabled name="address" placeholder="address" onfocus="this.placeholder = ''" >
-                                    </div>
-                         
-                                    <div class="col-md-12 form-group">
-                                        <a href="updateuserinformation?id=${requestScope.id}" class="primary-btn" style="color: white">Change Information</a>
-                                    </div>
-                                    
-                                </form>
-                            </div>
-                        </div>
-                     
                 </div>
             </div>
         </section>

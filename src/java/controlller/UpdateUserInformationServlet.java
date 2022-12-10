@@ -9,6 +9,8 @@ import dao.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +21,7 @@ import model.User;
  *
  * @author Nhat Anh
  */
-public class ViewUserInformationServlet extends HttpServlet {
+public class UpdateUserInformationServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,7 +35,7 @@ public class ViewUserInformationServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -54,7 +56,8 @@ public class ViewUserInformationServlet extends HttpServlet {
         User p = dao.getUserInformation(Integer.parseInt(id));
         request.setAttribute("id", id);
         request.setAttribute("userinfor", p);
-        request.getRequestDispatcher("viewuserinformation.jsp").forward(request, response);
+        request.getRequestDispatcher("updateuserinformation.jsp").forward(request, response);
+
     }
 
     /**
@@ -69,6 +72,22 @@ public class ViewUserInformationServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        UserDAO dao = new UserDAO();
+        String user_fullname = request.getParameter("user_fullname");
+        String user_email = request.getParameter("user_email");
+        String user_phone = request.getParameter("user_phone");
+        String user_address = request.getParameter("user_address");
+        int id = Integer.parseInt(request.getParameter("id"));
+        try {
+            dao.updateUserInformation(user_fullname, user_email, user_phone, user_address, id);
+        } catch (Exception ex) {
+            Logger.getLogger(UpdateUserInformationServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        request.setAttribute("message", "edit susscess");
+        response.sendRedirect("viewuserinformation?id="+id);
+        
+        
+
     }
 
     /**

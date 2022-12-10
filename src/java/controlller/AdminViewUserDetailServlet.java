@@ -50,6 +50,7 @@ public class AdminViewUserDetailServlet extends HttpServlet {
         String id = request.getParameter("id");
         UserDAO dao = new UserDAO();
         User user = dao.getUserById(id);
+        request.setAttribute("id", id);
         request.setAttribute("user", user);
         request.getRequestDispatcher("user-detail.jsp").forward(request, response);
     }

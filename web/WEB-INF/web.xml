@@ -97,6 +97,10 @@
         <servlet-class>controlller.ViewListComingProductServlet</servlet-class>
     </servlet>
     <servlet>
+
+        <servlet-name>UpdateUserInformationServlet</servlet-name>
+        <servlet-class>controlller.UpdateUserInformationServlet</servlet-class>
+
         <servlet-name>AdminLoginServlet</servlet-name>
         <servlet-class>controlller.AdminLoginServlet</servlet-class>
     </servlet>
@@ -107,6 +111,7 @@
     <servlet>
         <servlet-name>ViewAdminDashboardServlet</servlet-name>
         <servlet-class>controlller.ViewAdminDashboardServlet</servlet-class>
+
     </servlet>
     <servlet-mapping>
         <servlet-name>NewServlet</servlet-name>
@@ -205,6 +210,10 @@
         <url-pattern>/viewlistcomingproduct</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+
+        <servlet-name>UpdateUserInformationServlet</servlet-name>
+        <url-pattern>/updateuserinformation</url-pattern>
+
         <servlet-name>AdminLoginServlet</servlet-name>
         <url-pattern>/admin-login</url-pattern>
     </servlet-mapping>
@@ -215,6 +224,7 @@
     <servlet-mapping>
         <servlet-name>ViewAdminDashboardServlet</servlet-name>
         <url-pattern>/dashboard</url-pattern>
+
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

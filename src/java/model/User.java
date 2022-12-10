@@ -33,6 +33,16 @@ public class User {
         this.role_id = role_id;
     }
 
+    public User(int id, String user_fullname, String user_email, String user_phone, String user_address) {
+        this.id = id;
+        this.user_fullname = user_fullname;
+        this.user_email = user_email;
+        this.user_phone = user_phone;
+        this.user_address = user_address;
+    }
+
+    
+    
     public User() {
     }
 
