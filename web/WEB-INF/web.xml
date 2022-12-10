@@ -112,6 +112,10 @@
         <servlet-name>ViewAdminDashboardServlet</servlet-name>
         <servlet-class>controlller.ViewAdminDashboardServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>viewProductManagement</servlet-name>
+        <servlet-class>controlller.viewProductManagement</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>NewServlet</servlet-name>
         <url-pattern>/NewServlet</url-pattern>
@@ -223,7 +227,10 @@
     <servlet-mapping>
         <servlet-name>ViewAdminDashboardServlet</servlet-name>
         <url-pattern>/dashboard</url-pattern>
-
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>viewProductManagement</servlet-name>
+        <url-pattern>/productManagement</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
