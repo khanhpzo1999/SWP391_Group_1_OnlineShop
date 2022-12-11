@@ -138,7 +138,7 @@
                     <tr>
                         <td><%= d.getDiscount_name()%></td>
                         <td><%= d.getDiscount_number()%></td>
-                        <td><button class="click-btn btn btn-default" style="background-color: orange"><a style="color: white" href="update-discount.jsp?id=<%= d.getId()%>">Edit</a></button></td>
+                        <td><button class="click-btn btn btn-default" style="background-color: orange"><a style="color: white" href="viewdetaildiscount?id=<%= d.getId()%>">Detail</a></button></td>
                         <td><button class="click-btn btn btn-default" style="background-color: orange"><a style="color: white" href="delete-discount.jsp?id=<%= d.getId()%>">Delete</a></button></td>
                     </tr>
                     <%

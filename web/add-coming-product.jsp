@@ -1,3 +1,5 @@
+<%@page import="dao.CategoryDAO"%>
+<%@page import="model.Category"%>
 <%@page import="model.Discount"%>
 <%@page import="dao.DAODiscount"%>
 <%@page import="java.util.List"%>
@@ -123,17 +125,39 @@
             <form action="AddComingProduct" method="post">
                 <table>
                     <tr>
-                        <th>Discount </th>
-                        <td> <input type="text" name="discount_name"></td>
+                        <th>Product name </th>
+                        <td> <input type="text" name="product_name"></td>
                     </tr>
                     <tr>
-                        <th>SALE </th>
-                        <td> <input type="number" name="discount_number"></td>
+                        <th>Product price </th>
+                        <td> <input type="number" name="product_price"></td>
+                    </tr>
+                    <tr>
+                        <th>Product thumbnail </th>
+                        <td> <input type="text" name="product_thumbnail"></td>
+                    </tr>
+                    <tr>
+                        <th>Product description </th>
+                        <td> <input type="text" name="product_description"></td>
+                    </tr>
+
+                    <tr>
+                        <th>Category </th>
+                        <td><select name="category_id">
+                                <%
+                                    List<Category> list = new CategoryDAO().getListCategory();
+                                    for (Category c : list) {
+                                %>  
+                                <option value="<%= c.getId()%>"><%= c.getCategory_name()%></option>
+                                <%
+                                    }
+                                %>
+                            </select></td>
                     </tr>
 
                 </table>
                 <div class="cupon_text d-flex align-items-center">
-                    <button class="click-btn btn btn-default" type="submit" style="background-color: orange; color: white">Add Discount</button>
+                    <button class="click-btn btn btn-default" type="submit" style="background-color: orange; color: white">Add Coming product</button>
                 </div>
             </form>
 
