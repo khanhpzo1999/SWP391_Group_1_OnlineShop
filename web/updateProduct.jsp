@@ -96,61 +96,80 @@
         <!-- End Header Area -->
 
         <!-- Title Area -->
-        <section>
+        <section style="padding-top: 75px;">
             <div class="container">
-                <div class="row align-items-center justify-content-start" style="height: 300px; padding: 20px 0;">
-                    <div>
-                        <h2>Product Management</h2>
+                <div class="row align-items-center justify-content-start" style="height: 300px;">
+                    <div class="">
+                        <h2>Update product's information</h2>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- start product management -->
-        <section style="padding: 30px 0;">
-            <div class="container" style="display: flex; justify-items: center; flex-direction: column;">
-                <div>
-                    <table class="table align-middle mb-0 bg-white">
-                        <thead class="bg-light">
-                            <tr>
-                                <th>Product Name</th>
-                                <th>Price</th>
-                                <th>Category</th>
-                                <th>Quantity</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <p class="fw-bold mb-1">John Doe</p>
-                                    </div>
-                                </td>
-                                <td>
-                                    <p class="fw-normal mb-1">Software engineer</p>
-                                </td>
-                                <td>
-                                    <p class="fw-normal mb-1">asdasd</p>
-                                </td>
-                                <td>Senior</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary">
-                                        Update
-                                    </button>
-                                    <button type="button" class="btn btn-danger">
-                                        Delete
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+        <!-- start Add product -->
+        <div class="container">
+            <div class="row">
+                <!-- Image field -->
+                <div class="col">
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Image</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="text-center">
+                                <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src=""
+                                     alt="Add image here">
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <a type="submit" class="btn btn-success" href="${pageContext.request.contextPath}/addProduct">Add Product</a>                        
+                <!-- Form field -->
+                <div class="col">
+                    <form>
+                        <div class="row mb-4">
+                            <div class="col">
+                                <div class="form-outline">
+                                    <label class="form-label" for="form6Example1">Product name</label>
+                                    <input type="text" id="form6Example1" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-outline">
+                                    <label class="form-label" for="form6Example2">Self price</label>
+                                    <input type="text" id="form6Example2" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col">
+                                <label class="form-label" for="form6Example2">Available product</label>
+                                <select class="form-select">
+                                    <option selected hidden>Select status</option>
+                                    <option value="1">Available</option>
+                                    <option value="0">Out of stock</option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <label class="form-label" for="form6Example2">Select category</label>
+                                <select class="form-select">
+                                    <option selected hidden>Select Category</option>
+                                    <option value="1">Shoes</option>
+                                    <option value="2">Accessories</option>
+                                    <option value="3">T Shirt</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="form6Example7">Description of product</label>
+                            <textarea class="form-control" id="form6Example7" rows="4"></textarea>
+                        </div>
+
+                        <a type="submit" class="btn btn-success btn-block mb-4" href="${pageContext.request.contextPath}/productManagement">Update Product</a>
+                    </form>
                 </div>
             </div>
-        </section>
-        <!-- end product management -->
+        </div>
+        <!-- end Add product -->
 
         <!-- start footer Area -->
         <footer class="footer-area section_gap">
@@ -175,10 +194,14 @@
                                 <form target="_blank" novalidate="true"
                                       action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
                                       method="get" class="form-inline">
+
                                     <div class="d-flex flex-row">
+
                                         <input class="form-control" name="EMAIL" placeholder="Enter Email"
                                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email '"
                                                required="" type="email">
+
+
                                         <button class="click-btn btn btn-default"><i class="fa fa-long-arrow-right"
                                                                                      aria-hidden="true"></i></button>
                                         <div style="position: absolute; left: -5000px;">
