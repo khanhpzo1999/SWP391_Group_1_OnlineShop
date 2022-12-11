@@ -1,3 +1,6 @@
+<%@page import="model.Product"%>
+<%@page import="java.util.List"%>
+<%@page import="dao.ProductDAO"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
@@ -121,29 +124,47 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <p class="fw-bold mb-1">John Doe</p>
-                                    </div>
-                                </td>
-                                <td>
-                                    <p class="fw-normal mb-1">Software engineer</p>
-                                </td>
-                                <td>
-                                    <p class="fw-normal mb-1">asdasd</p>
-                                </td>
-                                <td>Senior</td>
-                                <td>
-                                    <a type="submit" class="btn btn-primary" href="${pageContext.request.contextPath}/updateProduct">Update</a>
-                                    <a type="submit" class="btn btn-danger" href="${pageContext.request.contextPath}/deleteProduct">Delete</a>
-                                </td>
-                            </tr>
+                            <c:forEach var="i" items="${list}">
+                                <tr>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <p class="fw-bold mb-1">${i.product_name}</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <p class="fw-normal mb-1">${i.product_price}</p>
+                                    </td>
+                                    <td>
+                                        <p class="fw-normal mb-1">${i.category_name}</p>
+                                    </td>
+                                    <td>${i.product_quatity}</td>
+                                    <td>
+                                        <a type="submit" class="btn btn-primary" href="${pageContext.request.contextPath}/updateProduct">Update</a>
+                                        <a type="submit" class="btn btn-danger" href="${pageContext.request.contextPath}/deleteProduct">Delete</a>
+                                    </td>
+                                </tr>
+                            </c:forEach>                           
                         </tbody>
                     </table>
                 </div>
                 <div>
-                    <a type="submit" class="btn btn-success" href="${pageContext.request.contextPath}/addProduct">Add Product</a>                        
+                    <div>
+                        <a type="submit" class="btn btn-success" href="${pageContext.request.contextPath}/addProduct">Add Product</a>
+                    </div>
+<!--                    <div>
+                        <div class="filter-bar d-flex flex-wrap align-items-center">
+                            <div class="pagination">
+                                <%
+                                    ProductDAO dao = new ProductDAO();
+                                    List<Product> listAllProduct = dao.getProductManagementList();
+                                    double productSize = listAllProduct.size();
+                                    double productPerPage = 6;
+                                    for (int i = 1; i <= Math.ceil(productSize / productPerPage); i++) {%>
+                                <a class="" href = "productManagement?page=<%=i%>" name="i"> <%=i%> </a>
+                                <% }%>
+                            </div>
+                        </div>
+                    </div>-->
                 </div>
             </div>
         </section>

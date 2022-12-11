@@ -194,13 +194,36 @@ public class ProductDAO {
         }
     }
 
-//    public static void main(String[] args) throws Exception {
-//        ProductDAO dao = new ProductDAO();
+    public List<Product> getProductManagementList() {
+        List<Product> list = new ArrayList<>();
+        String sql = "select product_name, product_price, product_quantity, category_name\n"
+                + "from Product P join Category C \n"
+                + "on P.category_id = C.id";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Product(
+                        rs.getString(1),
+                        rs.getFloat(2),
+                        rs.getInt(3),
+                        rs.getString(4)));
+            }
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public static void main(String[] args) throws Exception {
+        ProductDAO dao = new ProductDAO();
 //        dao.addProduct("Blue jean", 56, "Blue jean", "desc", 60, 1);
 //        dao.deleteProduct("Jacket");
-//        List<Product> list = dao.getAllProduct();
-//        for (Product product : list) {
-//            System.out.println(product.getProduct_name());
-//        }
-//    }
+        List<Product> list = dao.getProductManagementList();
+        for (Product product : list) {
+            System.out.println(product.getCategory_name());
+        }
+    }
 }
