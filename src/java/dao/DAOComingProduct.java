@@ -34,7 +34,8 @@ public class DAOComingProduct extends DBContext {
     public ComingProduct getById(int id) {
         String sql = "select * from Product where id = " + id;
         try (
-                 PreparedStatement ps = connection.prepareStatement(sql);  ResultSet rs = ps.executeQuery();) {
+                PreparedStatement ps = connection.prepareStatement(sql);  
+                ResultSet rs = ps.executeQuery();) {
             while (rs.next()) {
                 return (new ComingProduct(rs.getInt(1), rs.getString(2), rs.getFloat(3), rs.getBoolean(4), rs.getString(5), rs.getBoolean(6), rs.getString(7), rs.getInt(8), rs.getInt(9)));
             }
@@ -53,7 +54,7 @@ public class DAOComingProduct extends DBContext {
             ps.setString(4, p.getProduct_thumbnail());
             ps.setBoolean(5, false);
             ps.setString(6, p.getProduct_description());
-            ps.setInt(7, p.getProduct_quatity());
+            ps.setInt(7, 0);
             ps.setInt(8, p.getCategory_id());
 
             ps.executeUpdate();

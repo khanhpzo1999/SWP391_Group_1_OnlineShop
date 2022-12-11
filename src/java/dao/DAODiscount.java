@@ -24,7 +24,8 @@ public class DAODiscount extends DBContext {
         List<Discount> list = new ArrayList<>();
         String sql = "select * from Discount order by discount_number";
         try (
-                 PreparedStatement ps = connection.prepareStatement(sql);  ResultSet rs = ps.executeQuery();) {
+                 PreparedStatement ps = connection.prepareStatement(sql);
+                 ResultSet rs = ps.executeQuery();) {
             while (rs.next()) {
                 list.add(new Discount(rs.getInt(1), rs.getString(2), rs.getFloat(3)));
             }
