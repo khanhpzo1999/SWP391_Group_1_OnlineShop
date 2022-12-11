@@ -1,3 +1,6 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
 
@@ -16,17 +19,19 @@
         <meta charset="UTF-8">
         <!-- Site Title -->
         <title>Karma Shop</title>
-
         <!--
                 CSS
                 ============================================= -->
         <link rel="stylesheet" href="css/linearicons.css">
-        <link rel="stylesheet" href="css/owl.carousel.css">
-        <link rel="stylesheet" href="css/themify-icons.css">
         <link rel="stylesheet" href="css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/themify-icons.css">
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/owl.carousel.css">
         <link rel="stylesheet" href="css/nice-select.css">
         <link rel="stylesheet" href="css/nouislider.min.css">
-        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/ion.rangeSlider.css" />
+        <link rel="stylesheet" href="css/ion.rangeSlider.skinFlat.css" />
+        <link rel="stylesheet" href="css/magnific-popup.css">
         <link rel="stylesheet" href="css/main.css">
     </head>
     <%
@@ -35,13 +40,12 @@
         }
     %>
     <body>
-        <!-- Start Header Area -->
         <header class="header_area sticky-header">
             <div class="main_menu">
                 <nav class="navbar navbar-expand-lg navbar-light main_box">
                     <div class="container">
                         <!-- Brand and toggle get grouped for better mobile display -->
-                        <a class="navbar-brand logo_h" href="index.jsp"><img src="img/logo.png" alt=""></a>
+                        <a class="navbar-brand logo_h" href="index.html"><img src="img/logo.png" alt=""></a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="icon-bar"></span>
@@ -51,28 +55,39 @@
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                             <ul class="nav navbar-nav menu_nav ml-auto">
-                                <li class="nav-item"><a class="nav-link" href="index.jsp">Home</a></li>
-                                <li class="nav-item submenu dropdown active">
+                                <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
+                                <li class="nav-item submenu dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                                        aria-expanded="false">Shop</a>
                                     <ul class="dropdown-menu">
-                                        <li class="nav-item active"><a class="nav-link" href="category.jsp">Shop Category</a></li>
-
-
-                                        <li class="nav-item"><a class="nav-link" href="cart.jsp">Shopping Cart</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="confirmation.jsp">Confirmation</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="category.html">Shop Category</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="single-product.html">Product Details</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="checkout.html">Product Checkout</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="cart.html">Shopping Cart</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="confirmation.html">Confirmation</a></li>
                                     </ul>
                                 </li>
-
-                                <li class="nav-item"><a class="nav-link" href="contact.jsp">Contact</a></li>
-                                <li class="nav-item"><a class="nav-link" href="profile">Profile</a></li>
-                                <li class="nav-item"><a class="nav-link" href="logout">Log out</a></li>
-                            </ul>
-                            <ul class="nav navbar-nav navbar-right">
-                                <li class="nav-item"><a href="cart.jsp" class="cart"><span class="ti-bag"></span></a></li>
-                                <li class="nav-item">
-                                    <button class="search"><span class="lnr lnr-magnifier" id="search"></span></button>
+                                <li class="nav-item submenu dropdown">
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                                       aria-expanded="false">Blog</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="single-blog.html">Blog Details</a></li>
+                                    </ul>
                                 </li>
+                                <li class="nav-item submenu dropdown">
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                                       aria-expanded="false">Pages</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="tracking.html">Tracking</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="elements.html">Elements</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                                    <%  if (session.getAttribute("admin-account") != null) {%>
+                                <li class="nav-item"><a class="nav-link" href="admin-logout">Log Out</a></li>
+                                    <% }%>
                             </ul>
                         </div>
                     </div>
@@ -88,72 +103,36 @@
                 </div>
             </div>
         </header>
+        <section class="features-area section_gap" style="margin-top: 100px; width: 80% ; margin-left:auto;margin-right:auto">
 
-        <section class="order_details section_gap">
-            <div class="container">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Full Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Address</th>
+                        <th></th>
+                    </tr>
+                </thead>
 
+                <tbody>
+                    <c:forEach items="${listFeedback}" var="feedback">
+                        <tr>
+                            <td>${feedback.id}</td>
+                            <td>${feedback.fullname}</td>
+                            <td>${feedback.email}</td>
+                            <td>${feedback.phone}</td>
+                            <td>${feedback.address}</td>
+                            <td><a href="feedback-detail?id=${feedback.id}">View</a></td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
 
-                <div class="order_details_table">
-
-                    <div class="table-responsive">
-                        <h2>User Profile</h2>
-                        <table class="table">
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <h4>UserName:</h4>
-                                    </td>
-
-                                    <td>
-                                        ${user.username}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <h4>Fullname:</h4>
-                                    </td>
-
-                                    <td>
-
-                                        <p>${user.user_fullname}</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <h4>Email:</h4>
-                                    </td>
-
-                                    <td>
-                                        ${user.user_email}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <h4>Address:</h4>
-                                    </td>
-
-                                    <td>
-                                        ${user.user_address}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <h4>Phone number:</h4>
-                                    </td>
-
-                                    <td>
-                                        ${user.user_phone}
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
         </section>
-        <!--================End Order Details Area =================-->
 
-        <!-- start footer Area -->
         <footer class="footer-area section_gap">
             <div class="container">
                 <div class="row">
@@ -161,7 +140,8 @@
                         <div class="single-footer-widget">
                             <h6>About Us</h6>
                             <p>
-                                Top1 shoe shop
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore dolore
+                                magna aliqua.
                             </p>
                         </div>
                     </div>
@@ -222,13 +202,15 @@
                         </div>
                     </div>
                 </div>
-
+                <div class="footer-bottom d-flex justify-content-center align-items-center flex-wrap">
+                    <p class="footer-text m-0"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </p>
+                </div>
             </div>
         </footer>
         <!-- End footer Area -->
-
-
-
 
         <script src="js/vendor/jquery-2.2.4.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
@@ -238,6 +220,7 @@
         <script src="js/jquery.nice-select.min.js"></script>
         <script src="js/jquery.sticky.js"></script>
         <script src="js/nouislider.min.js"></script>
+        <script src="js/countdown.js"></script>
         <script src="js/jquery.magnific-popup.min.js"></script>
         <script src="js/owl.carousel.min.js"></script>
         <!--gmaps Js-->

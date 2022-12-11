@@ -96,26 +96,16 @@
                 <div class="order_details_table">
 
                     <div class="table-responsive">
-                        <h2>User Profile</h2>
+                        <h2>Feedback Information</h2>
                         <table class="table">
                             <tbody>
-                                <tr>
-                                    <td>
-                                        <h4>UserName:</h4>
-                                    </td>
-
-                                    <td>
-                                        ${user.username}
-                                    </td>
-                                </tr>
                                 <tr>
                                     <td>
                                         <h4>Fullname:</h4>
                                     </td>
 
                                     <td>
-
-                                        <p>${user.user_fullname}</p>
+                                        ${feedback.fullname}
                                     </td>
                                 </tr>
                                 <tr>
@@ -124,7 +114,17 @@
                                     </td>
 
                                     <td>
-                                        ${user.user_email}
+
+                                        <p>${feedback.email}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h4>Phone:</h4>
+                                    </td>
+
+                                    <td>
+                                        ${feedback.phone}
                                     </td>
                                 </tr>
                                 <tr>
@@ -133,16 +133,16 @@
                                     </td>
 
                                     <td>
-                                        ${user.user_address}
+                                        ${feedback.address}
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <h4>Phone number:</h4>
+                                        <h4>Feedback</h4>
                                     </td>
 
                                     <td>
-                                        ${user.user_phone}
+                                        ${feedback.feedback}
                                     </td>
                                 </tr>
                             </tbody>
