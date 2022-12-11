@@ -1,3 +1,6 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
 
@@ -93,64 +96,76 @@
         <!-- End Header Area -->
 
         <!-- Title Area -->
-        <section class="section_gap_top_75">
+        <section style="padding-top: 75px;">
             <div class="container">
                 <div class="row align-items-center justify-content-start" style="height: 300px;">
                     <div class="">
-                        <h2>Admin Dashboard</h2>
+                        <h2>Add new product</h2>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- start features Area -->
-        <section class="features-area section_gap_bottom">
-            <div class="container">
-                <div class="row features-inner">
-                    <!-- single features -->
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="single-features">
-                            <div class="f-icon">
-                                <img src="img/features/f-icon1.png" alt="">
-                            </div>
-                            <h6>Free Delivery</h6>
-                            <p>Free Shipping on all order</p>
+        <!-- start Add product -->
+        <div class="container">
+            <div class="row">
+                <!-- Image field -->
+                <div class="col">
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Image</h6>
                         </div>
-                    </div>
-                    <!-- single features -->
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="single-features">
-                            <div class="f-icon">
-                                <img src="img/features/f-icon2.png" alt="">
+                        <div class="card-body">
+                            <div class="text-center">
+                                <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src=""
+                                     alt="Add image here">
                             </div>
-                            <h6>Return Policy</h6>
-                            <p>Free Shipping on all order</p>
-                        </div>
-                    </div>
-                    <!-- single features -->
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="single-features">
-                            <div class="f-icon">
-                                <img src="img/features/f-icon3.png" alt="">
-                            </div>
-                            <h6>24/7 Support</h6>
-                            <p>Free Shipping on all order</p>
-                        </div>
-                    </div>
-                    <!-- single features -->
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="single-features">
-                            <div class="f-icon">
-                                <img src="img/features/f-icon4.png" alt="">
-                            </div>
-                            <h6>Secure Payment</h6>
-                            <p>Free Shipping on all order</p>
                         </div>
                     </div>
                 </div>
+                <!-- Form field -->
+                <div class="col">
+                    <form>
+                        <div class="row mb-4">
+                            <div class="col">
+                                <div class="form-outline">
+                                    <label class="form-label" for="form6Example1">Product name</label>
+                                    <input type="text" id="form6Example1" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-outline">
+                                    <label class="form-label" for="form6Example2">Self price</label>
+                                    <input type="text" id="form6Example2" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col">
+                                <label class="form-label" for="form6Example2">Select category</label>
+                                <select class="form-select">
+                                    <option selected hidden>Select Category</option>
+                                    <option value="1">Shoes</option>
+                                    <option value="2">Accessories</option>
+                                    <option value="3">T Shirt</option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <label class="form-label" for="form6Example4">Quantity</label>
+                                <input type="text" id="form6Example4" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="form6Example7">Description of product</label>
+                            <textarea class="form-control" id="form6Example7" rows="4"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block mb-4">Create Product</button>
+                    </form>
+                </div>
             </div>
-        </section>
-        <!-- end features Area -->
+        </div>
+        <!-- end Add product -->
 
         <!-- start footer Area -->
         <footer class="footer-area section_gap">
@@ -225,10 +240,12 @@
                 </div>
                 <div class="footer-bottom d-flex justify-content-center align-items-center flex-wrap">
                     <p class="footer-text m-0">
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         Copyright &copy;
                         <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is
                         made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com"
                                                                                          target="_blank">Colorlib</a>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                     </p>
                 </div>
             </div>

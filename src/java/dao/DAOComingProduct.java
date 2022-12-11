@@ -30,11 +30,12 @@ public class DAOComingProduct extends DBContext {
         }
         return list;
     }
-    
+
     public ComingProduct getById(int id) {
         String sql = "select * from Product where id = " + id;
         try (
-                 PreparedStatement ps = connection.prepareStatement(sql);  ResultSet rs = ps.executeQuery();) {
+                PreparedStatement ps = connection.prepareStatement(sql);  
+                ResultSet rs = ps.executeQuery();) {
             while (rs.next()) {
                 return (new ComingProduct(rs.getInt(1), rs.getString(2), rs.getFloat(3), rs.getBoolean(4), rs.getString(5), rs.getBoolean(6), rs.getString(7), rs.getInt(8), rs.getInt(9)));
             }
@@ -42,7 +43,7 @@ public class DAOComingProduct extends DBContext {
         }
         return null;
     }
-    
+
     public void insert(ComingProduct p) {
         String sql = "insert into Product(product_name,product_price,product_coming,product_thumbnail,product_status,product_description,product_quantity,category_id) values(?,?,?,?,?,?,?,?)";
         try (
@@ -53,18 +54,18 @@ public class DAOComingProduct extends DBContext {
             ps.setString(4, p.getProduct_thumbnail());
             ps.setBoolean(5, false);
             ps.setString(6, p.getProduct_description());
-            ps.setInt(7, p.getProduct_quatity());
+            ps.setInt(7, 0);
             ps.setInt(8, p.getCategory_id());
-            
+
             ps.executeUpdate();
         } catch (SQLException e) {
         }
     }
-    
+
     public void update(ComingProduct p) {
         String sql = "update Product set product_name = ?, product_price = ?, product_coming = ?, product_thumbnail = ?, product_status = ?, product_description = ?, product_quantity = ?, category_id = ?";
-        try (
-                 PreparedStatement ps = connection.prepareStatement(sql);) {
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, p.getProduct_name());
             ps.setFloat(2, (float) p.getProduct_price());
             ps.setBoolean(3, p.isProduct_coming());
@@ -74,7 +75,7 @@ public class DAOComingProduct extends DBContext {
         } catch (SQLException e) {
         }
     }
-    
+
     public void delete(String id) {
         String sql = "delete from Product where id = ?";
         try {
@@ -84,7 +85,7 @@ public class DAOComingProduct extends DBContext {
         } catch (SQLException e) {
         }
     }
-    
+
     public static void main(String[] args) {
         try {
             List<ComingProduct> list = new DAOComingProduct().getAll();
@@ -92,7 +93,7 @@ public class DAOComingProduct extends DBContext {
                 System.out.println(p.getProduct_name());
                 System.out.println(p.getProduct_price());
             }
-            
+
         } catch (Exception e) {
             e.printStackTrace();
         }

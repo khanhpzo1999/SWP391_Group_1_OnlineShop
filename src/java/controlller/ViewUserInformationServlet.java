@@ -33,18 +33,7 @@ public class ViewUserInformationServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ViewUserInformationServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ViewUserInformationServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -62,8 +51,8 @@ public class ViewUserInformationServlet extends HttpServlet {
         processRequest(request, response);
         String id = request.getParameter("id");
         UserDAO dao = new UserDAO();
-        List<User> p = dao.getUserInformation(Integer.parseInt(id));
-        request.setAttribute("id", Integer.parseInt(id));
+        User p = dao.getUserInformation(Integer.parseInt(id));
+        request.setAttribute("id", id);
         request.setAttribute("userinfor", p);
         request.getRequestDispatcher("viewuserinformation.jsp").forward(request, response);
     }

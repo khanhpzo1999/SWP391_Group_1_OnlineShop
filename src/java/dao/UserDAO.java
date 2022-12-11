@@ -9,6 +9,7 @@ import context.DBContext;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import model.User;
@@ -209,8 +210,7 @@ public class UserDAO {
 //            System.out.println(product.getUser_phone());
 //        }
 //    }
-    public List<User> getUserInformation(int id) {
-        List<User> UserInfo = new ArrayList<>();
+    public User getUserInformation(int id) {
         String query = "select * from Users\n"
                 + "where id= ?";
         try {
@@ -219,7 +219,7 @@ public class UserDAO {
             ps.setInt(1, id);
             rs = ps.executeQuery();
             while (rs.next()) {
-                UserInfo.add(new User(
+                return new User(
                         rs.getInt(1),
                         rs.getString(2),
                         rs.getString(3),
@@ -228,11 +228,43 @@ public class UserDAO {
                         rs.getString(6),
                         rs.getString(7),
                         rs.getInt(8)
-                ));
+                );
             }
         } catch (Exception e) {
         }
-        return UserInfo;
+        return null;
     }
+
+    public void updateUserInformation(String fullname, String email, String phone, String address, int id) throws Exception {
+
+        String sql = "UPDATE [dbo].[Users]\n"
+                + "   SET\n"
+                + "      [user_fullname] = ?\n"
+                + "      ,[user_email] = ?\n"
+                + "      ,[user_phone] = ?\n"
+                + "      ,[user_address] = ?\n"
+                + " WHERE id = ?";
+
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, fullname);
+            ps.setString(2, email);
+            ps.setString(3, phone);
+            ps.setString(4, address);
+            ps.setInt(5, id);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+        }
+    }
+
+//    public static void main(String[] args) throws Exception {
+//        UserDAO dao = new UserDAO();
+//        dao.updateUserInformation("long", "Long@gmail.com", "8347592375", "ha noi", 2);
+//        List<User> list = dao.getListUser();
+//        for (User product : list) {
+//            System.out.println(product.getUser_phone());
+//        }
+//    }
 
 }

@@ -55,9 +55,4 @@ public class Discount {
     public void setDiscount_number(float discount_number) {
         this.discount_number = discount_number;
     }
-    
-
-    
-    
-    
 }

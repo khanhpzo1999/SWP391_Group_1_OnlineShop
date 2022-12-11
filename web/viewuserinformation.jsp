@@ -135,34 +135,32 @@
                             <img class="img-fluid" src="img/login.jpg" alt="">
                         </div>
                     </div>
-                    <c:forEach items="${userinfor}" var="ui">
+                   
                     <div class="col-lg-6">
                             <div class="login_form_inner" style="padding-top:50px;">
                                 <h3 >Profile Information</h3>
                                 <form class="row login_form" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
                                     <div class="col-md-12 form-group">
-                                        <input type="text" class="form-control" id="user_fullname" value="${ui.user_fullname}" disabled name="name" placeholder="name" onfocus="this.placeholder = ''" >
+                                        <input type="text" class="form-control" id="user_fullname" value="${userinfor.user_fullname}" disabled name="name" placeholder="name" onfocus="this.placeholder = ''" >
                                     </div>
                                     <div class="col-md-12 form-group">
-                                        <input type="text" class="form-control" id="user_email"  value="${ui.user_email}" disabled name="email" placeholder="email" onfocus="this.placeholder = ''" >
+                                        <input type="text" class="form-control" id="user_email"  value="${userinfor.user_email}" disabled name="email" placeholder="email" onfocus="this.placeholder = ''" >
                                     </div>
                                     <div class="col-md-12 form-group">
-                                        <input type="text" class="form-control" id="user_phone" value="${ui.user_phone}" disabled name="phone" placeholder="phone" onfocus="this.placeholder = ''">
+                                        <input type="text" class="form-control" id="user_phone" value="${userinfor.user_phone}" disabled name="phone" placeholder="phone" onfocus="this.placeholder = ''">
                                     </div>
                                     <div class="col-md-12 form-group">
-                                        <input type="text" class="form-control" id="user_address" value="${ui.user_address}" disabled name="address" placeholder="address" onfocus="this.placeholder = ''" >
+                                        <input type="text" class="form-control" id="user_address" value="${userinfor.user_address}" disabled name="address" placeholder="address" onfocus="this.placeholder = ''" >
                                     </div>
                          
                                     <div class="col-md-12 form-group">
-                                        <button type="submit" value="submit" class="primary-btn">Change Information</button>
+                                        <a href="updateuserinformation?id=${requestScope.id}" class="primary-btn" style="color: white">Change Information</a>
                                     </div>
-                                    <div class="col-md-12 form-group">
-                                        <button type="submit" value="submit" class="primary-btn">Change Password</button>
-                                    </div>
+                                    
                                 </form>
                             </div>
                         </div>
-                        </c:forEach>
+                     
                 </div>
             </div>
         </section>

@@ -1,3 +1,6 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
 
@@ -93,64 +96,63 @@
         <!-- End Header Area -->
 
         <!-- Title Area -->
-        <section class="section_gap_top_75">
+        <section>
             <div class="container">
-                <div class="row align-items-center justify-content-start" style="height: 300px;">
-                    <div class="">
-                        <h2>Admin Dashboard</h2>
+                <div class="row align-items-center justify-content-start" style="height: 300px; padding: 20px 0;">
+                    <div>
+                        <h2>Product Management</h2>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- start features Area -->
-        <section class="features-area section_gap_bottom">
-            <div class="container">
-                <div class="row features-inner">
-                    <!-- single features -->
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="single-features">
-                            <div class="f-icon">
-                                <img src="img/features/f-icon1.png" alt="">
-                            </div>
-                            <h6>Free Delivery</h6>
-                            <p>Free Shipping on all order</p>
-                        </div>
-                    </div>
-                    <!-- single features -->
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="single-features">
-                            <div class="f-icon">
-                                <img src="img/features/f-icon2.png" alt="">
-                            </div>
-                            <h6>Return Policy</h6>
-                            <p>Free Shipping on all order</p>
-                        </div>
-                    </div>
-                    <!-- single features -->
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="single-features">
-                            <div class="f-icon">
-                                <img src="img/features/f-icon3.png" alt="">
-                            </div>
-                            <h6>24/7 Support</h6>
-                            <p>Free Shipping on all order</p>
-                        </div>
-                    </div>
-                    <!-- single features -->
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="single-features">
-                            <div class="f-icon">
-                                <img src="img/features/f-icon4.png" alt="">
-                            </div>
-                            <h6>Secure Payment</h6>
-                            <p>Free Shipping on all order</p>
-                        </div>
-                    </div>
+        <!-- start product management -->
+        <section style="padding: 30px 0;">
+            <div class="container" style="display: flex; justify-items: center; flex-direction: column;">
+                <div>
+                    <table class="table align-middle mb-0 bg-white">
+                        <thead class="bg-light">
+                            <tr>
+                                <th>Product Name</th>
+                                <th>Price</th>
+                                <th>Category</th>
+                                <th>Quantity</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <p class="fw-bold mb-1">John Doe</p>
+                                    </div>
+                                </td>
+                                <td>
+                                    <p class="fw-normal mb-1">Software engineer</p>
+                                </td>
+                                <td>
+                                    <p class="fw-normal mb-1">asdasd</p>
+                                </td>
+                                <td>Senior</td>
+                                <td>
+                                    <button type="button" class="btn btn-primary">
+                                        Update
+                                    </button>
+                                    <button type="button" class="btn btn-danger">
+                                        Delete
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-success">
+                        Add Product
+                    </button>
                 </div>
             </div>
         </section>
-        <!-- end features Area -->
+        <!-- end product management -->
 
         <!-- start footer Area -->
         <footer class="footer-area section_gap">
@@ -175,14 +177,10 @@
                                 <form target="_blank" novalidate="true"
                                       action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
                                       method="get" class="form-inline">
-
                                     <div class="d-flex flex-row">
-
                                         <input class="form-control" name="EMAIL" placeholder="Enter Email"
                                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email '"
                                                required="" type="email">
-
-
                                         <button class="click-btn btn btn-default"><i class="fa fa-long-arrow-right"
                                                                                      aria-hidden="true"></i></button>
                                         <div style="position: absolute; left: -5000px;">
@@ -225,10 +223,12 @@
                 </div>
                 <div class="footer-bottom d-flex justify-content-center align-items-center flex-wrap">
                     <p class="footer-text m-0">
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         Copyright &copy;
                         <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is
                         made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com"
                                                                                          target="_blank">Colorlib</a>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                     </p>
                 </div>
             </div>
