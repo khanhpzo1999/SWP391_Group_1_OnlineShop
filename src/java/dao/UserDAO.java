@@ -67,17 +67,21 @@ public class UserDAO {
             rs = ps.executeQuery();
             while (rs.next()) {
                 return new User(
+                        rs.getInt(1),
                         rs.getString(2),
                         rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getString(6),
+                        rs.getString(7),
                         rs.getInt(8));
-
             }
         } catch (Exception e) {
         }
         return null;
     }
-    
-        public User adminLogin(String username, String password) {
+
+    public User adminLogin(String username, String password) {
         String query = "Select * from Users where user_name=? and password=? and role_id=2";
         try {
             conn = new DBContext().getConnection();
@@ -156,12 +160,57 @@ public class UserDAO {
             ps.executeUpdate();
         } catch (Exception e) {
         }
+    }
+
+    public void changePassword(User user, String new_password) {
+        String query = "update Users set password = ? where id = ?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, new_password);
+            ps.setInt(2, user.getId());
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
 
     }
 
-    // long
-    public User getUserInformation(int id) {
+    public User checkOldPassword(User user, String password) {
+        String query = "Select * from Users where password = ? and id = ?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, password);
+            ps.setInt(2, user.getId());
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return new User(
+                        rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getString(6),
+                        rs.getString(7),
+                        rs.getInt(8)
+                );
 
+            }
+        } catch (Exception e) {
+
+        }
+        return null;
+    }
+
+    // long
+//    public static void main(String[] args) throws Exception {
+//        UserDAO dao = new UserDAO();
+//        List<User> list = dao.getUserInformation(2);
+//        for (User product : list) {
+//            System.out.println(product.getUser_phone());
+//        }
+//    }
+    public User getUserInformation(int id) {
         String query = "select * from Users\n"
                 + "where id= ?";
         try {
