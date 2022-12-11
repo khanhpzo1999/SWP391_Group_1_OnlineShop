@@ -1,10 +1,8 @@
-<%@page import="model.Discount"%>
-<%@page import="dao.DAODiscount"%>
-<%@page import="java.util.List"%>
-<%@page import="dao.DAO"%>
+
 
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html lang="zxx" class="no-js">
     <head>
         <!-- Mobile Specific Meta -->
@@ -120,27 +118,22 @@
 
         <!-- Start Banner Area -->
         <section class="features-area section_gap" style="margin-top: 100px; width: 80% ; margin-left:auto;margin-right:auto">
-            <form action="UpdateDiscount" method="post">
+            
                 <table>
-                    <%
-                        String id = request.getParameter("id");
-                        DAODiscount dao = new DAODiscount();
-                        Discount dis = dao.getById(Integer.parseInt(id));
-                    %>
+                    
                     <tr>
                         <th>Discount </th>
-                        <td> <input type="text" name="discount_name" value="<%= dis.getDiscount_name()%>"></td>
+                        <td> <input type="text" name="discount_name" value="${discountInfor.discount_name}"></td>
                     </tr>
                     <tr>
                         <th>SALE </th>
-                        <td> <input type="number" name="discount_number" value="<%= dis.getDiscount_number()%>"> %</td>
+                        <td> <input type="number" name="discount_number" value="${discountInfor.discount_number}">%</td>
                     </tr>
-
                 </table>
                 <div class="cupon_text d-flex align-items-center">
                     <button class="click-btn btn btn-default" type="submit" style="background-color: orange; color: white">Update Discount</button>
                 </div>
-            </form>
+           
 
         </section>
         <!-- End Banner Area -->
