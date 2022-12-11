@@ -135,11 +135,8 @@
                                 </td>
                                 <td>Senior</td>
                                 <td>
-                                    <button type="button" class="btn btn-primary">
-                                        Update
-                                    </button>
-                                    <button type="button" class="btn btn-danger">
-                                        Delete
+                                    <a type="submit" class="btn btn-primary" href="${pageContext.request.contextPath}/updateProduct">Update</a>
+                                    <a type="submit" class="btn btn-danger" href="${pageContext.request.contextPath}/deleteProduct">Delete</a>
                                 </td>
                             </tr>
                         </tbody>
