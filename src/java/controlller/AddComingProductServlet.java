@@ -4,12 +4,14 @@
  */
 package controlller;
 
+import dao.DAOComingProduct;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.ComingProduct;
 
 /**
  *
@@ -29,18 +31,7 @@ public class AddComingProductServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet AddComingProductServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet AddComingProductServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -70,6 +61,16 @@ public class AddComingProductServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        String product_name = request.getParameter("product_name");
+        float product_price = Float.parseFloat(request.getParameter("product_price"));
+        boolean product_coming = true;
+        String product_thumbnail = request.getParameter("product_thumbnail");
+        boolean product_status = false;
+        String product_description = request.getParameter("product_description");
+        int product_quantity = 0;
+        int category_id = Integer.parseInt(request.getParameter("category_id"));
+        new DAOComingProduct().insert(new ComingProduct(product_name, product_price, product_coming, product_thumbnail, product_status, product_description, product_quantity, category_id));
+        response.sendRedirect("view-coming-product.jsp");
     }
 
     /**
