@@ -57,7 +57,8 @@ public class Product {
         this.category_name = category_name;
     }
 
-    public Product(String product_name, float product_price, int product_quatity, String category_name) {
+    public Product(int id, String product_name, float product_price, int product_quatity, String category_name) {
+        this.pid = id;
         this.product_name = product_name;
         this.product_price = product_price;
         this.product_quatity = product_quatity;

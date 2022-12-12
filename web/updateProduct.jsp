@@ -125,46 +125,29 @@
                 </div>
                 <!-- Form field -->
                 <div class="col">
-                    <form>
+                    <form action="updateProduct" method="POST">
                         <div class="row mb-4">
                             <div class="col">
                                 <div class="form-outline">
                                     <label class="form-label" for="form6Example1">Product name</label>
-                                    <input type="text" id="form6Example1" class="form-control" />
+                                    <input type="text" id="product_name" class="form-control" name="product_name" value="${p.product_name}"/>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-outline">
                                     <label class="form-label" for="form6Example2">Self price</label>
-                                    <input type="text" id="form6Example2" class="form-control" />
+                                    <input type="text" id="product_price" class="form-control" name="product_price" value="${p.product_price}"/>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="row mb-4">
-                            <div class="col">
-                                <label class="form-label" for="form6Example2">Available product</label>
-                                <select class="form-select">
-                                    <option selected hidden>Select status</option>
-                                    <option value="1">Available</option>
-                                    <option value="0">Out of stock</option>
-                                </select>
-                            </div>
-                            <div class="col">
-                                <label class="form-label" for="form6Example2">Select category</label>
-                                <select class="form-select">
-                                    <option selected hidden>Select Category</option>
-                                    <option value="1">Shoes</option>
-                                    <option value="2">Accessories</option>
-                                    <option value="3">T Shirt</option>
-                                </select>
                             </div>
                         </div>
                         <div class="form-outline mb-4">
                             <label class="form-label" for="form6Example7">Description of product</label>
-                            <textarea class="form-control" id="form6Example7" rows="4"></textarea>
+                            <textarea class="form-control" id="product_description" rows="4" name="product_description">${p.product_description}</textarea>
                         </div>
-
-                        <a type="submit" class="btn btn-success btn-block mb-4" href="${pageContext.request.contextPath}/productManagement">Update Product</a>
+                        <div>
+                            <input type="hidden" id="pid" class="form-control" name="pid" value="${p.pid}"/>
+                        </div>
+                        <button type="submit" class="btn btn-success btn-block mb-4">Update Product</button>
                     </form>
                 </div>
             </div>
