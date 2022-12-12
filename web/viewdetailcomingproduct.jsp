@@ -1,14 +1,13 @@
+
+
 <%@page import="model.ComingProduct"%>
 <%@page import="dao.DAOComingProduct"%>
 <%@page import="dao.CategoryDAO"%>
 <%@page import="model.Category"%>
 <%@page import="model.Discount"%>
-<%@page import="dao.DAODiscount"%>
-<%@page import="java.util.List"%>
-<%@page import="dao.DAO"%>
-
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html lang="zxx" class="no-js">
     <head>
         <!-- Mobile Specific Meta -->
@@ -104,7 +103,7 @@
             <div class="container">
                 <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
                     <div class="col-first">
-                        <h1>Delete Coming Product Page</h1>
+                        <h1>Detail Coming Product</h1>
                     </div>
                 </div>
             </div>
@@ -112,44 +111,62 @@
         <!-- End Banner Area -->
 
         <!-- Start Banner Area -->
-        <section class="features-area section_gap" style="margin-top: 100px; width: 80% ; margin-left:auto;margin-right:auto">
-                <table>
-                    <%
-                        String id = request.getParameter("id");
-                        DAOComingProduct dao = new DAOComingProduct();
-                        ComingProduct cp = dao.getById(id);
-                    %>
-                    <tr>
-                        <th>Product name </th>
-                        <td><%= cp.getProduct_name()%></td>
-                    </tr>
-                    <tr>
-                        <th>Product price </th>
-                        <td><%= cp.getProduct_price()%></td>
-                    </tr>
-                    <tr>
-                        <th>Product thumbnail </th>
-                        <td><%= cp.getProduct_thumbnail()%></td>
-                    </tr>
-                    <tr>
-                        <th>Product description </th>
-                        <td><%= cp.getProduct_description()%></td>
-                    </tr>
-
-                    <tr>
-                        <th>Category </th>
-                        <%
-                            Category c = new CategoryDAO().getCategoryById(cp.getCategory_id());
-                        %>
-                        <td><%= c.getCategory_name()%></td>
-                    </tr>
-
-                </table>
-                <div class="cupon_text d-flex align-items-center">
-                    <button class="click-btn btn btn-default" type="submit" style="background-color: orange"><a href="DeleteComingProduct?id=<%= cp.getId()%>" style="color: white">Delete Coming product</a></button>
+        <div class="container">
+            <div class="row">
+                <!-- Image field -->
+                <div class="col">
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Image</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="text-center">
+                                <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src=""
+                                     alt="Add image here">
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                <!-- Form field -->
+                <div class="col">
 
-        </section>
+                    <div class="row mb-4">
+                        <div class="col">
+                            <div class="form-outline">
+                                <label class="form-label" for="form6Example1">Product name</label>
+                                <input type="text" disabled="true" id="form6Example1" class="form-control" value="${cpInfor.product_name}"/>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-outline">
+                                <label class="form-label" for="form6Example2">Product price</label>
+                                <input type="text" disabled="true" id="form6Example2" class="form-control" value="${cpInfor.product_price}"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col">
+                            <label class="form-label" for="form6Example2">Category</label>
+                            <%
+                                String id = request.getParameter("id");
+                                DAOComingProduct dao = new DAOComingProduct();
+                                ComingProduct cp = dao.getById(id);
+                                Category c = new CategoryDAO().getCategoryById(cp.getCategory_id());
+                            %>
+                            <input type="text" disabled="true" id="form6Example2" class="form-control" value="<%= c.getCategory_name()%>"/>
+                        </div>
+
+                    </div>
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="form6Example7">Description of product</label>
+                        <textarea class="form-control" disabled="true" id="form6Example7" rows="4">${cpInfor.product_description}</textarea>
+                    </div>
+
+                    <button class="click-btn btn btn-block mb-4" style="background-color: orange"><a href="updatecomingproduct?id=${requestScope.id}" style="color: white">Go to update</a></button>
+
+                </div>
+            </div>
+        </div>
         <!-- End Banner Area -->
 
         <!-- Start related-product Area -->

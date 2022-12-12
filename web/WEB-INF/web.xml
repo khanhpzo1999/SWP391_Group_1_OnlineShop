@@ -120,6 +120,10 @@
         <servlet-name>ViewDetailDiscount</servlet-name>
         <servlet-class>controlller.ViewDetailDiscount</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewDetailComingProduct</servlet-name>
+        <servlet-class>controlller.ViewDetailComingProduct</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>NewServlet</servlet-name>
         <url-pattern>/NewServlet</url-pattern>
@@ -150,7 +154,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>UpdateComingProductServlet</servlet-name>
-        <url-pattern>/UpdateComingProduct</url-pattern>
+        <url-pattern>/updatecomingproduct</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>DeleteComingProductServlet</servlet-name>
@@ -239,6 +243,10 @@
     <servlet-mapping>
         <servlet-name>ViewDetailDiscount</servlet-name>
         <url-pattern>/viewdetaildiscount</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewDetailComingProduct</servlet-name>
+        <url-pattern>/viewdetailcomingproduct</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
