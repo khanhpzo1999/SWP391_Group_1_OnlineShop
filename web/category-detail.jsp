@@ -1,3 +1,5 @@
+<%@page import="model.Category"%>
+<%@page import="dao.CategoryDAO"%>
 <%@page import="model.Discount"%>
 <%@page import="dao.DAODiscount"%>
 <%@page import="java.util.List"%>
@@ -106,7 +108,7 @@
             <div class="container">
                 <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
                     <div class="col-first">
-                        <h1>Add Discount Page</h1>
+                        <h1>Category Detail Page</h1>
                     </div>
                 </div>
             </div>
@@ -115,22 +117,9 @@
 
         <!-- Start Banner Area -->
         <section class="features-area section_gap" style="margin-top: 100px; width: 80% ; margin-left:auto;margin-right:auto">
-            <form action="AddDiscount" method="post">
-                <table>
-                    <tr>
-                        <th>Discount </th>
-                        <td> <input type="text" name="discount_name"></td>
-                    </tr>
-                    <tr>
-                        <th>SALE </th>
-                        <td> <input type="number" name="discount_number"></td>
-                    </tr>
-
-                </table>
-                <div class="cupon_text d-flex align-items-center">
-                    <button class="click-btn btn btn-default" type="submit" style="background-color: orange; color: white">Add Discount</button>
-                </div>
-            </form>
+            <h2>Category </h2>
+            <p>Category Name: ${category.category_name}</p>
+            <td> <input hidden="true" type="text" name="id" value=${category.id}></td>
 
         </section>
         <!-- End Banner Area -->

@@ -27,7 +27,6 @@ public class DBContext {
     /*Insert your other code right after this comment*/
  /*Change/update information of your database connection, DO NOT change name of instance variables in this class*/
 
-
     private final String serverName = "DESKTOP-IQBH901\\MSSQLSERVERDBW";
     private final String dbName = "Shop_Online";
     private final String portNumber = "1433";
@@ -43,20 +42,24 @@ public class DBContext {
             }
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             connection = DriverManager.getConnection(url, userID, password);
-    }
-    public DBContext()
-    {
-        try{
-            String url = "jdbc:sqlserver://" + serverName + ":" + portNumber + "\\" + instance + ";databaseName=" + dbName;
-        if (instance == null || instance.trim().isEmpty()) {
-            url = "jdbc:sqlserver://" + serverName + ":" + portNumber + ";databaseName=" + dbName;
-        }
-        Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-        connection = DriverManager.getConnection(url, userID, password);
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+//    public DBContext() {
+//        try {
+//            String url = "jdbc:sqlserver://" + serverName + ":" + portNumber + "\\" + instance + ";databaseName=" + dbName;
+//            if (instance == null || instance.trim().isEmpty()) {
+//                url = "jdbc:sqlserver://" + serverName + ":" + portNumber + ";databaseName=" + dbName;
+//            }
+//            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+//            connection = DriverManager.getConnection(url, userID, password);
+//        } catch (ClassNotFoundException | SQLException ex) {
+//            Logger.getLogger(DBContext.class
+//                    .getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
 
     public static void main(String[] args) {
         try {
