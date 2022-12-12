@@ -173,20 +173,19 @@ public class ProductDAO {
         }
     }
 
-    public void update(String thumbnail, float price, boolean status, String description) {
+    public void updateProduct(String name, float price, String description, int id) {
         String sql = "UPDATE [dbo].[Product]\n"
-                + "   SET [product_price] = ?\n"
-                + "      ,[product_thumbnail] = ?\n"
-                + "      ,[product_status] = ?\n"
+                + "   SET [product_name] = ?\n"
+                + "      ,[product_price] = ?\n"
                 + "      ,[product_description] = ?\n"
-                + " WHERE [product_name] = ?";
+                + " WHERE [id] = ?";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
-            ps.setFloat(1, price);
-            ps.setString(2, thumbnail);
-            ps.setBoolean(3, status);
-            ps.setString(4, description);
+            ps.setString(1, name);
+            ps.setFloat(2, price);
+            ps.setString(3, description);
+            ps.setInt(4, id);
             ps.executeUpdate();
             ps.close();
         } catch (Exception e) {
@@ -196,7 +195,7 @@ public class ProductDAO {
 
     public List<Product> getProductManagementList() {
         List<Product> list = new ArrayList<>();
-        String sql = "select product_name, product_price, product_quantity, category_name\n"
+        String sql = "select P.id, product_name, product_price, product_quantity, category_name\n"
                 + "from Product P join Category C \n"
                 + "on P.category_id = C.id";
         try {
@@ -205,10 +204,11 @@ public class ProductDAO {
             rs = ps.executeQuery();
             while (rs.next()) {
                 list.add(new Product(
-                        rs.getString(1),
-                        rs.getFloat(2),
-                        rs.getInt(3),
-                        rs.getString(4)));
+                        rs.getInt(1),
+                        rs.getString(2),
+                        rs.getFloat(3),
+                        rs.getInt(4),
+                        rs.getString(5)));
             }
             ps.close();
         } catch (Exception e) {
@@ -217,13 +217,40 @@ public class ProductDAO {
         return list;
     }
 
+    public Product getProductByName(int pid) {
+        String sql = "select * from Product where id = ?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, pid);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return new Product(
+                        rs.getInt(1),
+                        rs.getString(2),
+                        rs.getFloat(3),
+                        rs.getBoolean(4),
+                        rs.getString(5),
+                        rs.getBoolean(6),
+                        rs.getString(7),
+                        rs.getInt(8),
+                        rs.getInt(9));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public static void main(String[] args) throws Exception {
         ProductDAO dao = new ProductDAO();
 //        dao.addProduct("Blue jean", 56, "Blue jean", "desc", 60, 1);
 //        dao.deleteProduct("Jacket");
-        List<Product> list = dao.getProductManagementList();
-        for (Product product : list) {
-            System.out.println(product.getCategory_name());
-        }
+        dao.updateProduct("nike af1", 79, "asbd asjdbk asbn sjasbdk", 2);
+        Product p = dao.getProductByName(2);
+//        for (Product product : list) {
+//            System.out.println(product.getCategory_name());
+//        }
+        System.out.println(p.getProduct_price());
     }
 }
