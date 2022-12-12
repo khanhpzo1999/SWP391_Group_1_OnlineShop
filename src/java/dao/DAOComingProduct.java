@@ -31,11 +31,10 @@ public class DAOComingProduct extends DBContext {
         return list;
     }
 
-    public ComingProduct getById(int id) {
+    public ComingProduct getById(String id) {
         String sql = "select * from Product where id = " + id;
         try (
-                PreparedStatement ps = connection.prepareStatement(sql);  
-                ResultSet rs = ps.executeQuery();) {
+                 PreparedStatement ps = connection.prepareStatement(sql);  ResultSet rs = ps.executeQuery();) {
             while (rs.next()) {
                 return (new ComingProduct(rs.getInt(1), rs.getString(2), rs.getFloat(3), rs.getBoolean(4), rs.getString(5), rs.getBoolean(6), rs.getString(7), rs.getInt(8), rs.getInt(9)));
             }
@@ -73,6 +72,33 @@ public class DAOComingProduct extends DBContext {
             ps.setBoolean(5, p.isProduct_status());
             ps.executeUpdate();
         } catch (SQLException e) {
+        }
+    }
+
+    public void updateComingProduct(String name, float price, boolean coming, String thumbnail, boolean status, String description, int quantity, int category_id, int id) throws Exception{
+        String sql = "UPDATE [dbo].[Product]\n"
+                + "   SET [product_name] = ?\n"
+                + "      ,[product_price] = ?\n"
+                + "      ,[product_coming] = ?\n"
+                + "      ,[product_thumbnail] = ?\n"
+                + "      ,[product_status] = ?\n"
+                + "      ,[product_description] = ?\n"
+                + "      ,[product_quantity] = ?\n"
+                + "      ,[category_id] = ?\n"
+                + " WHERE id = ?";
+        try{
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, name);
+            ps.setFloat(2, price);
+            ps.setBoolean(3, true);
+            ps.setString(4, thumbnail);
+            ps.setBoolean(5, false);
+            ps.setString(6, description);
+            ps.setInt(7, quantity);
+            ps.setInt(8, category_id);
+            ps.setInt(9, id);
+            ps.executeUpdate();
+        }catch(SQLException e){
         }
     }
 
