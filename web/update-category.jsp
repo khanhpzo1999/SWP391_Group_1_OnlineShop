@@ -1,3 +1,5 @@
+<%@page import="model.Category"%>
+<%@page import="dao.CategoryDAO"%>
 <%@page import="model.Discount"%>
 <%@page import="dao.DAODiscount"%>
 <%@page import="java.util.List"%>
@@ -63,15 +65,15 @@
                                     <a href="list-user" class="nav-link dropdown-toggle" role="button"
                                        >User</a>
                                 </li>
-                                <!--                                <li class="nav-item submenu dropdown">
-                                                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
-                                                                       aria-haspopup="true" aria-expanded="false">Blog</a>
-                                                                    <ul class="dropdown-menu">
-                                                                        <li class="nav-item"><a class="nav-link" href="">Blog</a></li>
-                                                                        <li class="nav-item"><a class="nav-link" href="">Blog Details</a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </li>-->
+<!--                                <li class="nav-item submenu dropdown">
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                                       aria-haspopup="true" aria-expanded="false">Blog</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="nav-item"><a class="nav-link" href="">Blog</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="">Blog Details</a>
+                                        </li>
+                                    </ul>
+                                </li>-->
                                 <li class="nav-item submenu dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
                                        aria-haspopup="true" aria-expanded="false">Products</a>
@@ -106,7 +108,7 @@
             <div class="container">
                 <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
                     <div class="col-first">
-                        <h1>Add Discount Page</h1>
+                        <h1>Update Discount Page</h1>
                     </div>
                 </div>
             </div>
@@ -115,21 +117,19 @@
 
         <!-- Start Banner Area -->
         <section class="features-area section_gap" style="margin-top: 100px; width: 80% ; margin-left:auto;margin-right:auto">
-            <form action="AddDiscount" method="post">
+            <form action="update-category" method="post">
                 <table>
                     <tr>
-                        <th>Discount </th>
-                        <td> <input type="text" name="discount_name"></td>
+                        <th>Category </th>
+                        <td> <input type="text" name="category_name" value=${category.category_name}></td>
+                        <td> <input hidden="true" type="text" name="id" value=${category.id}></td>
                     </tr>
-                    <tr>
-                        <th>SALE </th>
-                        <td> <input type="number" name="discount_number"></td>
-                    </tr>
-
                 </table>
-                <div class="cupon_text d-flex align-items-center">
-                    <button class="click-btn btn btn-default" type="submit" style="background-color: orange; color: white">Add Discount</button>
+                <div class="cupon_text d-flex align-items-center mt-2">
+                    <button class="click-btn btn btn-default" type="submit" style="background-color: orange; color: white">Update Category</button>
                 </div>
+                <h4>${errorMessage}</h4>
+                <h4>${successMessage}</h4>
             </form>
 
         </section>

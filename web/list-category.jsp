@@ -1,3 +1,6 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
 
@@ -16,17 +19,19 @@
         <meta charset="UTF-8">
         <!-- Site Title -->
         <title>Karma Shop</title>
-
         <!--
                 CSS
                 ============================================= -->
         <link rel="stylesheet" href="css/linearicons.css">
-        <link rel="stylesheet" href="css/owl.carousel.css">
-        <link rel="stylesheet" href="css/themify-icons.css">
         <link rel="stylesheet" href="css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/themify-icons.css">
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/owl.carousel.css">
         <link rel="stylesheet" href="css/nice-select.css">
         <link rel="stylesheet" href="css/nouislider.min.css">
-        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/ion.rangeSlider.css" />
+        <link rel="stylesheet" href="css/ion.rangeSlider.skinFlat.css" />
+        <link rel="stylesheet" href="css/magnific-popup.css">
         <link rel="stylesheet" href="css/main.css">
     </head>
     <%
@@ -35,7 +40,6 @@
         }
     %>
     <body>
-        <!-- Start Header Area -->
         <header class="header_area sticky-header">
             <div class="main_menu">
                 <nav class="navbar navbar-expand-lg navbar-light main_box">
@@ -93,72 +97,34 @@
                 </div>
             </div>
         </header>
+        <section class="features-area section_gap" style="margin-top: 100px; width: 80% ; margin-left:auto;margin-right:auto">
 
-        <section class="order_details section_gap">
-            <div class="container">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Category</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
 
-
-                <div class="order_details_table">
-
-                    <div class="table-responsive">
-                        <h2>Feedback Information</h2>
-                        <table class="table">
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <h4>Fullname:</h4>
-                                    </td>
-
-                                    <td>
-                                        ${feedback.fullname}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <h4>Email:</h4>
-                                    </td>
-
-                                    <td>
-
-                                        <p>${feedback.email}</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <h4>Phone:</h4>
-                                    </td>
-
-                                    <td>
-                                        ${feedback.phone}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <h4>Address:</h4>
-                                    </td>
-
-                                    <td>
-                                        ${feedback.address}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <h4>Feedback</h4>
-                                    </td>
-
-                                    <td>
-                                        ${feedback.feedback}
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+                <tbody>
+                    <c:forEach items="${listCategory}" var="category">
+                        <tr>
+                            <td>${category.id}</td>
+                            <td>${category.category_name}</td>
+                            <td><a href="category-detail?id=${category.id}">View</a></td>
+                            <td><a href="update-category?id=${category.id}">Edit</a></td>
+                            <td><a href="delete-category?id=${category.id}">Delete</a></td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
+            <h5 style="color:red;">${errorMessage}</h5>
         </section>
-        <!--================End Order Details Area =================-->
 
-        <!-- start footer Area -->
         <footer class="footer-area section_gap">
             <div class="container">
                 <div class="row">
@@ -166,7 +132,8 @@
                         <div class="single-footer-widget">
                             <h6>About Us</h6>
                             <p>
-                                Top1 shoe shop
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore dolore
+                                magna aliqua.
                             </p>
                         </div>
                     </div>
@@ -227,13 +194,15 @@
                         </div>
                     </div>
                 </div>
-
+                <div class="footer-bottom d-flex justify-content-center align-items-center flex-wrap">
+                    <p class="footer-text m-0"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </p>
+                </div>
             </div>
         </footer>
         <!-- End footer Area -->
-
-
-
 
         <script src="js/vendor/jquery-2.2.4.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
@@ -243,6 +212,7 @@
         <script src="js/jquery.nice-select.min.js"></script>
         <script src="js/jquery.sticky.js"></script>
         <script src="js/nouislider.min.js"></script>
+        <script src="js/countdown.js"></script>
         <script src="js/jquery.magnific-popup.min.js"></script>
         <script src="js/owl.carousel.min.js"></script>
         <!--gmaps Js-->

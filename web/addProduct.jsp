@@ -3,7 +3,11 @@
 
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
-
+    <%
+        if (session.getAttribute("admin-account") == null) {
+            response.sendRedirect("admin-login");
+        }
+    %>
     <head>
         <!-- Mobile Specific Meta -->
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -54,30 +58,32 @@
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                             <ul class="nav navbar-nav menu_nav ml-auto">
-                                <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
+                                <li class="nav-item active"><a class="nav-link" href="${pageContext.request.contextPath}/dashboard">Home</a></li>
                                 <li class="nav-item submenu dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
-                                       aria-haspopup="true" aria-expanded="false">User</a>
+                                    <a href="list-user" class="nav-link dropdown-toggle" role="button"
+                                       >User</a>
                                 </li>
-                                <li class="nav-item submenu dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
-                                       aria-haspopup="true" aria-expanded="false">Blog</a>
-                                    <ul class="dropdown-menu">
-                                        <li class="nav-item"><a class="nav-link" href="">Blog</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="">Blog Details</a>
-                                        </li>
-                                    </ul>
-                                </li>
+                                <!--                                <li class="nav-item submenu dropdown">
+                                                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                                                                       aria-haspopup="true" aria-expanded="false">Blog</a>
+                                                                    <ul class="dropdown-menu">
+                                                                        <li class="nav-item"><a class="nav-link" href="">Blog</a></li>
+                                                                        <li class="nav-item"><a class="nav-link" href="">Blog Details</a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </li>-->
                                 <li class="nav-item submenu dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
                                        aria-haspopup="true" aria-expanded="false">Products</a>
                                     <ul class="dropdown-menu">
-                                        <li class="nav-item"><a class="nav-link" href="#">Product Management</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="#">Product Coming</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="productManagement">Product Management</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="view-coming-product.jsp">Product Coming</a></li>
                                     </ul>
                                 </li>
-                                <li class="nav-item"><a class="nav-link" href="">Category</a></li>
-                                <li class="nav-item"><a class="nav-link" href="">Discount</a></li>
+                                <li class="nav-item"><a class="nav-link" href="list-category">Category</a></li>
+                                <li class="nav-item"><a class="nav-link" href="view-discount.jsp">Discount</a></li>
+                                <li class="nav-item"><a class="nav-link" href="list-feedback">Feedback</a></li>
+                                <li class="nav-item"><a class="nav-link" href="admin-logout">Logout</a></li>
                             </ul>
                         </div>
                     </div>
