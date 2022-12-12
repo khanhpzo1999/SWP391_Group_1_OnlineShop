@@ -31,7 +31,22 @@ public Connection connection;
     private final String portNumber = "1433";
     private final String instance = "";//LEAVE THIS ONE EMPTY IF YOUR SQL IS A SINGLE INSTANCE
     private final String userID = "sa";
-    private final String password = "khanh123";
+    private final String password = "123";
+    
+    
+    public DBContext()
+    {
+        try {
+            //Change the username password and url to connect your own database
+            String username = userID;
+            String password = this.password;
+            String url = "jdbc:sqlserver://" + serverName + ":" + portNumber + ";databaseName=" + dbName;
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            connection = DriverManager.getConnection(url, username, password);
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
     public static void main(String[] args) {
         try {
