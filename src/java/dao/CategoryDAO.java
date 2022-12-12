@@ -78,19 +78,49 @@ public class CategoryDAO {
         return arr;
 
     }
-    
-    public Category getCategoryById(int id){
-        Category c = new Category();
-        String sql = "select * from Category where id = "+id;
+   
+    public Category getCategoryById(int id) {
+        String query = "SELECT * FROM Category where id = ?";
+
         try {
             conn = new DBContext().getConnection();
-            ps = conn.prepareStatement(sql);
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, id);
             rs = ps.executeQuery();
-            while(rs.next()){
-                return (new Category(rs.getInt(1), rs.getString(2)));
+            while (rs.next()) {
+                return new Category(
+                        rs.getInt(1),
+                        rs.getString(2)
+                );
             }
-        } catch (Exception ex) {
+        } catch (Exception e) {
         }
         return null;
     }
+
+    public void updateCategory(String category_name, int id) {
+        String query = "update Category set category_name = ? where id = ?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, category_name);
+            ps.setInt(2, id);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+
+    }
+
+    public void deleteCategory(String id) {
+        String query = "Delete from Category where id = ?";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+
+            ps.setString(1, id);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
+
 }

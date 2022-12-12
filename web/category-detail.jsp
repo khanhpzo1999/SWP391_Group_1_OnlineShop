@@ -1,9 +1,13 @@
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="model.Category"%>
+<%@page import="dao.CategoryDAO"%>
+<%@page import="model.Discount"%>
+<%@page import="dao.DAODiscount"%>
+<%@page import="java.util.List"%>
+<%@page import="dao.DAO"%>
 
 <!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="zxx" class="no-js">
-
     <head>
         <!-- Mobile Specific Meta -->
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -19,19 +23,17 @@
         <meta charset="UTF-8">
         <!-- Site Title -->
         <title>Karma Shop</title>
+
         <!--
-                CSS
-                ============================================= -->
+            CSS
+            ============================================= -->
         <link rel="stylesheet" href="css/linearicons.css">
+        <link rel="stylesheet" href="css/owl.carousel.css">
         <link rel="stylesheet" href="css/font-awesome.min.css">
         <link rel="stylesheet" href="css/themify-icons.css">
-        <link rel="stylesheet" href="css/bootstrap.css">
-        <link rel="stylesheet" href="css/owl.carousel.css">
         <link rel="stylesheet" href="css/nice-select.css">
         <link rel="stylesheet" href="css/nouislider.min.css">
-        <link rel="stylesheet" href="css/ion.rangeSlider.css" />
-        <link rel="stylesheet" href="css/ion.rangeSlider.skinFlat.css" />
-        <link rel="stylesheet" href="css/magnific-popup.css">
+        <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="css/main.css">
     </head>
     <%
@@ -39,7 +41,9 @@
             response.sendRedirect("admin-login");
         }
     %>
-    <body>
+    <body id="category">
+
+        <!-- Start Header Area -->
         <header class="header_area sticky-header">
             <div class="main_menu">
                 <nav class="navbar navbar-expand-lg navbar-light main_box">
@@ -97,38 +101,167 @@
                 </div>
             </div>
         </header>
+        <!-- End Header Area -->
+
+        <!-- Start Banner Area -->
+        <section class="banner-area organic-breadcrumb">
+            <div class="container">
+                <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+                    <div class="col-first">
+                        <h1>Category Detail Page</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End Banner Area -->
+
+        <!-- Start Banner Area -->
         <section class="features-area section_gap" style="margin-top: 100px; width: 80% ; margin-left:auto;margin-right:auto">
-
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Username</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <c:forEach items="${listUser}" var="user">
-                        <tr>
-                            <td>${user.id}</td>
-                            <td>${user.username}</td>
-                            <td>${user.user_fullname}</td>
-                            <td>${user.user_email}</td>
-                            <td><a href="user-detail?id=${user.id}">View</a></td>
-                            <td><a>Edit</a></td>
-                            <td><a href="delete-user?id=${user.id}">Delete</a></td>
-                        </tr>
-                    </c:forEach>
-                </tbody>
-            </table>
+            <h2>Category </h2>
+            <p>Category Name: ${category.category_name}</p>
+            <td> <input hidden="true" type="text" name="id" value=${category.id}></td>
 
         </section>
+        <!-- End Banner Area -->
 
+        <!-- Start related-product Area -->
+        <section class="related-product-area section_gap">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6 text-center">
+                        <div class="section-title">
+                            <h1>Deals of the Week</h1>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                                magna aliqua.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-9">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-6 mb-20">
+                                <div class="single-related-product d-flex">
+                                    <a href="#"><img src="img/r1.jpg" alt=""></a>
+                                    <div class="desc">
+                                        <a href="#" class="title">Black lace Heels</a>
+                                        <div class="price">
+                                            <h6>$189.00</h6>
+                                            <h6 class="l-through">$210.00</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6 mb-20">
+                                <div class="single-related-product d-flex">
+                                    <a href="#"><img src="img/r2.jpg" alt=""></a>
+                                    <div class="desc">
+                                        <a href="#" class="title">Black lace Heels</a>
+                                        <div class="price">
+                                            <h6>$189.00</h6>
+                                            <h6 class="l-through">$210.00</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6 mb-20">
+                                <div class="single-related-product d-flex">
+                                    <a href="#"><img src="img/r3.jpg" alt=""></a>
+                                    <div class="desc">
+                                        <a href="#" class="title">Black lace Heels</a>
+                                        <div class="price">
+                                            <h6>$189.00</h6>
+                                            <h6 class="l-through">$210.00</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6 mb-20">
+                                <div class="single-related-product d-flex">
+                                    <a href="#"><img src="img/r5.jpg" alt=""></a>
+                                    <div class="desc">
+                                        <a href="#" class="title">Black lace Heels</a>
+                                        <div class="price">
+                                            <h6>$189.00</h6>
+                                            <h6 class="l-through">$210.00</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6 mb-20">
+                                <div class="single-related-product d-flex">
+                                    <a href="#"><img src="img/r6.jpg" alt=""></a>
+                                    <div class="desc">
+                                        <a href="#" class="title">Black lace Heels</a>
+                                        <div class="price">
+                                            <h6>$189.00</h6>
+                                            <h6 class="l-through">$210.00</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6 mb-20">
+                                <div class="single-related-product d-flex">
+                                    <a href="#"><img src="img/r7.jpg" alt=""></a>
+                                    <div class="desc">
+                                        <a href="#" class="title">Black lace Heels</a>
+                                        <div class="price">
+                                            <h6>$189.00</h6>
+                                            <h6 class="l-through">$210.00</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6">
+                                <div class="single-related-product d-flex">
+                                    <a href="#"><img src="img/r9.jpg" alt=""></a>
+                                    <div class="desc">
+                                        <a href="#" class="title">Black lace Heels</a>
+                                        <div class="price">
+                                            <h6>$189.00</h6>
+                                            <h6 class="l-through">$210.00</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6">
+                                <div class="single-related-product d-flex">
+                                    <a href="#"><img src="img/r10.jpg" alt=""></a>
+                                    <div class="desc">
+                                        <a href="#" class="title">Black lace Heels</a>
+                                        <div class="price">
+                                            <h6>$189.00</h6>
+                                            <h6 class="l-through">$210.00</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6">
+                                <div class="single-related-product d-flex">
+                                    <a href="#"><img src="img/r11.jpg" alt=""></a>
+                                    <div class="desc">
+                                        <a href="#" class="title">Black lace Heels</a>
+                                        <div class="price">
+                                            <h6>$189.00</h6>
+                                            <h6 class="l-through">$210.00</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="ctg-right">
+                            <a href="#" target="_blank">
+                                <img class="img-fluid d-block mx-auto" src="img/category/c5.jpg" alt="">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End related-product Area -->
+
+        <!-- start footer Area -->
         <footer class="footer-area section_gap">
             <div class="container">
                 <div class="row">
@@ -162,8 +295,8 @@
                                         </div>
 
                                         <!-- <div class="col-lg-4 col-md-4">
-                                                                <button class="bb-btn btn"><span class="lnr lnr-arrow-right"></span></button>
-                                                        </div>  -->
+                                                                        <button class="bb-btn btn"><span class="lnr lnr-arrow-right"></span></button>
+                                                                </div>  -->
                                     </div>
                                     <div class="info"></div>
                                 </form>
@@ -208,6 +341,37 @@
         </footer>
         <!-- End footer Area -->
 
+        <!-- Modal Quick Product View -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="container relative">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <div class="product-quick-view">
+                        <div class="row align-items-center">
+                            <div class="col-lg-6">
+                                <div class="quick-view-carousel">
+                                    <div class="item" style="background: url(img/organic-food/q1.jpg);">
+
+                                    </div>
+                                    <div class="item" style="background: url(img/organic-food/q1.jpg);">
+
+                                    </div>
+                                    <div class="item" style="background: url(img/organic-food/q1.jpg);">
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
         <script src="js/vendor/jquery-2.2.4.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
         crossorigin="anonymous"></script>
@@ -216,7 +380,6 @@
         <script src="js/jquery.nice-select.min.js"></script>
         <script src="js/jquery.sticky.js"></script>
         <script src="js/nouislider.min.js"></script>
-        <script src="js/countdown.js"></script>
         <script src="js/jquery.magnific-popup.min.js"></script>
         <script src="js/owl.carousel.min.js"></script>
         <!--gmaps Js-->

@@ -1,3 +1,5 @@
+<%@page import="model.Category"%>
+<%@page import="dao.CategoryDAO"%>
 <%@page import="model.Discount"%>
 <%@page import="dao.DAODiscount"%>
 <%@page import="java.util.List"%>
@@ -58,13 +60,12 @@
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                             <ul class="nav navbar-nav menu_nav ml-auto">
-
-                                <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
+                                <li class="nav-item active"><a class="nav-link" href="${pageContext.request.contextPath}/dashboard">Home</a></li>
                                 <li class="nav-item submenu dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
-                                       aria-haspopup="true" aria-expanded="false">User</a>
+                                    <a href="list-user" class="nav-link dropdown-toggle" role="button"
+                                       >User</a>
                                 </li>
-                                <li class="nav-item submenu dropdown">
+<!--                                <li class="nav-item submenu dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
                                        aria-haspopup="true" aria-expanded="false">Blog</a>
                                     <ul class="dropdown-menu">
@@ -72,29 +73,19 @@
                                         <li class="nav-item"><a class="nav-link" href="">Blog Details</a>
                                         </li>
                                     </ul>
-
-                                </li>
-                                <!--                                <li class="nav-item submenu dropdown">
-                                                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
-                                                                       aria-haspopup="true" aria-expanded="false">Blog</a>
-                                                                    <ul class="dropdown-menu">
-                                                                        <li class="nav-item"><a class="nav-link" href="">Blog</a></li>
-                                                                        <li class="nav-item"><a class="nav-link" href="">Blog Details</a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </li>-->
+                                </li>-->
                                 <li class="nav-item submenu dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
                                        aria-haspopup="true" aria-expanded="false">Products</a>
                                     <ul class="dropdown-menu">
-
-                                        <li class="nav-item"><a class="nav-link" href="#">Product Management</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="#">Product Coming</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="productManagement">Product Management</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="view-coming-product.jsp">Product Coming</a></li>
                                     </ul>
                                 </li>
-                                <li class="nav-item"><a class="nav-link" href="">Category</a></li>
-                                <li class="nav-item"><a class="nav-link" href="">Discount</a></li>
-
+                                <li class="nav-item"><a class="nav-link" href="list-category">Category</a></li>
+                                <li class="nav-item"><a class="nav-link" href="view-discount.jsp">Discount</a></li>
+                                <li class="nav-item"><a class="nav-link" href="list-feedback">Feedback</a></li>
+                                <li class="nav-item"><a class="nav-link" href="admin-logout">Logout</a></li>
                             </ul>
                         </div>
                     </div>
@@ -117,7 +108,7 @@
             <div class="container">
                 <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
                     <div class="col-first">
-                        <h1>Manager Discount Page</h1>
+                        <h1>Update Discount Page</h1>
                     </div>
                 </div>
             </div>
@@ -126,32 +117,21 @@
 
         <!-- Start Banner Area -->
         <section class="features-area section_gap" style="margin-top: 100px; width: 80% ; margin-left:auto;margin-right:auto">
-            <button class="click-btn btn btn-default" style="margin-bottom: 20px ; margin-left: 90% ; background-color: orange"><a href="add-discount.jsp" style="color: white">Add new discount</a></button>
-            <table class="table">
-                <thead>
+            <form action="update-category" method="post">
+                <table>
                     <tr>
-                        <th>Discount</th>
-                        <th>SALE OFF</th>
-                        <th></th>
-                        <th></th>
+                        <th>Category </th>
+                        <td> <input type="text" name="category_name" value=${category.category_name}></td>
+                        <td> <input hidden="true" type="text" name="id" value=${category.id}></td>
                     </tr>
-                </thead>
-                <tbody>
-                    <%
-                        List<Discount> list = new DAODiscount().getAll();
-                        for (Discount d : list) {
-                    %>
-                    <tr>
-                        <td><%= d.getDiscount_name()%></td>
-                        <td><%= d.getDiscount_number()%></td>
-                        <td><button class="click-btn btn btn-default" style="background-color: orange"><a style="color: white" href="viewdetaildiscount?id=<%= d.getId()%>">Detail</a></button></td>
-                        <td><button class="click-btn btn btn-default" style="background-color: orange"><a style="color: white" href="delete-discount.jsp?id=<%= d.getId()%>">Delete</a></button></td>
-                    </tr>
-                    <%
-                        }
-                    %>
-                </tbody>
-            </table>
+                </table>
+                <div class="cupon_text d-flex align-items-center mt-2">
+                    <button class="click-btn btn btn-default" type="submit" style="background-color: orange; color: white">Update Category</button>
+                </div>
+                <h4>${errorMessage}</h4>
+                <h4>${successMessage}</h4>
+            </form>
+
         </section>
         <!-- End Banner Area -->
 

@@ -3,11 +3,7 @@
 
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
-    <%
-        if (session.getAttribute("admin-account") == null) {
-            response.sendRedirect("admin-login");
-        }
-    %>
+
     <head>
         <!-- Mobile Specific Meta -->
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -24,8 +20,8 @@
         <!-- Site Title -->
         <title>Karma Shop</title>
         <!--
-                    CSS
-                    ============================================= -->
+                CSS
+                ============================================= -->
         <link rel="stylesheet" href="css/linearicons.css">
         <link rel="stylesheet" href="css/font-awesome.min.css">
         <link rel="stylesheet" href="css/themify-icons.css">
@@ -38,10 +34,12 @@
         <link rel="stylesheet" href="css/magnific-popup.css">
         <link rel="stylesheet" href="css/main.css">
     </head>
-
+    <%
+        if (session.getAttribute("admin-account") == null) {
+            response.sendRedirect("admin-login");
+        }
+    %>
     <body>
-
-        <!-- Start Header Area -->
         <header class="header_area sticky-header">
             <div class="main_menu">
                 <nav class="navbar navbar-expand-lg navbar-light main_box">
@@ -58,11 +56,7 @@
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                             <ul class="nav navbar-nav menu_nav ml-auto">
-                                <li class="nav-item active"><a class="nav-link" href="dashboard">Home</a></li>
-                                <li class="nav-item submenu dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
-                                       aria-haspopup="true" aria-expanded="false">User</a>
-                                </li>
+                                <li class="nav-item active"><a class="nav-link" href="${pageContext.request.contextPath}/dashboard">Home</a></li>
                                 <li class="nav-item submenu dropdown">
                                     <a href="list-user" class="nav-link dropdown-toggle" role="button"
                                        >User</a>
@@ -103,87 +97,34 @@
                 </div>
             </div>
         </header>
-        <!-- End Header Area -->
+        <section class="features-area section_gap" style="margin-top: 100px; width: 80% ; margin-left:auto;margin-right:auto">
 
-        <!-- Title Area -->
-        <section style="padding-top: 75px;">
-            <div class="container">
-                <div class="row align-items-center justify-content-start" style="height: 300px;">
-                    <div class="">
-                        <h2>Add new product</h2>
-                    </div>
-                </div>
-            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Category</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <c:forEach items="${listCategory}" var="category">
+                        <tr>
+                            <td>${category.id}</td>
+                            <td>${category.category_name}</td>
+                            <td><a href="category-detail?id=${category.id}">View</a></td>
+                            <td><a href="update-category?id=${category.id}">Edit</a></td>
+                            <td><a href="delete-category?id=${category.id}">Delete</a></td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
+            <h5 style="color:red;">${errorMessage}</h5>
         </section>
 
-        <!-- start Add product -->
-        <div class="container">
-            <div class="row">
-                <!-- Image field -->
-                <div class="col">
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Image</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="text-center">
-                                <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src=""
-                                     alt="Add image here">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Form field -->
-                <div class="col">
-                    <form action="addProduct" method="POST">
-                        <div class="row mb-4">
-                            <div class="col">
-                                <div class="form-outline">
-                                    <label class="form-label" for="form6Example1">Product name</label>
-                                    <input type="text" id="product_name" class="form-control" name="product_name"/>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="form-outline">
-                                    <label class="form-label" for="form6Example2">Self price</label>
-                                    <input type="text" id="product_price" class="form-control" name="product_price"/>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row mb-4">
-                            <div class="col">
-                                <label class="form-label" for="form6Example2">Select category</label>
-                                <select class="form-select" name="category_id">
-                                    <option selected hidden>Select Category</option>
-                                    <c:forEach var="i" items="${list}">
-                                        <option value="${i.id}">${i.category_name}</option>
-                                    </c:forEach>
-                                </select>
-                            </div>
-                            <div class="col">
-                                <label class="form-label" for="form6Example4">Quantity</label>
-                                <input type="text" id="product_quatity" class="form-control" name="product_quatity"/>
-                            </div>
-                        </div>
-                        <div class="row mb-4">
-                            <div class="col">
-                                <label class="form-label" for="form6Example7">Thumbnail</label>
-                                <input type="text" id="product_thumbnail" class="form-control" name="product_thumbnail"/>
-                            </div>
-                            <div class="col">
-                            <label class="form-label" for="form6Example7">Description of product</label>
-                            <textarea class="form-control" id="product_description" rows="4" name="product_description"></textarea>                               
-                            </div>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary btn-block mb-4">Create Product</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <!-- end Add product -->
-
-        <!-- start footer Area -->
         <footer class="footer-area section_gap">
             <div class="container">
                 <div class="row">
@@ -191,8 +132,7 @@
                         <div class="single-footer-widget">
                             <h6>About Us</h6>
                             <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
-                                ut labore dolore
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore dolore
                                 magna aliqua.
                             </p>
                         </div>
@@ -203,23 +143,23 @@
                             <p>Stay update with our latest</p>
                             <div class="" id="mc_embed_signup">
 
-                                <form target="_blank" novalidate="true"
-                                      action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
+                                <form target="_blank" novalidate="true" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
                                       method="get" class="form-inline">
 
                                     <div class="d-flex flex-row">
 
-                                        <input class="form-control" name="EMAIL" placeholder="Enter Email"
-                                               onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email '"
+                                        <input class="form-control" name="EMAIL" placeholder="Enter Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email '"
                                                required="" type="email">
 
 
-                                        <button class="click-btn btn btn-default"><i class="fa fa-long-arrow-right"
-                                                                                     aria-hidden="true"></i></button>
+                                        <button class="click-btn btn btn-default"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></button>
                                         <div style="position: absolute; left: -5000px;">
-                                            <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value=""
-                                                   type="text">
+                                            <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
                                         </div>
+
+                                        <!-- <div class="col-lg-4 col-md-4">
+                                                                <button class="bb-btn btn"><span class="lnr lnr-arrow-right"></span></button>
+                                                        </div>  -->
                                     </div>
                                     <div class="info"></div>
                                 </form>
@@ -255,12 +195,8 @@
                     </div>
                 </div>
                 <div class="footer-bottom d-flex justify-content-center align-items-center flex-wrap">
-                    <p class="footer-text m-0">
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        Copyright &copy;
-                        <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is
-                        made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com"
-                                                                                         target="_blank">Colorlib</a>
+                    <p class="footer-text m-0"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                     </p>
                 </div>
@@ -269,8 +205,7 @@
         <!-- End footer Area -->
 
         <script src="js/vendor/jquery-2.2.4.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
-                integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
         crossorigin="anonymous"></script>
         <script src="js/vendor/bootstrap.min.js"></script>
         <script src="js/jquery.ajaxchimp.min.js"></script>

@@ -1,25 +1,28 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package controlller;
 
-import dao.ProductDAO;
+import dao.CategoryDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.List;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Category;
 import model.Product;
 
 /**
  *
- * @author Computer
+ * @author admin
  */
-public class DeleteProductServlet extends HttpServlet {
+@WebServlet(name = "UpdateCategoryServlet", urlPatterns = {"/update-category"})
+public class UpdateCategoryServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -47,12 +50,12 @@ public class DeleteProductServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String pid = request.getParameter("id");
-        ProductDAO dao = new ProductDAO();
-        Product p = dao.getProductByName(Integer.parseInt(pid));
-        request.setAttribute("p", p);
-        request.setAttribute("pid", pid);
-        request.getRequestDispatcher("deleteProduct.jsp").forward(request, response);
+        processRequest(request, response);
+        String id = request.getParameter("id");
+        CategoryDAO dao = new CategoryDAO();
+        Category category = dao.getCategoryById(Integer.parseInt(id));
+        request.setAttribute("category", category);
+        request.getRequestDispatcher("update-category.jsp").forward(request, response);
     }
 
     /**
@@ -66,14 +69,24 @@ public class DeleteProductServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String id = request.getParameter("pid");
-        ProductDAO dao = new ProductDAO();
-        try {
-            dao.deleteProduct(Integer.parseInt(id));
-        } catch (Exception e) {
-            Logger.getLogger(UpdateProductServlet.class.getName()).log(Level.SEVERE, null, e);
+        processRequest(request, response);
+        String id = request.getParameter("id");
+        if (id == null) {
+            response.sendRedirect("list-category");
         }
-        response.sendRedirect("productManagement");
+        String category_name = request.getParameter("category_name");
+        CategoryDAO dao = new CategoryDAO();
+        if (category_name.length() == 0) {
+            request.setAttribute("errorMessage", "Update category failed !");
+            Category category = dao.getCategoryById(Integer.parseInt(id));
+            request.setAttribute("category", category);
+            request.getRequestDispatcher("update-category.jsp").forward(request, response);
+
+        } else {
+            dao.updateCategory(category_name, Integer.parseInt(id));
+            request.setAttribute("successMessage", "Update category success !");
+            response.sendRedirect("list-category");
+        }
     }
 
     /**
