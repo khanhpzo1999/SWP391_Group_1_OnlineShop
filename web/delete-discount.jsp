@@ -124,21 +124,20 @@
                 <table>
                     <%
                         String id = request.getParameter("id");
-                        DAODiscount dao = new DAODiscount();
-                        Discount dis = dao.getById(Integer.parseInt(id));
+                        Discount d = new DAODiscount().getById(id);
                     %>
                     <tr>
                         <th>Discount </th>
-                        <td><%= dis.getDiscount_name()%></td>
+                        <td><%= d.getDiscount_name()%></td>
                     </tr>
                     <tr>
                         <th>SALE </th>
-                        <td><%= dis.getDiscount_number()%></td>
+                        <td><%= d.getDiscount_number()%></td>
                     </tr>
 
                 </table>
                 <div class="cupon_text d-flex align-items-center">
-                    <button class="click-btn btn btn-default" style="background-color: orange"><a href="DeleteDiscount?id=<%= dis.getId()%>" style="color: white">Delete Discount</a></button>
+                    <button class="click-btn btn btn-default" style="background-color: orange"><a href="deletediscount?id=<%= d.getId()%>" style="color: white">Delete Discount</a></button>
                 </div>
             
 

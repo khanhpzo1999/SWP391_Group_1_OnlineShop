@@ -70,16 +70,15 @@ public class UpdateDiscountServlet extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
         DAODiscount dao = new DAODiscount();
-        String id = request.getParameter("id");
         String discount_name = request.getParameter("discount_name");
         float discount_number = Float.parseFloat(request.getParameter("discount_number"));
-        try{
+        String id = request.getParameter("id");
+        try {
             dao.updateDiscount(discount_name, discount_number, Integer.parseInt(id));
-        }catch(Exception ex){
-            Logger.getLogger(UpdateUserInformationServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(UpdateDiscountServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        response.sendRedirect("viewdetaildiscount?id="+id);
+        response.sendRedirect("view-discount.jsp");
     }
 
     /**

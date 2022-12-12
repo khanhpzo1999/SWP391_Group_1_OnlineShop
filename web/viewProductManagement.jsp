@@ -139,8 +139,8 @@
                                     </td>
                                     <td>${i.product_quatity}</td>
                                     <td>
-                                        <a type="submit" class="btn btn-primary" href="${pageContext.request.contextPath}/updateProduct">Update</a>
-                                        <a type="submit" class="btn btn-danger" href="${pageContext.request.contextPath}/deleteProduct">Delete</a>
+                                        <a type="submit" class="btn btn-primary" href="updateProduct?id=${i.pid}">Update</a>
+                                        <a type="submit" class="btn btn-danger" href="deleteProduct">Delete</a>
                                     </td>
                                 </tr>
                             </c:forEach>                           
@@ -149,7 +149,7 @@
                 </div>
                 <div>
                     <div>
-                        <a type="submit" class="btn btn-success" href="${pageContext.request.contextPath}/addProduct">Add Product</a>
+                        <a type="submit" class="btn btn-success" href="addProduct">Add Product</a>
                     </div>
 <!--                    <div>
                         <div class="filter-bar d-flex flex-wrap align-items-center">
