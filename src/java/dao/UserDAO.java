@@ -161,7 +161,6 @@ public class UserDAO {
 
     // long
     public User getUserInformation(int id) {
-
         String query = "select * from Users\n"
                 + "where id= ?";
         try {
