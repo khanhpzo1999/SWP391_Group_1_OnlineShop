@@ -1,14 +1,8 @@
-<%@page import="model.ComingProduct"%>
-<%@page import="dao.DAOComingProduct"%>
-<%@page import="dao.CategoryDAO"%>
-<%@page import="model.Category"%>
-<%@page import="model.Discount"%>
-<%@page import="dao.DAODiscount"%>
-<%@page import="java.util.List"%>
-<%@page import="dao.DAO"%>
+
 
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html lang="zxx" class="no-js">
     <head>
         <!-- Mobile Specific Meta -->
@@ -115,7 +109,7 @@
             <div class="container">
                 <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
                     <div class="col-first">
-                        <h1>Delete Coming Product Page</h1>
+                        <h1>Update Discount Page</h1>
                     </div>
                 </div>
             </div>
@@ -124,41 +118,22 @@
 
         <!-- Start Banner Area -->
         <section class="features-area section_gap" style="margin-top: 100px; width: 80% ; margin-left:auto;margin-right:auto">
+            
                 <table>
-                    <%
-                        String id = request.getParameter("id");
-                        DAOComingProduct dao = new DAOComingProduct();
-                        ComingProduct cp = dao.getById(Integer.parseInt(id));
-                    %>
                     <tr>
-                        <th>Product name </th>
-                        <td><%= cp.getProduct_name()%></td>
+                        <th>Discount </th>
+                        <td> <input type="text" id="discount_name" name="discount_name" value="${discountInfor.discount_name}" disabled="true"></td>
                     </tr>
                     <tr>
-                        <th>Product price </th>
-                        <td><%= cp.getProduct_price()%></td>
+                        <th>SALE </th>
+                        <td> <input type="number" id="discount_price" name="discount_number" value="${discountInfor.discount_number}" disabled="true"> %</td>
                     </tr>
-                    <tr>
-                        <th>Product thumbnail </th>
-                        <td><%= cp.getProduct_thumbnail()%></td>
-                    </tr>
-                    <tr>
-                        <th>Product description </th>
-                        <td><%= cp.getProduct_description()%></td>
-                    </tr>
-
-                    <tr>
-                        <th>Category </th>
-                        <%
-                            Category c = new CategoryDAO().getCategoryById(cp.getCategory_id());
-                        %>
-                        <td><%= c.getCategory_name()%></td>
-                    </tr>
-
                 </table>
                 <div class="cupon_text d-flex align-items-center">
-                    <button class="click-btn btn btn-default" type="submit" style="background-color: orange"><a href="DeleteComingProduct?id=<%= cp.getId()%>" style="color: white">Delete Coming product</a></button>
+                    <button class="click-btn btn btn-default"  style="background-color: orange"><a href="updatediscount?id=${requestScope.id}" style="color: white">Go Update Discount</a></button>
                 </div>
+             
+
 
         </section>
         <!-- End Banner Area -->

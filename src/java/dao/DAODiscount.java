@@ -24,7 +24,8 @@ public class DAODiscount extends DBContext {
         List<Discount> list = new ArrayList<>();
         String sql = "select * from Discount order by discount_number";
         try (
-                 PreparedStatement ps = connection.prepareStatement(sql);  ResultSet rs = ps.executeQuery();) {
+                 PreparedStatement ps = connection.prepareStatement(sql);
+                 ResultSet rs = ps.executeQuery();) {
             while (rs.next()) {
                 list.add(new Discount(rs.getInt(1), rs.getString(2), rs.getFloat(3)));
             }
@@ -33,7 +34,7 @@ public class DAODiscount extends DBContext {
         return list;
     }
 
-    public Discount getById(int id) {
+    public Discount getById(String id) {
         String sql = "select * from Discount where id = " + id;
         try (
                  PreparedStatement ps = connection.prepareStatement(sql);  ResultSet rs = ps.executeQuery();) {
@@ -93,6 +94,18 @@ public class DAODiscount extends DBContext {
         }
     }
 
+    public void updateDiscount(String name, float price, int id) throws Exception{
+        String sql = "update Discount set discount_name = ?, discount_number = ? where id = ?";
+        try{
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, name);
+            ps.setFloat(2, price);
+            ps.setInt(3, id);
+            ps.executeUpdate();
+        }catch (SQLException e){
+        }
+    }
+    
     public void delete(String id) {
         String sql = "delete from Discount where id = ?";
         try {

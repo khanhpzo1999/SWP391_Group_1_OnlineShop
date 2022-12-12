@@ -141,9 +141,9 @@
                         <td><%= cp.getProduct_name()%></td>
                         <td><%= cp.getProduct_price()%></td>
                         <td><%= cp.getProduct_description()%></td>
-                        <td><button class="click-btn btn btn-default" style="background-color: orange"><a style="color: white" href="view-detail-coming-product?id=<%= cp.getId()%>">Detail</a></button></td>
-                        <td><button class="click-btn btn btn-default" style="background-color: orange"><a style="color: white" href="update-coming-product?id=<%= cp.getId()%>">Edit</a></button></td>
-                        <td><button class="click-btn btn btn-default" style="background-color: orange"><a style="color: white" href="delete-coming-product?id=<%= cp.getId()%>">Delete</a></button></td>
+                        <td><button class="click-btn btn btn-default" style="background-color: orange"><a style="color: white" href="view-detail-coming-product.jsp?id=<%= cp.getId()%>">Detail</a></button></td>
+                        <td><button class="click-btn btn btn-default" style="background-color: orange"><a style="color: white" href="update-coming-product.jsp?id=<%= cp.getId()%>">Edit</a></button></td>
+                        <td><button class="click-btn btn btn-default" style="background-color: orange"><a style="color: white" href="delete-coming-product.jsp?id=<%= cp.getId()%>">Delete</a></button></td>
                     </tr>
                     <%
                         }

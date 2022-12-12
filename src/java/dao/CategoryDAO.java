@@ -4,8 +4,11 @@ import context.DBContext;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Category;
 import model.Product;
 
@@ -74,5 +77,20 @@ public class CategoryDAO {
         }
         return arr;
 
+    }
+    
+    public Category getCategoryById(int id){
+        Category c = new Category();
+        String sql = "select * from Category where id = "+id;
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                return (new Category(rs.getInt(1), rs.getString(2)));
+            }
+        } catch (Exception ex) {
+        }
+        return null;
     }
 }

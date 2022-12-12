@@ -5,23 +5,24 @@
  */
 package controlller;
 
+import dao.FeedbackDAO;
 import dao.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Feedback;
 import model.User;
 
 /**
  *
- * @author Nhat Anh
+ * @author admin
  */
-public class UpdateUserInformationServlet extends HttpServlet {
+@WebServlet(name = "FeedbackDetailServlet", urlPatterns = {"/feedback-detail"})
+public class FeedbackDetailServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -52,12 +53,11 @@ public class UpdateUserInformationServlet extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
         String id = request.getParameter("id");
-        UserDAO dao = new UserDAO();
-        User p = dao.getUserInformation(Integer.parseInt(id));
+        FeedbackDAO dao = new FeedbackDAO();
+        Feedback feedback = dao.getFeedbackById(id);
         request.setAttribute("id", id);
-        request.setAttribute("userinfor", p);
-        request.getRequestDispatcher("updateuserinformation.jsp").forward(request, response);
-
+        request.setAttribute("feedback", feedback);
+        request.getRequestDispatcher("feedback-detail.jsp").forward(request, response);
     }
 
     /**
@@ -72,20 +72,6 @@ public class UpdateUserInformationServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        UserDAO dao = new UserDAO();
-        String user_fullname = request.getParameter("user_fullname");
-        String user_email = request.getParameter("user_email");
-        String user_phone = request.getParameter("user_phone");
-        String user_address = request.getParameter("user_address");
-        int id = Integer.parseInt(request.getParameter("id"));
-        try {
-            dao.updateUserInformation(user_fullname, user_email, user_phone, user_address, id);
-        } catch (Exception ex) {
-            Logger.getLogger(UpdateUserInformationServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        request.setAttribute("message", "edit susscess");
-        response.sendRedirect("viewuserinformation?id="+id);
-        
     }
 
     /**

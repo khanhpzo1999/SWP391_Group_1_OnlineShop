@@ -29,11 +29,7 @@
         <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="css/main.css">
     </head>
-    <%
-        if (session.getAttribute("admin-account") == null) {
-            response.sendRedirect("admin-login");
-        }
-    %>
+
     <body>
         <!-- Start Header Area -->
         <header class="header_area sticky-header">
@@ -41,7 +37,7 @@
                 <nav class="navbar navbar-expand-lg navbar-light main_box">
                     <div class="container">
                         <!-- Brand and toggle get grouped for better mobile display -->
-                        <a class="navbar-brand logo_h" href="index.jsp"><img src="img/logo.png" alt=""></a>
+                        <a class="navbar-brand logo_h" href="index.html"><img src="img/logo.png" alt=""></a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="icon-bar"></span>
@@ -51,25 +47,39 @@
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                             <ul class="nav navbar-nav menu_nav ml-auto">
-                                <li class="nav-item"><a class="nav-link" href="index.jsp">Home</a></li>
-                                <li class="nav-item submenu dropdown active">
+                                <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
+                                <li class="nav-item submenu dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                                        aria-expanded="false">Shop</a>
                                     <ul class="dropdown-menu">
-                                        <li class="nav-item active"><a class="nav-link" href="category.jsp">Shop Category</a></li>
-
-
-                                        <li class="nav-item"><a class="nav-link" href="cart.jsp">Shopping Cart</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="confirmation.jsp">Confirmation</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="category.html">Shop Category</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="single-product.html">Product Details</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="checkout.html">Product Checkout</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="cart.html">Shopping Cart</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="confirmation.html">Confirmation</a></li>
                                     </ul>
                                 </li>
-
-                                <li class="nav-item"><a class="nav-link" href="contact.jsp">Contact</a></li>
-                                <li class="nav-item"><a class="nav-link" href="profile">Profile</a></li>
-                                <li class="nav-item"><a class="nav-link" href="logout">Log out</a></li>
+                                <li class="nav-item submenu dropdown">
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                                       aria-expanded="false">Blog</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="single-blog.html">Blog Details</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item submenu dropdown">
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                                       aria-expanded="false">Pages</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="tracking.html">Tracking</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="elements.html">Elements</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
-                                <li class="nav-item"><a href="cart.jsp" class="cart"><span class="ti-bag"></span></a></li>
+                                <li class="nav-item"><a href="#" class="cart"><span class="ti-bag"></span></a></li>
                                 <li class="nav-item">
                                     <button class="search"><span class="lnr lnr-magnifier" id="search"></span></button>
                                 </li>
@@ -88,70 +98,50 @@
                 </div>
             </div>
         </header>
+        <!-- End Header Area -->
 
-        <section class="order_details section_gap">
+        <!-- Start Banner Area -->
+
+        <!-- End Banner Area -->
+
+        <!--================Login Box Area =================-->
+        <section class="features-area section_gap">
             <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="login_form_inner">
+                            <h3>Feedback</h3>
+                            <form class="row" action="AddFeedbackServlet" method="post" id="contactForm" novalidate="novalidate">
+                                <div class="col-md-12 form-group">
+                                    <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Fullname" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Fullname'">
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <input type="text" class="form-control" id="email" name="email" placeholder="Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'">
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <input type="text" class="form-control" id="address" name="address" placeholder="Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Address'">
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Phone'">
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <textarea rows="5" type="text" class="form-control" id="feedback" name="feedback" placeholder="Feedback" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Feedback'"></textarea>
+                                </div>
 
-
-                <div class="order_details_table">
-
-                    <div class="table-responsive">
-                        <h2>User Profile</h2>
-                        <table class="table">
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <h4>UserName:</h4>
-                                    </td>
-
-                                    <td>
-                                        ${user.username}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <h4>Fullname:</h4>
-                                    </td>
-
-                                    <td>
-
-                                        <p>${user.user_fullname}</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <h4>Email:</h4>
-                                    </td>
-
-                                    <td>
-                                        ${user.user_email}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <h4>Address:</h4>
-                                    </td>
-
-                                    <td>
-                                        ${user.user_address}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <h4>Phone number:</h4>
-                                    </td>
-
-                                    <td>
-                                        ${user.user_phone}
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                                <div class="col-md-12 form-group">
+                                    <button type="submit" value="submit" class="primary-btn">Send Feedback</button>
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <h4>${successMessage}</h4>
+                                    <h4>${errorMessage}</h4>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
-        <!--================End Order Details Area =================-->
+        <!--================End Login Box Area =================-->
 
         <!-- start footer Area -->
         <footer class="footer-area section_gap">
@@ -161,7 +151,8 @@
                         <div class="single-footer-widget">
                             <h6>About Us</h6>
                             <p>
-                                Top1 shoe shop
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore dolore
+                                magna aliqua.
                             </p>
                         </div>
                     </div>
@@ -186,8 +177,8 @@
                                         </div>
 
                                         <!-- <div class="col-lg-4 col-md-4">
-                                                                <button class="bb-btn btn"><span class="lnr lnr-arrow-right"></span></button>
-                                                        </div>  -->
+                                                                        <button class="bb-btn btn"><span class="lnr lnr-arrow-right"></span></button>
+                                                                </div>  -->
                                     </div>
                                     <div class="info"></div>
                                 </form>
@@ -222,17 +213,19 @@
                         </div>
                     </div>
                 </div>
-
+                <div class="footer-bottom d-flex justify-content-center align-items-center flex-wrap">
+                    <p class="footer-text m-0"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </p>
+                </div>
             </div>
         </footer>
         <!-- End footer Area -->
 
 
-
-
         <script src="js/vendor/jquery-2.2.4.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
-        crossorigin="anonymous"></script>
+
         <script src="js/vendor/bootstrap.min.js"></script>
         <script src="js/jquery.ajaxchimp.min.js"></script>
         <script src="js/jquery.nice-select.min.js"></script>
