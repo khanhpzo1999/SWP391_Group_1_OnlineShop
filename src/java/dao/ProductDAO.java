@@ -160,12 +160,12 @@ public class ProductDAO {
         }
     }
 
-    public void deleteProduct(String name) {
-        String sql = "Delete from Product where product_name = ?";
+    public void deleteProduct(int pid) {
+        String sql = "Delete from Product where id = ?";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
-            ps.setString(1, name);
+            ps.setInt(1, pid);
             ps.executeUpdate();
             ps.close();
         } catch (Exception e) {
@@ -245,12 +245,12 @@ public class ProductDAO {
     public static void main(String[] args) throws Exception {
         ProductDAO dao = new ProductDAO();
 //        dao.addProduct("Blue jean", 56, "Blue jean", "desc", 60, 1);
-//        dao.deleteProduct("Jacket");
-        dao.updateProduct("nike af1", 79, "asbd asjdbk asbn sjasbdk", 2);
-        Product p = dao.getProductByName(2);
+        dao.deleteProduct(8);
+//        dao.updateProduct("nike af1", 79, "asbd asjdbk asbn sjasbdk", 2);
+//        Product p = dao.getProductByName(2);
 //        for (Product product : list) {
 //            System.out.println(product.getCategory_name());
 //        }
-        System.out.println(p.getProduct_price());
+//        System.out.println(p.getProduct_price());
     }
 }

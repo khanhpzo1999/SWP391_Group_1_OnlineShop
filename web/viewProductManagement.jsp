@@ -140,7 +140,7 @@
                                     <td>${i.product_quatity}</td>
                                     <td>
                                         <a type="submit" class="btn btn-primary" href="updateProduct?id=${i.pid}">Update</a>
-                                        <a type="submit" class="btn btn-danger" href="deleteProduct">Delete</a>
+                                        <a type="submit" class="btn btn-danger" href="deleteProduct?id=${i.pid}">Delete</a>
                                     </td>
                                 </tr>
                             </c:forEach>                           
