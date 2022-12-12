@@ -36,7 +36,7 @@ public class DeleteDiscountServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String id = request.getParameter("id");
         new DAODiscount().delete(id);
-        response.sendRedirect("view-discount.jsp");
+        response.sendRedirect("ViewDiscount");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -52,6 +52,7 @@ public class DeleteDiscountServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        
     }
 
     /**
