@@ -138,7 +138,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>DeleteDiscountServlet</servlet-name>
-        <url-pattern>/DeleteDiscount</url-pattern>
+        <url-pattern>/deletediscount</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AddComingProductServlet</servlet-name>

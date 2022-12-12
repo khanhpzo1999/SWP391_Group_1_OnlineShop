@@ -119,17 +119,15 @@
         <!-- Start Banner Area -->
         <section class="features-area section_gap" style="margin-top: 100px; width: 80% ; margin-left:auto;margin-right:auto">
             <form action="updatediscount" method="post">
-
-
                 <table>
-
+                    <td> <input type="text" hidden="true" name="id" value="${discountInfor.id}"></td>
                     <tr>
                         <th>Discount </th>
-                        <td> <input type="text" name="discount_name" value="${discountInfor.discount_name}"></td>
+                        <td> <input type="text"  name="discount_name" value="${discountInfor.discount_name}"></td>
                     </tr>
                     <tr>
                         <th>SALE </th>
-                        <td> <input type="number" name="discount_number" value="${discountInfor.discount_number}">%</td>
+                        <td> <input type="number"  name="discount_number" value="${discountInfor.discount_number}">%</td>
                     </tr>
                 </table>
                 <div class="cupon_text d-flex align-items-center">
