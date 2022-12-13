@@ -34,12 +34,12 @@ public class ViewProductServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
+        try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ViewProductServlet</title>");            
+            out.println("<title>Servlet ViewProductServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet ViewProductServlet at " + request.getContextPath() + "</h1>");
@@ -81,7 +81,49 @@ public class ViewProductServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        ProductDAO dao = new ProductDAO();
+        String name = request.getParameter("search");
+        try (PrintWriter out = response.getWriter()) {
+            ArrayList<Product> list = dao.searchProduct(name, false);
+            if (list != null && list.size() > 0) {
+                for (Product product : list) {
+                    out.println(
+                        "<div class=\"col-lg-4 col-md-6\">\n"
+                        + "                                    <div class=\"single-product\">\n"
+                        + "                                        <img class=\"img-fluid\" src=\""+ product.getProduct_thumbnail() +"\" alt=\"\">\n"
+                        + "                                        <div class=\"product-details\">\n"
+                        + "                                            <h6>"+ product.getProduct_name() +"</h6>\n"
+                        + "                                            <div class=\"price\">\n"
+                        + "                                                <h6>$"+ product.getProduct_price() +"</h6>\n"
+                        + "                                            </div>\n"
+                        + "                                            <div class=\"prd-bottom\">\n"
+                        + "\n"
+                        + "                                                <a href=\"javascript:void(0)\"\n"
+                        + "                                                   onclick=\"addToCart("+ product.getPid() +")\"\n"
+                        + "                                                   class=\"social-info\">\n"
+                        + "                                                    <span class=\"ti-bag\"></span>\n"
+                        + "                                                    <p class=\"hover-text\">add to bag</p>\n"
+                        + "                                                </a>\n"
+                        + "                                                <a href=\"\" class=\"social-info\">\n"
+                        + "                                                    <span class=\"lnr lnr-heart\"></span>\n"
+                        + "                                                    <p class=\"hover-text\">Wishlist</p>\n"
+                        + "                                                </a>\n"
+                        + "                                                <a href=\"\" class=\"social-info\">\n"
+                        + "                                                    <span class=\"lnr lnr-move\"></span>\n"
+                        + "                                                    <p class=\"hover-text\">view more</p>\n"
+                        + "                                                </a>\n"
+                        + "                                            </div>\n"
+                        + "                                        </div>\n"
+                        + "                                    </div>\n"
+                        + "                                </div>"
+                );
+                    out.println();
+                }
+            }
+        } catch (Exception ex) {
+
+        }
     }
 
     /**

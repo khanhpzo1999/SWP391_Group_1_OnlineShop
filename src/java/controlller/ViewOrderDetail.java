@@ -5,25 +5,26 @@
  */
 package controlller;
 
-import dao.DAODiscount;
+import dao.OrderDAO;
 import dao.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.Cart;
-import model.Discount;
+import model.Order;
+import model.OrderDetail;
 import model.Product;
 
 /**
  *
- * @author long
+ * @author Nhat Anh
  */
-public class VIewOrderCart extends HttpServlet {
+public class ViewOrderDetail extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,51 +39,31 @@ public class VIewOrderCart extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
-        ProductDAO dao = new ProductDAO();
-        if (session.getAttribute("account") != null) {
-            ArrayList<Cart> list = null;
-            int total = 0;
-
-            if (session.getAttribute("cart") != null) {
-                list = (ArrayList) session.getAttribute("cart");
-
-                if (request.getParameter("remove") != null) {
-                    int id = Integer.parseInt(request.getParameter("remove"));
-                    Product product = dao.getOne(id);
-                    if (product != null) {
-                        for (Cart c : list) {
-                            if (c.getProduct().getPid() == product.getPid()) {
-                                list.remove(c);
-                                break;
-                            }
-                        }
+        if(session.getAttribute("account") != null && request.getParameter("id") != null){
+            int id = Integer.parseInt(request.getParameter("id"));
+            
+            ArrayList<OrderDetail> odList = null;
+            HashMap<OrderDetail, Product> list = new HashMap<>();
+            
+            OrderDAO dao = new OrderDAO();
+            Order order = dao.getOne(id);
+            
+            if(order != null){
+                odList = dao.getOrderDetail(id);
+            }
+            if(odList != null){
+                ProductDAO pdao = new ProductDAO();
+                for (OrderDetail od : odList) {
+                    Product p = pdao.getOne(od.getProductId());
+                    if(p != null){
+                        list.put(od, p);
                     }
-                }
-                
-                if(request.getParameter("update") != null){
-                    int id = Integer.parseInt(request.getParameter("update"));
-                    int quantity = Integer.parseInt(request.getParameter("quantity"));
-                    Product product = dao.getOne(id);
-                    if (product != null) {
-                        for (Cart c : list) {
-                            if (c.getProduct().getPid() == product.getPid()) {
-                                c.setQuantity(quantity);
-                                break;
-                            }
-                        }
-                    }
-                }
-
-                for (Cart c : list) {
-                    total += c.getQuantity() * c.getProduct().getProduct_price();
                 }
             }
-
-            request.setAttribute("cart", list);
-            session.setAttribute("cart", list);
-            request.setAttribute("total", total);
-            request.getRequestDispatcher("viewordercart.jsp").forward(request, response);
-        } else {
+            request.setAttribute("order", order);
+            request.setAttribute("list", list);
+            request.getRequestDispatcher("orderdetailinformation.jsp").forward(request, response);
+        }else{
             request.getRequestDispatcher("login.jsp").forward(request, response);
         }
     }
@@ -113,16 +94,7 @@ public class VIewOrderCart extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if (request.getParameter("coupon") != null) {
-            DAODiscount disDAO = new DAODiscount();
-            Discount discount = disDAO.checkCoupon(request.getParameter("coupon"));
-            PrintWriter out = response.getWriter();
-            if (discount == null) {
-                out.println(0);
-            } else {
-                out.println(discount.getDiscount_number());
-            }
-        }
+        processRequest(request, response);
     }
 
     /**

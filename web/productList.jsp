@@ -33,6 +33,9 @@
         <link rel="stylesheet" href="css/nouislider.min.css">
         <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="css/main.css">
+      
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
     </head>
 
     <body id="category">
@@ -102,11 +105,11 @@
             </div>
             <div class="search_input" id="search_input_box">
                 <div class="container">
-                    <form class="d-flex justify-content-between">
-                        <input type="text" class="form-control" id="search_input" placeholder="Search Here">
-                        <button type="submit" class="btn"></button>
+                    <div class="d-flex justify-content-between">
+                        <input type="text" class="form-control" placeholder="Search Here">
+                        <!--<button onclick="" class="btn"></button>-->
                         <span class="lnr lnr-cross" id="close_search" title="Close Search"></span>
-                    </form>
+                    </div>
                 </div>
             </div>
         </header>
@@ -145,11 +148,16 @@
                             <a href="#">6</a>
                             <a href="#" class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
                         </div>
+                    
+                        <div>
+                            <input type="text" class="form-control" id="search_input" onchange="search()" placeholder="Search Here">
+                        </div>
+                        
                     </div>
                     <!-- End Filter Bar -->
                     <!-- Start Best Seller -->
                     <section class="lattest-product-area pb-40 category-list">
-                        <div class="row">
+                        <div class="row" id="list">
                             <c:forEach var="i" items="${list}">
                                 <div class="col-lg-4 col-md-6">
                                     <div class="single-product">
@@ -161,7 +169,9 @@
                                             </div>
                                             <div class="prd-bottom">
 
-                                                <a href="" class="social-info">
+                                                <a href="javascript:void(0)"
+                                                   onclick="addToCart(${i.pid})"
+                                                   class="social-info">
                                                     <span class="ti-bag"></span>
                                                     <p class="hover-text">add to bag</p>
                                                 </a>
@@ -507,7 +517,37 @@
             </div>
         </div>
 
+        <script>
+            function addToCart(id){
+                $.ajax({
+                    type: "post",
+                    url: "./add-to-cart?id=" + id,
+                    data: {
 
+                    },
+                    success: function (result) {
+                        alert("Added");
+                    }
+                });
+            }
+            
+            function search(){
+                var name = $("#search_input").val();
+                console.log(name);
+                $.ajax({
+                    type: "post",
+                    url: "./list?search=" + name,
+                    data: {
+
+                    },
+                    success: function (result) {
+                        document.getElementById("list").innerHTML = result
+                    }
+                });
+            }
+            
+            
+        </script>
 
         <script src="js/vendor/jquery-2.2.4.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"

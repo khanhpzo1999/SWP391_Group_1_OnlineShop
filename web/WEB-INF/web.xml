@@ -121,6 +121,18 @@
         <servlet-class>controlller.ViewDetailDiscount</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>AddToCart</servlet-name>
+        <servlet-class>controlller.AddToCart</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CheckOutServlet</servlet-name>
+        <servlet-class>controlller.CheckOutServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewOrderDetail</servlet-name>
+        <servlet-class>controlller.ViewOrderDetail</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>ViewDetailComingProduct</servlet-name>
         <servlet-class>controlller.ViewDetailComingProduct</servlet-class>
     </servlet>
@@ -150,7 +162,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ViewComingProductServlet</servlet-name>
-        <url-pattern>/ViewComingProduct</url-pattern>
+        <url-pattern>/viewcomingproductdetail</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>UpdateComingProductServlet</servlet-name>
@@ -162,7 +174,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ViewOrderInformation</servlet-name>
-        <url-pattern>/ViewOrderInformation</url-pattern>
+        <url-pattern>/cart</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ViewProductServlet</servlet-name>
@@ -245,10 +257,22 @@
         <url-pattern>/viewdetaildiscount</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>AddToCart</servlet-name>
+        <url-pattern>/add-to-cart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CheckOutServlet</servlet-name>
+        <url-pattern>/checkout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewOrderDetail</servlet-name>
+        <url-pattern>/order-detail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>ViewDetailComingProduct</servlet-name>
         <url-pattern>/viewdetailcomingproduct</url-pattern>
     </servlet-mapping>
     <session-config>
-        <session-timeout>30</session-timeout>
+        <session-timeout>100</session-timeout>
     </session-config>
 </web-app>
