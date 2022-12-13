@@ -28,22 +28,23 @@ public class DBContext {
  /*Change/update information of your database connection, DO NOT change name of instance variables in this class*/
 
 
-    private final String serverName = "DESKTOP-IQBH901\\MSSQLSERVERDBW";
+    private final String serverName = "DESKTOP-24MVRR0";
     private final String dbName = "Shop_Online";
     private final String portNumber = "1433";
     private final String instance = "";//LEAVE THIS ONE EMPTY IF YOUR SQL IS A SINGLE INSTANCE
     private final String userID = "sa";
     private final String password = "123";
 
-    public DBContext() {
-        try {
-            String url = "jdbc:sqlserver://" + serverName + ":" + portNumber + "\\" + instance + ";databaseName=" + dbName;
-            if (instance == null || instance.trim().isEmpty()) {
-                url = "jdbc:sqlserver://" + serverName + ":" + portNumber + ";databaseName=" + dbName;
-            }
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            connection = DriverManager.getConnection(url, userID, password);
-    }
+//    public DBContext() {
+//        try {
+//                url = "jdbc:sqlserver://" + serverName + ":" + portNumber + ";databaseName=" + dbName;
+//            String url = "jdbc:sqlserver://" + serverName + ":" + portNumber + "\\" + instance + ";databaseName=" + dbName;
+//            if (instance == null || instance.trim().isEmpty()) {
+//                url = "jdbc:sqlserver://" + serverName + ":" + portNumber + ";databaseName=" + dbName;
+//            }
+//            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+//            connection = DriverManager.getConnection(url, userID, password);
+//    }
     public DBContext()
     {
         try{

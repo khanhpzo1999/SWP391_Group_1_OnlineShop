@@ -45,6 +45,18 @@ public class DAODiscount extends DBContext {
         }
         return null;
     }
+    
+    public Discount checkCoupon(String coupon){
+        String sql = "select * from Discount where discount_name = '" + coupon + "'";
+        try (PreparedStatement ps = connection.prepareStatement(sql);  ResultSet rs = ps.executeQuery();) {
+            while (rs.next()) {
+                return (new Discount(rs.getInt(1), rs.getString(2), rs.getFloat(3)));
+            }
+        }catch (SQLException e){
+            
+        }
+        return null;
+    }
 
     public List<Discount> getByPage(List<Discount> list, int page) {
         List<Discount> dis = new ArrayList<>();
@@ -121,13 +133,7 @@ public class DAODiscount extends DBContext {
     public static void main(String[] args) {
         try {
             DAODiscount dao = new DAODiscount();
-            dao.updateDiscount("sale 70%", 70, 4);
-            List<Discount> list = dao.getAll();
-            for (Discount d : list) {
-                System.out.println(d.getId()+":"+d.getDiscount_name()+":"+d.getDiscount_number());
-                
-            }
-
+            dao.checkCoupon("Long");
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -5,8 +5,7 @@
  */
 package controlller;
 
-import dao.DAODiscount;
-import dao.ProductDAO;
+import dao.OrderDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -16,14 +15,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Cart;
-import model.Discount;
-import model.Product;
+import model.Order;
+import model.User;
 
 /**
  *
- * @author long
+ * @author Nhat Anh
  */
-public class VIewOrderCart extends HttpServlet {
+public class CheckOutServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,53 +37,10 @@ public class VIewOrderCart extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
-        ProductDAO dao = new ProductDAO();
-        if (session.getAttribute("account") != null) {
-            ArrayList<Cart> list = null;
-            int total = 0;
-
-            if (session.getAttribute("cart") != null) {
-                list = (ArrayList) session.getAttribute("cart");
-
-                if (request.getParameter("remove") != null) {
-                    int id = Integer.parseInt(request.getParameter("remove"));
-                    Product product = dao.getOne(id);
-                    if (product != null) {
-                        for (Cart c : list) {
-                            if (c.getProduct().getPid() == product.getPid()) {
-                                list.remove(c);
-                                break;
-                            }
-                        }
-                    }
-                }
-                
-                if(request.getParameter("update") != null){
-                    int id = Integer.parseInt(request.getParameter("update"));
-                    int quantity = Integer.parseInt(request.getParameter("quantity"));
-                    Product product = dao.getOne(id);
-                    if (product != null) {
-                        for (Cart c : list) {
-                            if (c.getProduct().getPid() == product.getPid()) {
-                                c.setQuantity(quantity);
-                                break;
-                            }
-                        }
-                    }
-                }
-
-                for (Cart c : list) {
-                    total += c.getQuantity() * c.getProduct().getProduct_price();
-                }
-            }
-
-            request.setAttribute("cart", list);
-            session.setAttribute("cart", list);
-            request.setAttribute("total", total);
-            request.getRequestDispatcher("viewordercart.jsp").forward(request, response);
-        } else {
+        if (session.getAttribute("account") == null) {
             request.getRequestDispatcher("login.jsp").forward(request, response);
         }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -113,15 +69,52 @@ public class VIewOrderCart extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if (request.getParameter("coupon") != null) {
-            DAODiscount disDAO = new DAODiscount();
-            Discount discount = disDAO.checkCoupon(request.getParameter("coupon"));
-            PrintWriter out = response.getWriter();
-            if (discount == null) {
-                out.println(0);
-            } else {
-                out.println(discount.getDiscount_number());
+        HttpSession session = request.getSession();
+        String name = "";
+        String email = "";
+        String phone = "";
+        String address = "";
+        String note = "";
+        float totalPaid = 0;
+        int discount = 0;
+        if (request.getParameter("name") != null) {
+            name = request.getParameter("name");
+        }
+        if (request.getParameter("email") != null) {
+            email = request.getParameter("email");
+        }
+        if (request.getParameter("phone") != null) {
+            phone = request.getParameter("phone");
+        }
+        if (request.getParameter("address") != null) {
+            address = request.getParameter("address");
+        }
+        if (request.getParameter("note") != null) {
+            address = request.getParameter("note");
+        }
+        if (request.getParameter("totalpaid") != null) {
+            totalPaid = Float.parseFloat(request.getParameter("totalpaid"));
+        }
+        if (request.getParameter("discount") != null) {
+            discount = Integer.parseInt(request.getParameter("discount"));
+        }
+        User user = (User) session.getAttribute("account");
+        Order order = new Order(name, email, phone, address, note, 0, discount, totalPaid, user.getId());
+
+        OrderDAO dao = new OrderDAO();
+        if (session.getAttribute("cart") != null) {
+            ArrayList<Cart> list = (ArrayList) session.getAttribute("cart");
+            try {
+                int check = dao.insertOrder(order, list);
+                if (check == 1) {
+                    session.removeAttribute("cart");
+                }
+                response.sendRedirect("./list");
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
             }
+        }else{
+            response.sendRedirect("./cart");
         }
     }
 
