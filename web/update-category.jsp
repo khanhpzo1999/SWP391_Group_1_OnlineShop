@@ -1,8 +1,12 @@
-
+<%@page import="model.Category"%>
+<%@page import="dao.CategoryDAO"%>
+<%@page import="model.Discount"%>
+<%@page import="dao.DAODiscount"%>
+<%@page import="java.util.List"%>
+<%@page import="dao.DAO"%>
 
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html lang="zxx" class="no-js">
     <head>
         <!-- Mobile Specific Meta -->
@@ -61,15 +65,15 @@
                                     <a href="list-user" class="nav-link dropdown-toggle" role="button"
                                        >User</a>
                                 </li>
-                                <!--                                <li class="nav-item submenu dropdown">
-                                                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
-                                                                       aria-haspopup="true" aria-expanded="false">Blog</a>
-                                                                    <ul class="dropdown-menu">
-                                                                        <li class="nav-item"><a class="nav-link" href="">Blog</a></li>
-                                                                        <li class="nav-item"><a class="nav-link" href="">Blog Details</a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </li>-->
+<!--                                <li class="nav-item submenu dropdown">
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                                       aria-haspopup="true" aria-expanded="false">Blog</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="nav-item"><a class="nav-link" href="">Blog</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="">Blog Details</a>
+                                        </li>
+                                    </ul>
+                                </li>-->
                                 <li class="nav-item submenu dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
                                        aria-haspopup="true" aria-expanded="false">Products</a>
@@ -81,6 +85,7 @@
                                 <li class="nav-item"><a class="nav-link" href="list-category">Category</a></li>
                                 <li class="nav-item"><a class="nav-link" href="view-discount.jsp">Discount</a></li>
                                 <li class="nav-item"><a class="nav-link" href="list-feedback">Feedback</a></li>
+                                <li class="nav-item"><a class="nav-link" href="admin-logout">Logout</a></li>
                             </ul>
                         </div>
                     </div>
@@ -112,37 +117,21 @@
 
         <!-- Start Banner Area -->
         <section class="features-area section_gap" style="margin-top: 100px; width: 80% ; margin-left:auto;margin-right:auto">
-            <form action="updatediscount" method="post">
-                
-                <div class="container">
-                    <div class="row">
-                        <td> <input type="text" hidden="true" name="id" value="${discountInfor.id}"></td>
-                        <div class="col">
-                            <div class="row mb-4">
-                                <div class="col">
-                                    <div class="form-outline">
-                                        <label class="form-label" for="form6Example1">Discount</label>
-                                        <input type="text" name="discount_name" id="form6Example1" class="form-control" value="${discountInfor.discount_name}"/>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-outline">
-                                        <label class="form-label" for="form6Example2">Sale off</label>
-                                        <input type="text" name="discount_number" id="form6Example2" class="form-control" value="${discountInfor.discount_number}"/>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="cupon_text d-flex align-items-center">
-                        <button class="click-btn btn btn-default mb-4" type="submit" style="background-color: orange; color: white">Update Discount</button>
-                    </div>
+            <form action="update-category" method="post">
+                <table>
+                    <tr>
+                        <th>Category </th>
+                        <td> <input type="text" name="category_name" value=${category.category_name}></td>
+                        <td> <input hidden="true" type="text" name="id" value=${category.id}></td>
+                    </tr>
+                </table>
+                <div class="cupon_text d-flex align-items-center mt-2">
+                    <button class="click-btn btn btn-default" type="submit" style="background-color: orange; color: white">Update Category</button>
                 </div>
-                
-                
-
+                <h4>${errorMessage}</h4>
+                <h4>${successMessage}</h4>
             </form>
+
         </section>
         <!-- End Banner Area -->
 

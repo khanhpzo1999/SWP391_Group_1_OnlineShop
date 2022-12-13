@@ -34,7 +34,11 @@
         <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="css/main.css">
     </head>
-
+    <%
+        if (session.getAttribute("admin-account") == null) {
+            response.sendRedirect("admin-login");
+        }
+    %>
     <body id="category">
 
         <!-- Start Header Area -->
@@ -44,8 +48,9 @@
                     <div class="container">
                         <!-- Brand and toggle get grouped for better mobile display -->
                         <a class="navbar-brand logo_h" href="index.html"><img src="img/logo.png" alt=""></a>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                aria-expanded="false" aria-label="Toggle navigation">
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
@@ -53,42 +58,43 @@
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                             <ul class="nav navbar-nav menu_nav ml-auto">
-                                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                                <li class="nav-item submenu dropdown active">
-                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                                       aria-expanded="false">Shop</a>
-                                    <ul class="dropdown-menu">
-                                        <li class="nav-item active"><a class="nav-link" href="category.html">Shop Category</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="single-product.html">Product Details</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="checkout.html">Product Checkout</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="cart.html">Shopping Cart</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="confirmation.html">Confirmation</a></li>
-                                    </ul>
+
+                                <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
+                                <li class="nav-item submenu dropdown">
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                                       aria-haspopup="true" aria-expanded="false">User</a>
                                 </li>
                                 <li class="nav-item submenu dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                                       aria-expanded="false">Blog</a>
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                                       aria-haspopup="true" aria-expanded="false">Blog</a>
                                     <ul class="dropdown-menu">
-                                        <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="single-blog.html">Blog Details</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="">Blog</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="">Blog Details</a>
+                                        </li>
                                     </ul>
+
                                 </li>
+                                <!--                                <li class="nav-item submenu dropdown">
+                                                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                                                                       aria-haspopup="true" aria-expanded="false">Blog</a>
+                                                                    <ul class="dropdown-menu">
+                                                                        <li class="nav-item"><a class="nav-link" href="">Blog</a></li>
+                                                                        <li class="nav-item"><a class="nav-link" href="">Blog Details</a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </li>-->
                                 <li class="nav-item submenu dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                                       aria-expanded="false">Pages</a>
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                                       aria-haspopup="true" aria-expanded="false">Products</a>
                                     <ul class="dropdown-menu">
-                                        <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="tracking.html">Tracking</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="elements.html">Elements</a></li>
+
+                                        <li class="nav-item"><a class="nav-link" href="#">Product Management</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="#">Product Coming</a></li>
                                     </ul>
                                 </li>
-                                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-                            </ul>
-                            <ul class="nav navbar-nav navbar-right">
-                                <li class="nav-item"><a href="#" class="cart"><span class="ti-bag"></span></a></li>
-                                <li class="nav-item">
-                                    <button class="search"><span class="lnr lnr-magnifier" id="search"></span></button>
-                                </li>
+                                <li class="nav-item"><a class="nav-link" href="">Category</a></li>
+                                <li class="nav-item"><a class="nav-link" href="">Discount</a></li>
+
                             </ul>
                         </div>
                     </div>
@@ -121,20 +127,33 @@
         <!-- Start Banner Area -->
         <section class="features-area section_gap" style="margin-top: 100px; width: 80% ; margin-left:auto;margin-right:auto">
             <form action="AddDiscount" method="post">
-                <table>
-                    <tr>
-                        <th>Discount </th>
-                        <td> <input type="text" name="discount_name"></td>
-                    </tr>
-                    <tr>
-                        <th>SALE </th>
-                        <td> <input type="number" name="discount_number"></td>
-                    </tr>
 
-                </table>
-                <div class="cupon_text d-flex align-items-center">
-                    <button class="click-btn btn btn-default" type="submit" style="background-color: orange; color: white">Add Discount</button>
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <div class="row mb-4">
+                                <div class="col">
+                                    <div class="form-outline">
+                                        <label class="form-label" for="form6Example1">Discount</label>
+                                        <input type="text" name="discount_name" id="form6Example1" class="form-control"/>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-outline">
+                                        <label class="form-label" for="form6Example2">Sale off</label>
+                                        <input type="text" name="discount_number" id="form6Example2" class="form-control"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="cupon_text d-flex align-items-center">
+                        <button class="click-btn btn btn-default mb-4" type="submit" style="background-color: orange; color: white">Add Discount</button>
+                    </div>
                 </div>
+
+
             </form>
 
         </section>

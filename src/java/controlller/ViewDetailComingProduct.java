@@ -4,22 +4,22 @@
  */
 package controlller;
 
+import dao.CategoryDAO;
 import dao.DAOComingProduct;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Category;
 import model.ComingProduct;
 
 /**
  *
  * @author hung tran
  */
-public class UpdateComingProductServlet extends HttpServlet {
+public class ViewDetailComingProduct extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -54,7 +54,7 @@ public class UpdateComingProductServlet extends HttpServlet {
         ComingProduct cp = dao.getById(id);
         request.setAttribute("id", id);
         request.setAttribute("cpInfor", cp);
-        request.getRequestDispatcher("updatecomingproduct.jsp").forward(request, response);
+        request.getRequestDispatcher("viewdetailcomingproduct.jsp").forward(request, response);
     }
 
     /**
@@ -69,22 +69,6 @@ public class UpdateComingProductServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        DAOComingProduct dao = new DAOComingProduct();
-        String product_name = request.getParameter("product_name");
-        float product_price = Float.parseFloat(request.getParameter("product_price"));
-        boolean product_coming = true;
-        String product_thumbnail = request.getParameter("product_thumbnail");
-        boolean product_status = false;
-        String product_description = request.getParameter("product_description");
-        int product_quantity = 0;
-        int category_id = Integer.parseInt(request.getParameter("category_id"));
-        String id = request.getParameter("id");
-        try {
-            dao.updateComingProduct(product_name, product_price, product_coming, product_thumbnail, product_status, product_description, product_quantity, category_id, Integer.parseInt(id));
-        } catch (Exception ex) {
-            Logger.getLogger(UpdateComingProductServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        response.sendRedirect("view-coming-product.jsp");
     }
 
     /**

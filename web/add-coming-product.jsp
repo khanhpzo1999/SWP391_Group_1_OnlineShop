@@ -36,7 +36,11 @@
         <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="css/main.css">
     </head>
-
+    <%
+        if (session.getAttribute("admin-account") == null) {
+            response.sendRedirect("admin-login");
+        }
+    %>
     <body id="category">
 
         <!-- Start Header Area -->
@@ -46,8 +50,9 @@
                     <div class="container">
                         <!-- Brand and toggle get grouped for better mobile display -->
                         <a class="navbar-brand logo_h" href="index.html"><img src="img/logo.png" alt=""></a>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                aria-expanded="false" aria-label="Toggle navigation">
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
@@ -55,42 +60,43 @@
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                             <ul class="nav navbar-nav menu_nav ml-auto">
-                                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                                <li class="nav-item submenu dropdown active">
-                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                                       aria-expanded="false">Shop</a>
-                                    <ul class="dropdown-menu">
-                                        <li class="nav-item active"><a class="nav-link" href="category.html">Shop Category</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="single-product.html">Product Details</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="checkout.html">Product Checkout</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="cart.html">Shopping Cart</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="confirmation.html">Confirmation</a></li>
-                                    </ul>
+
+                                <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
+                                <li class="nav-item submenu dropdown">
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                                       aria-haspopup="true" aria-expanded="false">User</a>
                                 </li>
                                 <li class="nav-item submenu dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                                       aria-expanded="false">Blog</a>
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                                       aria-haspopup="true" aria-expanded="false">Blog</a>
                                     <ul class="dropdown-menu">
-                                        <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="single-blog.html">Blog Details</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="">Blog</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="">Blog Details</a>
+                                        </li>
                                     </ul>
+
                                 </li>
+                                <!--                                <li class="nav-item submenu dropdown">
+                                                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                                                                       aria-haspopup="true" aria-expanded="false">Blog</a>
+                                                                    <ul class="dropdown-menu">
+                                                                        <li class="nav-item"><a class="nav-link" href="">Blog</a></li>
+                                                                        <li class="nav-item"><a class="nav-link" href="">Blog Details</a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </li>-->
                                 <li class="nav-item submenu dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                                       aria-expanded="false">Pages</a>
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                                       aria-haspopup="true" aria-expanded="false">Products</a>
                                     <ul class="dropdown-menu">
-                                        <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="tracking.html">Tracking</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="elements.html">Elements</a></li>
+
+                                        <li class="nav-item"><a class="nav-link" href="#">Product Management</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="#">Product Coming</a></li>
                                     </ul>
                                 </li>
-                                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-                            </ul>
-                            <ul class="nav navbar-nav navbar-right">
-                                <li class="nav-item"><a href="#" class="cart"><span class="ti-bag"></span></a></li>
-                                <li class="nav-item">
-                                    <button class="search"><span class="lnr lnr-magnifier" id="search"></span></button>
-                                </li>
+                                <li class="nav-item"><a class="nav-link" href="">Category</a></li>
+                                <li class="nav-item"><a class="nav-link" href="">Discount</a></li>
+
                             </ul>
                         </div>
                     </div>
@@ -123,42 +129,68 @@
         <!-- Start Banner Area -->
         <section class="features-area section_gap" style="margin-top: 100px; width: 80% ; margin-left:auto;margin-right:auto">
             <form action="AddComingProduct" method="post">
-                <table>
-                    <tr>
-                        <th>Product name </th>
-                        <td> <input type="text" name="product_name"></td>
-                    </tr>
-                    <tr>
-                        <th>Product price </th>
-                        <td> <input type="number" name="product_price"></td>
-                    </tr>
-                    <tr>
-                        <th>Product thumbnail </th>
-                        <td> <input type="text" name="product_thumbnail"></td>
-                    </tr>
-                    <tr>
-                        <th>Product description </th>
-                        <td> <input type="text" name="product_description"></td>
-                    </tr>
 
-                    <tr>
-                        <th>Category </th>
-                        <td><select name="category_id">
-                                <%
-                                    List<Category> list = new CategoryDAO().getListCategory();
-                                    for (Category c : list) {
-                                %>  
-                                <option value="<%= c.getId()%>"><%= c.getCategory_name()%></option>
-                                <%
-                                    }
-                                %>
-                            </select></td>
-                    </tr>
+                <div class="container">
+                    <div class="row">
+                        <!-- Image field -->
+                        <div class="col">
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Image</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="text-center">
+                                        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src=""
+                                             alt="Add image here">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Form field -->
+                        <div class="col">
 
-                </table>
-                <div class="cupon_text d-flex align-items-center">
-                    <button class="click-btn btn btn-default" type="submit" style="background-color: orange; color: white">Add Coming product</button>
+                            <div class="row mb-4">
+                                <div class="col">
+                                    <div class="form-outline">
+                                        <label class="form-label" for="form6Example1">Product name</label>
+                                        <input type="text" name="product_name" id="form6Example1" class="form-control" "/>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-outline">
+                                        <label class="form-label" for="form6Example2">Product price</label>
+                                        <input type="text" name="product_price" id="form6Example2" class="form-control" "/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-4">
+                                <div class="col">
+                                    <label class="form-label" for="form6Example2">Category</label><br>
+                                    <select name="category_id">
+                                        <%
+                                            List<Category> list = new CategoryDAO().getListCategory();
+                                            for (Category c : list) {
+                                        %>  
+                                        <option value="<%= c.getId()%>"><%= c.getCategory_name()%></option>
+                                        <%
+                                            }
+                                        %>
+                                    </select>
+
+                                </div>
+
+                            </div>
+                            <div class="form-outline mb-4">
+                                <label class="form-label" for="form6Example7">Description of product</label>
+                                <textarea class="form-control" name="product_description" id="form6Example7" rows="4"></textarea>
+                            </div>
+
+                            <button class="click-btn btn btn-block mb-4" style="background-color: orange; color: white">Add Coming product</button>
+
+                        </div>
+                    </div>
                 </div>
+
             </form>
 
         </section>

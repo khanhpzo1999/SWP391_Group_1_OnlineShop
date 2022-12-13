@@ -132,6 +132,10 @@
         <servlet-name>ViewOrderDetail</servlet-name>
         <servlet-class>controlller.ViewOrderDetail</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewDetailComingProduct</servlet-name>
+        <servlet-class>controlller.ViewDetailComingProduct</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>NewServlet</servlet-name>
         <url-pattern>/NewServlet</url-pattern>
@@ -162,7 +166,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>UpdateComingProductServlet</servlet-name>
-        <url-pattern>/UpdateComingProduct</url-pattern>
+        <url-pattern>/updatecomingproduct</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>DeleteComingProductServlet</servlet-name>
@@ -263,6 +267,10 @@
     <servlet-mapping>
         <servlet-name>ViewOrderDetail</servlet-name>
         <url-pattern>/order-detail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewDetailComingProduct</servlet-name>
+        <url-pattern>/viewdetailcomingproduct</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>100</session-timeout>

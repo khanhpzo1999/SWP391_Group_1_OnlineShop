@@ -1,25 +1,27 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package controlller;
 
-import dao.DAOComingProduct;
+import dao.CategoryDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.List;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.ComingProduct;
+import model.Product;
 
 /**
  *
- * @author hung tran
+ * @author admin
  */
-public class UpdateComingProductServlet extends HttpServlet {
+@WebServlet(name = "DeleteCategoryServlet", urlPatterns = {"/delete-category"})
+public class DeleteCategoryServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,7 +35,17 @@ public class UpdateComingProductServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+        String id = request.getParameter("id");
+        CategoryDAO dao = new CategoryDAO();
+        List<Product> listProduct = dao.getProductByCategory(Integer.parseInt(id));
+        if (listProduct == null) {
+            dao.deleteCategory(id);
+            response.sendRedirect("list-category");
+        } else {
+            request.setAttribute("errorMessage", "Delete Failed , Please Delete all product of this category first!");
+            request.getRequestDispatcher("list-category").forward(request, response);
+        }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -49,12 +61,6 @@ public class UpdateComingProductServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        String id = request.getParameter("id");
-        DAOComingProduct dao = new DAOComingProduct();
-        ComingProduct cp = dao.getById(id);
-        request.setAttribute("id", id);
-        request.setAttribute("cpInfor", cp);
-        request.getRequestDispatcher("updatecomingproduct.jsp").forward(request, response);
     }
 
     /**
@@ -69,22 +75,6 @@ public class UpdateComingProductServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        DAOComingProduct dao = new DAOComingProduct();
-        String product_name = request.getParameter("product_name");
-        float product_price = Float.parseFloat(request.getParameter("product_price"));
-        boolean product_coming = true;
-        String product_thumbnail = request.getParameter("product_thumbnail");
-        boolean product_status = false;
-        String product_description = request.getParameter("product_description");
-        int product_quantity = 0;
-        int category_id = Integer.parseInt(request.getParameter("category_id"));
-        String id = request.getParameter("id");
-        try {
-            dao.updateComingProduct(product_name, product_price, product_coming, product_thumbnail, product_status, product_description, product_quantity, category_id, Integer.parseInt(id));
-        } catch (Exception ex) {
-            Logger.getLogger(UpdateComingProductServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        response.sendRedirect("view-coming-product.jsp");
     }
 
     /**

@@ -1,5 +1,11 @@
 
 
+<%@page import="model.ComingProduct"%>
+<%@page import="dao.DAOComingProduct"%>
+<%@page import="dao.CategoryDAO"%>
+<%@page import="model.Category"%>
+<%@page import="model.Discount"%>
+<%@page import="java.util.List"%>
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -32,11 +38,7 @@
         <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="css/main.css">
     </head>
-    <%
-        if (session.getAttribute("admin-account") == null) {
-            response.sendRedirect("admin-login");
-        }
-    %>
+
     <body id="category">
 
         <!-- Start Header Area -->
@@ -56,31 +58,30 @@
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                             <ul class="nav navbar-nav menu_nav ml-auto">
-                                <li class="nav-item active"><a class="nav-link" href="${pageContext.request.contextPath}/dashboard">Home</a></li>
+                                <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
                                 <li class="nav-item submenu dropdown">
-                                    <a href="list-user" class="nav-link dropdown-toggle" role="button"
-                                       >User</a>
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                                       aria-haspopup="true" aria-expanded="false">User</a>
                                 </li>
-                                <!--                                <li class="nav-item submenu dropdown">
-                                                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
-                                                                       aria-haspopup="true" aria-expanded="false">Blog</a>
-                                                                    <ul class="dropdown-menu">
-                                                                        <li class="nav-item"><a class="nav-link" href="">Blog</a></li>
-                                                                        <li class="nav-item"><a class="nav-link" href="">Blog Details</a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </li>-->
+                                <li class="nav-item submenu dropdown">
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                                       aria-haspopup="true" aria-expanded="false">Blog</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="nav-item"><a class="nav-link" href="">Blog</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="">Blog Details</a>
+                                        </li>
+                                    </ul>
+                                </li>
                                 <li class="nav-item submenu dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
                                        aria-haspopup="true" aria-expanded="false">Products</a>
                                     <ul class="dropdown-menu">
-                                        <li class="nav-item"><a class="nav-link" href="productManagement">Product Management</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="view-coming-product.jsp">Product Coming</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="#">Product Management</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="#">Product Coming</a></li>
                                     </ul>
                                 </li>
-                                <li class="nav-item"><a class="nav-link" href="list-category">Category</a></li>
-                                <li class="nav-item"><a class="nav-link" href="view-discount.jsp">Discount</a></li>
-                                <li class="nav-item"><a class="nav-link" href="list-feedback">Feedback</a></li>
+                                <li class="nav-item"><a class="nav-link" href="">Category</a></li>
+                                <li class="nav-item"><a class="nav-link" href="">Discount</a></li>
                             </ul>
                         </div>
                     </div>
@@ -103,7 +104,7 @@
             <div class="container">
                 <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
                     <div class="col-first">
-                        <h1>Update Discount Page</h1>
+                        <h1>Detail Coming Product</h1>
                     </div>
                 </div>
             </div>
@@ -111,39 +112,75 @@
         <!-- End Banner Area -->
 
         <!-- Start Banner Area -->
-        <section class="features-area section_gap" style="margin-top: 100px; width: 80% ; margin-left:auto;margin-right:auto">
-            <form action="updatediscount" method="post">
-                
-                <div class="container">
-                    <div class="row">
-                        <td> <input type="text" hidden="true" name="id" value="${discountInfor.id}"></td>
-                        <div class="col">
-                            <div class="row mb-4">
-                                <div class="col">
-                                    <div class="form-outline">
-                                        <label class="form-label" for="form6Example1">Discount</label>
-                                        <input type="text" name="discount_name" id="form6Example1" class="form-control" value="${discountInfor.discount_name}"/>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-outline">
-                                        <label class="form-label" for="form6Example2">Sale off</label>
-                                        <input type="text" name="discount_number" id="form6Example2" class="form-control" value="${discountInfor.discount_number}"/>
-                                    </div>
-                                </div>
+        <div class="container">
+            <div class="row">
+                <!-- Image field -->
+                <div class="col">
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Image</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="text-center">
+                                <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src=""
+                                     alt="Add image here">
                             </div>
-
                         </div>
                     </div>
-                    <div class="cupon_text d-flex align-items-center">
-                        <button class="click-btn btn btn-default mb-4" type="submit" style="background-color: orange; color: white">Update Discount</button>
-                    </div>
                 </div>
-                
-                
+                <!-- Form field -->
+                <div class="col">
+                    <form action="updatecomingproduct" method="post">
+                        <div class="row mb-4">
+                            <input type="text" hidden="true" name="id" id="form6Example1" class="form-control" value="${cpInfor.id}"/>
+                            <div class="col">
+                                <div class="form-outline">
+                                    <label class="form-label" for="form6Example1">Product name</label>
+                                    <input type="text" name="product_name" id="form6Example1" class="form-control" value="${cpInfor.product_name}"/>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-outline">
+                                    <label class="form-label" for="form6Example2">Product price</label>
+                                    <input type="text" name="product_price" id="form6Example2" class="form-control" value="${cpInfor.product_price}"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col">
+                                <label class="form-label" for="form6Example2">Select category</label>
+                                <%
+                                    String id = request.getParameter("id");
+                                    DAOComingProduct dao = new DAOComingProduct();
+                                    ComingProduct cp = dao.getById(id);
+                                    Category c = new CategoryDAO().getCategoryById(cp.getCategory_id());
+                                %>
+                                <select name="category_id">
+                                    <option value="<%= c.getId()%>"><%= c.getCategory_name()%></option>
+                                    <%
+                                        List<Category> list = new CategoryDAO().getListCategory();
+                                        for(Category cate : list){
+                                    %>
+                                    <option value="<%= cate.getId()%>"><%= cate.getCategory_name()%></option>
+                                    <%
+                                        }
+                                    %>
+                                </select>
+                                
+                                
+                            </div>
+                            
+                        </div>
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="form6Example7">Description of product</label>
+                            <textarea class="form-control" name="product_description" id="form6Example7" rows="4">${cpInfor.product_description}</textarea>
+                        </div>
 
-            </form>
-        </section>
+                            <button type="submit" class="click-btn btn btn-block mb-4" style="background-color: orange; color: white">Update</button>
+                    </form>
+                </div>
+            </div>
+        </div>
         <!-- End Banner Area -->
 
         <!-- Start related-product Area -->

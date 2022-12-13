@@ -97,28 +97,13 @@
                 </div>
             </div>
         </header>
-
-        <!-- Start Banner Area -->
-        <section class="banner-area organic-breadcrumb">
-            <div class="container">
-                <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
-                    <div class="col-first">
-                        <h1>Add Discount Page</h1>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- End Banner Area -->
-
         <section class="features-area section_gap" style="margin-top: 100px; width: 80% ; margin-left:auto;margin-right:auto">
 
             <table class="table">
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Username</th>
-                        <th>Name</th>
-                        <th>Email</th>
+                        <th>Category</th>
                         <th></th>
                         <th></th>
                         <th></th>
@@ -126,20 +111,18 @@
                 </thead>
 
                 <tbody>
-                    <c:forEach items="${listUser}" var="user">
+                    <c:forEach items="${listCategory}" var="category">
                         <tr>
-                            <td>${user.id}</td>
-                            <td>${user.username}</td>
-                            <td>${user.user_fullname}</td>
-                            <td>${user.user_email}</td>
-                            <td><a href="user-detail?id=${user.id}">View</a></td>
-                            <td><a>Edit</a></td>
-                            <td><a href="delete-user?id=${user.id}">Delete</a></td>
+                            <td>${category.id}</td>
+                            <td>${category.category_name}</td>
+                            <td><a href="category-detail?id=${category.id}">View</a></td>
+                            <td><a href="update-category?id=${category.id}">Edit</a></td>
+                            <td><a href="delete-category?id=${category.id}">Delete</a></td>
                         </tr>
                     </c:forEach>
                 </tbody>
             </table>
-
+            <h5 style="color:red;">${errorMessage}</h5>
         </section>
 
         <footer class="footer-area section_gap">

@@ -3,7 +3,11 @@
 
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
-
+    <%
+        if (session.getAttribute("admin-account") == null) {
+            response.sendRedirect("admin-login");
+        }
+    %>
     <head>
         <!-- Mobile Specific Meta -->
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -54,30 +58,36 @@
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                             <ul class="nav navbar-nav menu_nav ml-auto">
-                                <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
+                                <li class="nav-item active"><a class="nav-link" href="dashboard">Home</a></li>
                                 <li class="nav-item submenu dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
                                        aria-haspopup="true" aria-expanded="false">User</a>
                                 </li>
                                 <li class="nav-item submenu dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
-                                       aria-haspopup="true" aria-expanded="false">Blog</a>
-                                    <ul class="dropdown-menu">
-                                        <li class="nav-item"><a class="nav-link" href="">Blog</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="">Blog Details</a>
-                                        </li>
-                                    </ul>
+                                    <a href="list-user" class="nav-link dropdown-toggle" role="button"
+                                       >User</a>
                                 </li>
+                                <!--                                <li class="nav-item submenu dropdown">
+                                                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                                                                       aria-haspopup="true" aria-expanded="false">Blog</a>
+                                                                    <ul class="dropdown-menu">
+                                                                        <li class="nav-item"><a class="nav-link" href="">Blog</a></li>
+                                                                        <li class="nav-item"><a class="nav-link" href="">Blog Details</a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </li>-->
                                 <li class="nav-item submenu dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
                                        aria-haspopup="true" aria-expanded="false">Products</a>
                                     <ul class="dropdown-menu">
-                                        <li class="nav-item"><a class="nav-link" href="#">Product Management</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="#">Product Coming</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="productManagement">Product Management</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="view-coming-product.jsp">Product Coming</a></li>
                                     </ul>
                                 </li>
-                                <li class="nav-item"><a class="nav-link" href="">Category</a></li>
-                                <li class="nav-item"><a class="nav-link" href="">Discount</a></li>
+                                <li class="nav-item"><a class="nav-link" href="list-category">Category</a></li>
+                                <li class="nav-item"><a class="nav-link" href="view-discount.jsp">Discount</a></li>
+                                <li class="nav-item"><a class="nav-link" href="list-feedback">Feedback</a></li>
+                                <li class="nav-item"><a class="nav-link" href="admin-logout">Logout</a></li>
                             </ul>
                         </div>
                     </div>
@@ -125,39 +135,45 @@
                 </div>
                 <!-- Form field -->
                 <div class="col">
-                    <form>
+                    <form action="addProduct" method="POST">
                         <div class="row mb-4">
                             <div class="col">
                                 <div class="form-outline">
                                     <label class="form-label" for="form6Example1">Product name</label>
-                                    <input type="text" id="form6Example1" class="form-control" />
+                                    <input type="text" id="product_name" class="form-control" name="product_name"/>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-outline">
                                     <label class="form-label" for="form6Example2">Self price</label>
-                                    <input type="text" id="form6Example2" class="form-control" />
+                                    <input type="text" id="product_price" class="form-control" name="product_price"/>
                                 </div>
                             </div>
                         </div>
                         <div class="row mb-4">
                             <div class="col">
                                 <label class="form-label" for="form6Example2">Select category</label>
-                                <select class="form-select">
+                                <select class="form-select" name="category_id">
                                     <option selected hidden>Select Category</option>
-                                    <option value="1">Shoes</option>
-                                    <option value="2">Accessories</option>
-                                    <option value="3">T Shirt</option>
+                                    <c:forEach var="i" items="${list}">
+                                        <option value="${i.id}">${i.category_name}</option>
+                                    </c:forEach>
                                 </select>
                             </div>
                             <div class="col">
                                 <label class="form-label" for="form6Example4">Quantity</label>
-                                <input type="text" id="form6Example4" class="form-control" />
+                                <input type="text" id="product_quatity" class="form-control" name="product_quatity"/>
                             </div>
                         </div>
-                        <div class="form-outline mb-4">
+                        <div class="row mb-4">
+                            <div class="col">
+                                <label class="form-label" for="form6Example7">Thumbnail</label>
+                                <input type="text" id="product_thumbnail" class="form-control" name="product_thumbnail"/>
+                            </div>
+                            <div class="col">
                             <label class="form-label" for="form6Example7">Description of product</label>
-                            <textarea class="form-control" id="form6Example7" rows="4"></textarea>
+                            <textarea class="form-control" id="product_description" rows="4" name="product_description"></textarea>                               
+                            </div>
                         </div>
 
                         <button type="submit" class="btn btn-primary btn-block mb-4">Create Product</button>
