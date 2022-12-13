@@ -78,7 +78,7 @@ public class CategoryDAO {
         return arr;
 
     }
-   
+
     public Category getCategoryById(int id) {
         String query = "SELECT * FROM Category where id = ?";
 
@@ -121,6 +121,20 @@ public class CategoryDAO {
             ps.executeUpdate();
         } catch (Exception e) {
         }
+    }
+
+    public Category addCategory(String category_name) {
+        String query = "Insert into Category(category_name) values(?)";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, category_name);
+            ps.executeUpdate();
+
+        } catch (Exception e) {
+
+        }
+        return null;
     }
 
 }

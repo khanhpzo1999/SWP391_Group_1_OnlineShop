@@ -1,5 +1,5 @@
-<%@page import="dao.DAOComingProduct"%>
-<%@page import="model.ComingProduct"%>
+<%@page import="model.Discount"%>
+<%@page import="dao.DAODiscount"%>
 <%@page import="java.util.List"%>
 <%@page import="dao.DAO"%>
 
@@ -58,10 +58,21 @@
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                             <ul class="nav navbar-nav menu_nav ml-auto">
-                                <li class="nav-item active"><a class="nav-link" href="${pageContext.request.contextPath}/dashboard">Home</a></li>
+
+                                <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
                                 <li class="nav-item submenu dropdown">
-                                    <a href="list-user" class="nav-link dropdown-toggle" role="button"
-                                       >User</a>
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                                       aria-haspopup="true" aria-expanded="false">User</a>
+                                </li>
+                                <li class="nav-item submenu dropdown">
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                                       aria-haspopup="true" aria-expanded="false">Blog</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="nav-item"><a class="nav-link" href="">Blog</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="">Blog Details</a>
+                                        </li>
+                                    </ul>
+
                                 </li>
                                 <!--                                <li class="nav-item submenu dropdown">
                                                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
@@ -76,13 +87,14 @@
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
                                        aria-haspopup="true" aria-expanded="false">Products</a>
                                     <ul class="dropdown-menu">
-                                        <li class="nav-item"><a class="nav-link" href="productManagement">Product Management</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="view-coming-product.jsp">Product Coming</a></li>
+
+                                        <li class="nav-item"><a class="nav-link" href="#">Product Management</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="#">Product Coming</a></li>
                                     </ul>
                                 </li>
-                                <li class="nav-item"><a class="nav-link" href="list-category">Category</a></li>
-                                <li class="nav-item"><a class="nav-link" href="view-discount.jsp">Discount</a></li>
-                                <li class="nav-item"><a class="nav-link" href="list-feedback">Feedback</a></li>
+                                <li class="nav-item"><a class="nav-link" href="">Category</a></li>
+                                <li class="nav-item"><a class="nav-link" href="">Discount</a></li>
+
                             </ul>
                         </div>
                     </div>
@@ -105,7 +117,7 @@
             <div class="container">
                 <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
                     <div class="col-first">
-                        <h1>Manager Coming Product Page</h1>
+                        <h1>Add Category Page</h1>
                     </div>
                 </div>
             </div>
@@ -114,35 +126,30 @@
 
         <!-- Start Banner Area -->
         <section class="features-area section_gap" style="margin-top: 100px; width: 80% ; margin-left:auto;margin-right:auto">
-            <button class="click-btn btn btn-default" style="margin-bottom: 20px ; margin-left: 90% ; background-color: orange"><a href="add-coming-product.jsp" style="color: white">Add new coming product</a></button>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Product Name</th>
-                        <th>Product Price</th>
-                        <th>Product Description</th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <%
-                        List<ComingProduct> list = new DAOComingProduct().getAll();
-                        for (ComingProduct cp : list) {
-                    %>
-                    <tr>
-                        <td><%= cp.getProduct_name()%></td>
-                        <td><%= cp.getProduct_price()%></td>
-                        <td><%= cp.getProduct_description()%></td>
-                        <td><button class="click-btn btn btn-default" style="background-color: orange"><a style="color: white" href="viewdetailcomingproduct?id=<%= cp.getId()%>">Detail</a></button></td>
-                        <td><button class="click-btn btn btn-default" style="background-color: orange"><a style="color: white" href="delete-coming-product.jsp?id=<%= cp.getId()%>">Delete</a></button></td>
-                    </tr>
-                    <%
-                        }
-                    %>
-                </tbody>
-            </table>
+            <form action="add-category" method="post">
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <div class="row mb-4">
+                                <div class="col">
+                                    <div class="form-outline">
+                                        <label class="form-label" for="form6Example1">Category</label>
+                                        <input type="text" name="category_name" id="form6Example1" class="form-control"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="cupon_text d-flex align-items-center">
+                        <button class="click-btn btn btn-default mb-4" type="submit" style="background-color: orange; color: white">Add Category</button>
+                    </div>
+                </div>
+
+
+            </form>
+
         </section>
         <!-- End Banner Area -->
 
