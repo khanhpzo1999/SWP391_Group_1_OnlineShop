@@ -97,6 +97,19 @@
                 </div>
             </div>
         </header>
+
+        <!-- Start Banner Area -->
+        <section class="banner-area organic-breadcrumb">
+            <div class="container">
+                <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+                    <div class="col-first">
+                        <h1>Add Discount Page</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End Banner Area -->
+
         <section class="features-area section_gap" style="margin-top: 100px; width: 80% ; margin-left:auto;margin-right:auto">
 
             <table class="table">
