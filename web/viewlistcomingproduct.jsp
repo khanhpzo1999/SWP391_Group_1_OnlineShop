@@ -37,7 +37,11 @@
     </head>
 
     <body id="category">
-
+        <%
+            if (session.getAttribute("admin-account") == null) {
+                response.sendRedirect("admin-login");
+            }
+        %>
         <!-- Start Header Area -->
         <header class="header_area sticky-header">
             <div class="main_menu">
@@ -55,47 +59,31 @@
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                             <ul class="nav navbar-nav menu_nav ml-auto">
-                                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                                <li class="nav-item submenu dropdown active">
-                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
-                                       aria-haspopup="true" aria-expanded="false">Shop</a>
-                                    <ul class="dropdown-menu">
-                                        <li class="nav-item active"><a class="nav-link" href="category.html">Shop
-                                                Category</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="single-product.html">Product
-                                                Details</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="checkout.html">Product Checkout</a>
-                                        </li>
-                                        <li class="nav-item"><a class="nav-link" href="cart.html">Shopping Cart</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="confirmation.html">Confirmation</a>
-                                        </li>
-                                    </ul>
+                                <li class="nav-item active"><a class="nav-link" href="${pageContext.request.contextPath}/dashboard">Home</a></li>
+                                <li class="nav-item submenu dropdown">
+                                    <a href="list-user" class="nav-link dropdown-toggle" role="button"
+                                       >User</a>
                                 </li>
+                                <!--                                <li class="nav-item submenu dropdown">
+                                                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                                                                       aria-haspopup="true" aria-expanded="false">Blog</a>
+                                                                    <ul class="dropdown-menu">
+                                                                        <li class="nav-item"><a class="nav-link" href="">Blog</a></li>
+                                                                        <li class="nav-item"><a class="nav-link" href="">Blog Details</a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </li>-->
                                 <li class="nav-item submenu dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
-                                       aria-haspopup="true" aria-expanded="false">Blog</a>
+                                       aria-haspopup="true" aria-expanded="false">Products</a>
                                     <ul class="dropdown-menu">
-                                        <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="single-blog.html">Blog Details</a>
-                                        </li>
+                                        <li class="nav-item"><a class="nav-link" href="productManagement">Product Management</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="view-coming-product.jsp">Product Coming</a></li>
                                     </ul>
                                 </li>
-                                <li class="nav-item submenu dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
-                                       aria-haspopup="true" aria-expanded="false">Pages</a>
-                                    <ul class="dropdown-menu">
-                                        <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="tracking.html">Tracking</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="elements.html">Elements</a></li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-                            </ul>
-                            <ul class="nav navbar-nav navbar-right">
-                                <li class="nav-item"><a href="#" class="cart"><span class="ti-bag"></span></a></li>
-                                <li class="nav-item">
-                                    <button class="search"><span class="lnr lnr-magnifier" id="search"></span></button>
-                                </li>
+                                <li class="nav-item"><a class="nav-link" href="list-category">Category</a></li>
+                                <li class="nav-item"><a class="nav-link" href="view-discount.jsp">Discount</a></li>
+                                <li class="nav-item"><a class="nav-link" href="list-feedback">Feedback</a></li>
                             </ul>
                         </div>
                     </div>
@@ -110,7 +98,6 @@
                     </form>
                 </div>
             </div>
-          
         </header>
         <!-- End Header Area -->
 
@@ -127,7 +114,6 @@
         <!-- End Banner Area -->
         <div class="container">
             <div class="row">
-
                 <div>
                     <!-- Start Filter Bar -->
                     <div class="filter-bar d-flex flex-wrap align-items-between">
@@ -147,9 +133,9 @@
                             <a href="#">6</a>
                             <a href="#" class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
                         </div>
-                          <div>
-                <input type="text" class="form-control" id="search_input" onchange="search()" placeholder="Search Here">
-            </div>
+                        <div>
+                            <input type="text" class="form-control" id="search_input" onchange="search()" placeholder="Search Here">
+                        </div>
                     </div>
                     <!-- End Filter Bar -->
                     <!-- Start Best Seller -->
@@ -165,18 +151,7 @@
                                                 <h6>$${i.product_price}</h6>
                                             </div>
                                             <div class="prd-bottom">
-
-                                                <a href="javascript:void(0)"
-                                                   onclick="addToCart(${i.pid})"
-                                                   class="social-info">
-                                                    <span class="ti-bag"></span>
-                                                    <p class="hover-text">add to bag</p>
-                                                </a>
-                                                <a href="" class="social-info">
-                                                    <span class="lnr lnr-heart"></span>
-                                                    <p class="hover-text">Wishlist</p>
-                                                </a>
-                                                <a href="" class="social-info">
+                                                <a href="viewdetailcomingproduct?id=${i.pid}" class="social-info">
                                                     <span class="lnr lnr-move"></span>
                                                     <p class="hover-text">view more</p>
                                                 </a>
@@ -527,8 +502,8 @@
                     }
                 });
             }
-            
-             function search(){
+
+            function search() {
                 var name = $("#search_input").val();
                 console.log(name);
                 $.ajax({
