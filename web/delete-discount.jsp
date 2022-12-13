@@ -109,26 +109,37 @@
 
         <!-- Start Banner Area -->
         <section class="features-area section_gap" style="margin-top: 100px; width: 80% ; margin-left:auto;margin-right:auto">
-            
-                <table>
-                    <%
-                        String id = request.getParameter("id");
-                        Discount d = new DAODiscount().getById(id);
-                    %>
-                    <tr>
-                        <th>Discount </th>
-                        <td><%= d.getDiscount_name()%></td>
-                    </tr>
-                    <tr>
-                        <th>SALE </th>
-                        <td><%= d.getDiscount_number()%></td>
-                    </tr>
+            <%
+                String id = request.getParameter("id");
+                Discount d = new DAODiscount().getById(id);
+            %>
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="row mb-4">
+                            <div class="col">
+                                <div class="form-outline">
+                                    <label class="form-label" for="form6Example1">Discount</label>
+                                    <input type="text" name="discount_name" id="form6Example1" class="form-control" value="<%= d.getDiscount_name()%>" disabled="true"/>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-outline">
+                                    <label class="form-label" for="form6Example2">Sale off</label>
+                                    <input type="text" name="discount_number" id="form6Example2" class="form-control" value="<%= d.getDiscount_number()%>" disabled="true"/>
+                                </div>
+                            </div>
+                        </div>
 
-                </table>
-                <div class="cupon_text d-flex align-items-center">
-                    <button class="click-btn btn btn-default" style="background-color: orange"><a href="deletediscount?id=<%= d.getId()%>" style="color: white">Delete Discount</a></button>
+                    </div>
                 </div>
+                <div class="cupon_text d-flex align-items-center">
+                    <button class="click-btn btn btn-default mb-4" style="background-color: orange"><a href="deletediscount?id=<%= d.getId()%>" style="color: white">Delete Discount</a></button>
+                </div>
+            </div>
+
             
+
 
         </section>
         <!-- End Banner Area -->

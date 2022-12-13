@@ -108,22 +108,31 @@
         <!-- Start Banner Area -->
         <section class="features-area section_gap" style="margin-top: 100px; width: 80% ; margin-left:auto;margin-right:auto">
             
-                <table>
-                    <tr>
-                        <th>Discount </th>
-                        <td> <input type="text" id="discount_name" name="discount_name" value="${discountInfor.discount_name}" disabled="true"></td>
-                    </tr>
-                    <tr>
-                        <th>SALE </th>
-                        <td> <input type="number" id="discount_price" name="discount_number" value="${discountInfor.discount_number}" disabled="true"> %</td>
-                    </tr>
-                </table>
-                <div class="cupon_text d-flex align-items-center">
-                    <button class="click-btn btn btn-default"  style="background-color: orange"><a href="updatediscount?id=${requestScope.id}" style="color: white">Go Update Discount</a></button>
+            <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <div class="row mb-4">
+                                <div class="col">
+                                    <div class="form-outline">
+                                        <label class="form-label" for="form6Example1">Discount</label>
+                                        <input type="text" name="discount_name" id="form6Example1" class="form-control" value="${discountInfor.discount_name}" disabled="true"/>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-outline">
+                                        <label class="form-label" for="form6Example2">Sale off</label>
+                                        <input type="text" name="discount_number" id="form6Example2" class="form-control" value="${discountInfor.discount_number}" disabled="true"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="cupon_text d-flex align-items-center">
+                        <button class="click-btn btn btn-default mb-4" style="background-color: orange"><a href="updatediscount?id=${requestScope.id}" style="color: white">Go Update Discount</a></button>
+                    </div>
                 </div>
-             
-
-
+            
         </section>
         <!-- End Banner Area -->
 

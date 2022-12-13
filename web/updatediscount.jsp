@@ -113,20 +113,34 @@
         <!-- Start Banner Area -->
         <section class="features-area section_gap" style="margin-top: 100px; width: 80% ; margin-left:auto;margin-right:auto">
             <form action="updatediscount" method="post">
-                <table>
-                    <td> <input type="text" hidden="true" name="id" value="${discountInfor.id}"></td>
-                    <tr>
-                        <th>Discount </th>
-                        <td> <input type="text"  name="discount_name" value="${discountInfor.discount_name}"></td>
-                    </tr>
-                    <tr>
-                        <th>SALE </th>
-                        <td> <input type="number"  name="discount_number" value="${discountInfor.discount_number}">%</td>
-                    </tr>
-                </table>
-                <div class="cupon_text d-flex align-items-center">
-                    <button class="click-btn btn btn-default" type="submit" style="background-color: orange; color: white">Update Discount</button>
+                
+                <div class="container">
+                    <div class="row">
+                        <td> <input type="text" hidden="true" name="id" value="${discountInfor.id}"></td>
+                        <div class="col">
+                            <div class="row mb-4">
+                                <div class="col">
+                                    <div class="form-outline">
+                                        <label class="form-label" for="form6Example1">Discount</label>
+                                        <input type="text" name="discount_name" id="form6Example1" class="form-control" value="${discountInfor.discount_name}"/>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-outline">
+                                        <label class="form-label" for="form6Example2">Sale off</label>
+                                        <input type="text" name="discount_number" id="form6Example2" class="form-control" value="${discountInfor.discount_number}"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="cupon_text d-flex align-items-center">
+                        <button class="click-btn btn btn-default mb-4" type="submit" style="background-color: orange; color: white">Update Discount</button>
+                    </div>
                 </div>
+                
+                
 
             </form>
         </section>

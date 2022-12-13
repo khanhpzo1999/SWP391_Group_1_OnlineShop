@@ -127,20 +127,33 @@
         <!-- Start Banner Area -->
         <section class="features-area section_gap" style="margin-top: 100px; width: 80% ; margin-left:auto;margin-right:auto">
             <form action="AddDiscount" method="post">
-                <table>
-                    <tr>
-                        <th>Discount </th>
-                        <td> <input type="text" name="discount_name"></td>
-                    </tr>
-                    <tr>
-                        <th>SALE </th>
-                        <td> <input type="number" name="discount_number"></td>
-                    </tr>
 
-                </table>
-                <div class="cupon_text d-flex align-items-center">
-                    <button class="click-btn btn btn-default" type="submit" style="background-color: orange; color: white">Add Discount</button>
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <div class="row mb-4">
+                                <div class="col">
+                                    <div class="form-outline">
+                                        <label class="form-label" for="form6Example1">Discount</label>
+                                        <input type="text" name="discount_name" id="form6Example1" class="form-control"/>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-outline">
+                                        <label class="form-label" for="form6Example2">Sale off</label>
+                                        <input type="text" name="discount_number" id="form6Example2" class="form-control"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="cupon_text d-flex align-items-center">
+                        <button class="click-btn btn btn-default mb-4" type="submit" style="background-color: orange; color: white">Add Discount</button>
+                    </div>
                 </div>
+
+
             </form>
 
         </section>
