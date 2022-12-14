@@ -12,6 +12,7 @@ import java.util.Date;
  * @author Nhat Anh
  */
 public class Order {
+
     private int id;
     private String name;
     private String email;
@@ -24,8 +25,18 @@ public class Order {
     private float total;
     private int idDiscount;
     private int user_id;
+    private int order_detailid;
 
     public Order() {
+    }
+
+    public Order(int id, String name, String email, String phone, String address) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.address = address;
+
     }
 
     public Order(String name, String email, String phone, String address, String note, int status, int discount, float total, int user_id) {
@@ -51,9 +62,7 @@ public class Order {
         this.discount = discount;
         this.total = total;
     }
-    
-    
-    
+
     public int getId() {
         return id;
     }
@@ -154,5 +163,5 @@ public class Order {
     public String toString() {
         return "Order{" + "id=" + id + ", name=" + name + ", email=" + email + ", phone=" + phone + ", address=" + address + ", note=" + note + ", status=" + status + ", date=" + date + ", discount=" + discount + ", total=" + total + ", idDiscount=" + idDiscount + ", user_id=" + user_id + '}';
     }
-    
+
 }

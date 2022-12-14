@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import model.Cart;
 import model.Order;
 import model.OrderDetail;
@@ -61,11 +62,11 @@ public class OrderDAO {
 
                 if (order_id > 0) {
                     String order_detail_sql = "INSERT INTO [dbo].[Order_detail]\n"
-                                + "           ([order_id]\n"
-                                + "           ,[product_id]\n"
-                                + "           ,[quantity])\n"
-                                + "     VALUES\n"
-                                + "           (?,?,?)";
+                            + "           ([order_id]\n"
+                            + "           ,[product_id]\n"
+                            + "           ,[quantity])\n"
+                            + "     VALUES\n"
+                            + "           (?,?,?)";
                     ps = connection.prepareStatement(order_detail_sql);
                     for (Cart item : cart) {
                         ps.setInt(1, order_id);
@@ -82,8 +83,8 @@ public class OrderDAO {
         }
         return 0;
     }
-    
-    public Order getOne(int id){
+
+    public Order getOne(int id) {
         String sql = "Select * from [dbo].[Order] WHERE id = " + id;
         PreparedStatement ps = null;
         connection = (new DBContext().connection);
@@ -91,18 +92,18 @@ public class OrderDAO {
             ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             Order o = null;
-            while(rs.next()){
+            while (rs.next()) {
                 o = new Order(
-                    rs.getString(2),
-                    rs.getString(3),
-                    rs.getString(4),
-                    rs.getString(5),
-                    rs.getString(6),
-                    rs.getInt(7),
-                    rs.getDate(8),
-                    rs.getInt(9),
-                    rs.getFloat(10),
-                    rs.getInt(11)
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getString(6),
+                        rs.getInt(7),
+                        rs.getDate(8),
+                        rs.getInt(9),
+                        rs.getFloat(10),
+                        rs.getInt(11)
                 );
             }
             return o;
@@ -110,8 +111,8 @@ public class OrderDAO {
         }
         return null;
     }
-    
-    public ArrayList<OrderDetail> getOrderDetail(int id){
+
+    public ArrayList<OrderDetail> getOrderDetail(int id) {
         String sql = "Select * from [dbo].[Order_detail] WHERE order_id = " + id;
         ArrayList<OrderDetail> list = new ArrayList<>();
         PreparedStatement ps = null;
@@ -119,25 +120,50 @@ public class OrderDAO {
             connection = new DBContext().getConnection();
             ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 OrderDetail od = new OrderDetail(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4));
                 list.add(od);
             }
             return list;
         } catch (Exception e) {
         }
-        
+
         return null;
     }
-    
-    public static void main(String[] args) {
-        OrderDAO dao = new OrderDAO();
-        Order order = new Order(
-                "fdfd", "fdfdf", "fdfdfd", "fdfdf", "xcxcx", 0, 30, 234, 1);
+//   public static void main(String[] args) throws Exception {
+//        OrderDAO dao = new OrderDAO();
+//        List<Order> list = dao.getOrderDetail(Integer.parseInt());
+//        for (Order order : list) {
+//            System.out.println(list);
+//       }
+//    }
 
+    Connection conn = null;
+    PreparedStatement ps = null;
+    ResultSet rs = null;
+
+    public List<Order> getListOrder() {
+        List<Order> ListOrder = new ArrayList<>();
+        String query = "select distinct [order].id, [order].order_fullname,[order].order_email, [order].order_phone , [order].order_address from \n"
+                + "  [order], order_detail\n"
+                + "  where [order].id = order_detail.order_id";
         try {
-//            dao.insertOrder(order);
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                ListOrder.add(new Order(  
+                        rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5)
+                      
+                      
+                ));
+            }
         } catch (Exception e) {
         }
+        return ListOrder;
     }
 }

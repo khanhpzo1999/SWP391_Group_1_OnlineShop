@@ -68,7 +68,6 @@ public class ViewComingProductServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
         ProductDAO dao = new ProductDAO();
         String name = request.getParameter("search");
         try (PrintWriter out = response.getWriter()) {
@@ -109,7 +108,7 @@ public class ViewComingProductServlet extends HttpServlet {
                 }
             }
         } catch (Exception ex) {
-
+            System.out.println(ex.getMessage());
         }
     }
 

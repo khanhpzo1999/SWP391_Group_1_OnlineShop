@@ -136,6 +136,14 @@
         <servlet-name>ViewDetailComingProduct</servlet-name>
         <servlet-class>controlller.ViewDetailComingProduct</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SearchComingProduct</servlet-name>
+        <servlet-class>controlller.SearchComingProduct</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>OrderListServlet</servlet-name>
+        <servlet-class>controlller.OrderListServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>NewServlet</servlet-name>
         <url-pattern>/NewServlet</url-pattern>
@@ -271,6 +279,14 @@
     <servlet-mapping>
         <servlet-name>ViewDetailComingProduct</servlet-name>
         <url-pattern>/viewdetailcomingproduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchComingProduct</servlet-name>
+        <url-pattern>/searchcomingproduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrderListServlet</servlet-name>
+        <url-pattern>/listorder</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>100</session-timeout>

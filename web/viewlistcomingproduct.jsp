@@ -37,11 +37,7 @@
     </head>
 
     <body id="category">
-        <%
-            if (session.getAttribute("admin-account") == null) {
-                response.sendRedirect("admin-login");
-            }
-        %>
+       
         <!-- Start Header Area -->
 
         <jsp:include page="header.jsp"/>
@@ -57,11 +53,9 @@
                     <!-- Start Filter Bar -->
                     <div class="filter-bar d-flex flex-wrap align-items-between">
                         <div class="sorting">
-                            <select>
-                                <option value="1">Default sorting</option>
-                                <option value="1">Default sorting</option>
-                                <option value="1">Default sorting</option>
-                            </select>
+                             <div>
+                            <input type="text" class="form-control" name="search_input" id="search_input" onchange="search()" placeholder="Search Here">
+                        </div>
                         </div>
                         <div class="pagination">
                             <a href="#" class="prev-arrow"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
@@ -72,14 +66,12 @@
                             <a href="#">6</a>
                             <a href="#" class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
                         </div>
-                        <div>
-                            <input type="text" class="form-control" id="search_input" onchange="search()" placeholder="Search Here">
-                        </div>
+                       
                     </div>
                     <!-- End Filter Bar -->
                     <!-- Start Best Seller -->
                     <section class="lattest-product-area pb-40 category-list">
-                        <div class="row">
+                        <div class="row" id="list">
                             <c:forEach var="i" items="${listAllComingProduct}">
                                 <div class="col-lg-4 col-md-6">
                                     <div class="single-product">
@@ -90,7 +82,7 @@
                                                 <h6>$${i.product_price}</h6>
                                             </div>
                                             <div class="prd-bottom">
-                                                <a href="viewdetailcomingproduct?id=${i.pid}" class="social-info">
+                                                <a href="viewcomingproductdetail?id=${i.pid}" class="social-info">
                                                     <span class="lnr lnr-move"></span>
                                                     <p class="hover-text">view more</p>
                                                 </a>
@@ -224,11 +216,11 @@
             }
 
             function search() {
-                var name = $("#search_input").val();
+                var name = document.querySelectorAll('input[name=search_input]')[0].value;
                 console.log(name);
                 $.ajax({
                     type: "post",
-                    url: "./list?search=" + name,
+                    url: "./searchcomingproduct?search=" + name,
                     data: {
 
                     },

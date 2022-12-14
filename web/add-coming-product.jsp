@@ -178,7 +178,9 @@
                                     </select>
 
                                 </div>
-
+                                <div class="col">
+                                    <input type="file" id="file-upload" name="image" required />
+                                </div>
                             </div>
                             <div class="form-outline mb-4">
                                 <label class="form-label" for="form6Example7">Description of product</label>
