@@ -39,6 +39,7 @@
         <link rel="stylesheet" href="css/ion.rangeSlider.css" />
         <link rel="stylesheet" href="css/ion.rangeSlider.skinFlat.css" />
         <link rel="stylesheet" href="css/main.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     </head>
 
     <body>
@@ -48,82 +49,98 @@
         <!-- End Header Area -->
 
         <!-- Start Banner Area -->
-       
+
         <!-- End Banner Area -->
 
         <!--================Single Product Area =================-->
-       
-            <div class="container">
-                <div class="row s_product_inner">
-                    <div class="col-lg-6">
-                        <c:forEach items="${listProduct}" var="pd">
-                            <div class="s_Product_carousel">
-                                <div class="single-prd-item">
-                                    <img class="img-fluid" src=${pd.product_thumbnail} alt="">
-                                </div>
-                                <div class="single-prd-item">
-                                    <img class="img-fluid" src=${pd.product_thumbnail} alt="">
-                                </div>
-                                <div class="single-prd-item">
-                                    <img class="img-fluid" src=${pd.product_thumbnail} alt="">
-                                </div>
-                            </div>
-                        </c:forEach>
-                    </div>
-                    <c:forEach items="${listProduct}" var="pd">
-                        <div class="col-lg-5 offset-lg-1">
-                            <div class="s_product_text">
-                                <h3>${pd.product_name}</h3>
-                                <h2>$${pd.product_price}</h2>
-                                
 
-                                <ul class="list">
-                                    <li><a class="active" href="category?id=${pd.category_id}"><span>Category</span> :  ${pd.category_name}</a></li>
-                                        <c:choose>
-                                            <c:when test="${pd.product_status == 'true'}">
-                                            <li><a ><span>Availibility</span> : In Stock</a></li>
-                                            </c:when>
-                                            <c:when test="${pd.product_status == 'flase'}">
-                                                <li><a style="color: red"><span>Availibility</span> : Out of stock</a></li> 
-                                            </c:when>
-                                        </c:choose>
-                                </ul>
-                                <p>${pd.product_description}</p>
-                                <div class="product_count">
-                                    <label for="qty">Quantity:</label>
-                                    <input type="text" name="qty" id="sst" maxlength="12" value="${pd.product_quatity}" title="Quantity:" class="input-text qty">
-                                    <button onclick="var result = document.getElementById('sst');
-                                            var sst = result.value;
-                                            if (!isNaN(sst))
-                                                result.value++;
-                                            return false;"
-                                            class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
-                                    <button onclick="var result = document.getElementById('sst'); var sst = result.value; if (!isNaN(sst) & amp; & amp; sst > 0) result.value--; return false;"
-                                            class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
-                                </div>
-                                <div class="card_area d-flex align-items-center">
-                                    <a class="primary-btn" href="#">Add to Cart</a>
-                                   
-                                </div>
+        <div class="container">
+            <div class="row s_product_inner">
+                <div class="col-lg-6">
+                    <c:forEach items="${listProduct}" var="pd">
+                        <div class="s_Product_carousel">
+                            <div class="single-prd-item">
+                                <img class="img-fluid" src=${pd.product_thumbnail} alt="">
+                            </div>
+                            <div class="single-prd-item">
+                                <img class="img-fluid" src=${pd.product_thumbnail} alt="">
+                            </div>
+                            <div class="single-prd-item">
+                                <img class="img-fluid" src=${pd.product_thumbnail} alt="">
                             </div>
                         </div>
                     </c:forEach>
                 </div>
+                <c:forEach items="${listProduct}" var="pd">
+                    <div class="col-lg-5 offset-lg-1">
+                        <div class="s_product_text">
+                            <h3>${pd.product_name}</h3>
+                            <h2>$${pd.product_price}</h2>
+
+
+                            <ul class="list">
+                                <li><a class="active" href="category?id=${pd.category_id}"><span>Category</span> :  ${pd.category_name}</a></li>
+                                    <c:choose>
+                                        <c:when test="${pd.product_status == 'true'}">
+                                        <li><a ><span>Availibility</span> : In Stock</a></li>
+                                        </c:when>
+                                        <c:when test="${pd.product_status == 'flase'}">
+                                        <li><a style="color: red"><span>Availibility</span> : Out of stock</a></li> 
+                                        </c:when>
+                                    </c:choose>
+                            </ul>
+                            <p>${pd.product_description}</p>
+                            <div class="product_count">
+                                <label for="qty">Quantity:</label>
+                                <input type="text" name="qty" id="sst" maxlength="12" value="${pd.product_quatity}" title="Quantity:" class="input-text qty">
+                                <button onclick="var result = document.getElementById('sst');
+                                        var sst = result.value;
+                                        if (!isNaN(sst))
+                                            result.value++;
+                                        return false;"
+                                        class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
+                                <button onclick="var result = document.getElementById('sst'); var sst = result.value; if (!isNaN(sst) & amp; & amp; sst > 0) result.value--; return false;"
+                                        class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
+                            </div>
+                            <div class="card_area d-flex align-items-center">
+                                <a class="primary-btn" href="javascript:void(0)"
+                                   onclick="addToCart(${i.pid})">Add to Cart</a>
+
+                            </div>
+                        </div>
+                    </div>
+                </c:forEach>
             </div>
-       
+        </div>
+
         <!--================End Single Product Area =================-->
 
         <!--================Product Description Area =================-->
-       
+
         <!--================End Product Description Area =================-->
 
         <!-- Start related-product Area -->
-     
+
         <!-- End related-product Area -->
 
         <!-- start footer Area -->
         <jsp:include page="footer.jsp"/>
         <!-- End footer Area -->
+
+        <script>
+            function addToCart(id) {
+                $.ajax({
+                    type: "post",
+                    url: "./add-to-cart?id=" + id,
+                    data: {
+
+                    },
+                    success: function (result) {
+                        alert("Added");
+                    }
+                });
+            }
+        </script>
 
         <script src="js/vendor/jquery-2.2.4.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"

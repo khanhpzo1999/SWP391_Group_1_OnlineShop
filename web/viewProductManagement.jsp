@@ -135,7 +135,6 @@
                         </thead>
                         <tbody>
                             <%int count = 1;
-
                             %>
                             <c:forEach var="i" items="${list}">
 
@@ -165,27 +164,7 @@
                         </tbody>
                     </table>
                 </div>
-                <div>
-
-                    <!--                    <div>
-                                            <div class="filter-bar d-flex flex-wrap align-items-center">
-                                                <div class="pagination">
-                    <%                        ProductDAO dao = new ProductDAO();
-                    <div>
-                        <a type="submit" class="btn btn-success" href="addProduct">Add Product</a>
-                    </div>
-                    <!--                    <div>
-                                            <div class="filter-bar d-flex flex-wrap align-items-center">
-                                                <div class="pagination">
-                    <%
-                        ProductDAO dao = new ProductDAO();
-                        List<Product> listAllProduct = dao.getProductManagementList();
-                        double productSize = listAllProduct.size();
-                        double productPerPage = 6;
-                        for (int i = 1; i <= Math.ceil(productSize / productPerPage); i++) {%>
-                    <a class="" href = "productManagement?page=<%=i%>" name="i"> <%=i%> </a>
-                    <% }%>
-                </div>
+                
             </div>
         </div>-->
                 </div>

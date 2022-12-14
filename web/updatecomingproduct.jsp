@@ -122,7 +122,7 @@
                         </div>
                         <div class="card-body">
                             <div class="text-center">
-                                <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src=""
+                                <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="${cpInfor.product_thumbnail}"
                                      alt="Add image here">
                             </div>
                         </div>
@@ -146,6 +146,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="row mb-4">
                             <div class="col">
                                 <label class="form-label" for="form6Example2">Select category</label>
@@ -159,24 +160,27 @@
                                     <option value="<%= c.getId()%>"><%= c.getCategory_name()%></option>
                                     <%
                                         List<Category> list = new CategoryDAO().getListCategory();
-                                        for(Category cate : list){
+                                        for (Category cate : list) {
                                     %>
                                     <option value="<%= cate.getId()%>"><%= cate.getCategory_name()%></option>
                                     <%
                                         }
                                     %>
                                 </select>
-                                
-                                
+
+
                             </div>
-                            
+
+                        </div>
+                        <div class="col">
+                            <input type="file" id="file-upload" name="image" required />
                         </div>
                         <div class="form-outline mb-4">
                             <label class="form-label" for="form6Example7">Description of product</label>
                             <textarea class="form-control" name="product_description" id="form6Example7" rows="4">${cpInfor.product_description}</textarea>
                         </div>
 
-                            <button type="submit" class="click-btn btn btn-block mb-4" style="background-color: orange; color: white">Update</button>
+                        <button type="submit" class="click-btn btn btn-block mb-4" style="background-color: orange; color: white">Update</button>
                     </form>
                 </div>
             </div>

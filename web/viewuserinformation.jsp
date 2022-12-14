@@ -63,6 +63,7 @@
                             <div class="login_form_inner" style="padding-top:50px;">
                                 <h3 >Profile Information</h3>
                                 <form class="row login_form" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
+                                   
                                     <div class="col-md-12 form-group">
                                         <input type="text" class="form-control" id="user_fullname" value="${userinfor.user_fullname}" disabled name="name" placeholder="name" onfocus="this.placeholder = ''" >
                                     </div>

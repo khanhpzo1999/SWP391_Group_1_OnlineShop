@@ -41,11 +41,11 @@
     <body id="category">
         <jsp:include page="header.jsp"/>
         <!-- Start Header Area -->
-    
+
         <!-- End Header Area -->
 
         <!-- Start Banner Area -->
-       
+
         <!-- End Banner Area -->
         <div class="container">
             <div class="row">
@@ -74,14 +74,26 @@
                                                 <h6>${product.product_price}</h6>
                                             </div>
                                             <div class="prd-bottom">
-                                                <a href="" class="social-info">
+                                                <a href="javascript:void(0)"
+                                                   onclick="addToCart(${product.pid})"
+                                                   class="social-info">
                                                     <span class="ti-bag"></span>
                                                     <p class="hover-text">add to bag</p>
                                                 </a>
-                                                <a href="" class="social-info">
-                                                    <span class="lnr lnr-move"></span>
-                                                    <p class="hover-text">view more</p>
-                                                </a>
+                                                <c:choose>
+                                                    <c:when test="${product.product_coming == 'true'}">
+                                                        <a href="viewcomingproductdetail?id=${product.pid}" class="social-info">
+                                                            <span class="lnr lnr-move"></span>
+                                                            <p class="hover-text">view more</p>
+                                                        </a>
+                                                    </c:when>
+                                                    <c:when test="${product.product_coming == 'false'}">
+                                                        <a href="productdetail?id=${product.pid}" class="social-info">
+                                                            <span class="lnr lnr-move"></span>
+                                                            <p class="hover-text">view more</p>
+                                                        </a>
+                                                    </c:when>
+                                                </c:choose>
                                             </div>
                                         </div>
                                     </div>
@@ -102,7 +114,7 @@
                                 double productSize = listAllProductByCategory.size();
                                 double productPerPage = 9;
                                 for (int i = 1; i <= Math.ceil(productSize / productPerPage); i++) {%>
-                                <a class="" href = "category?id=<%=id%>&page=<%=i%>"> <%=i%> </a>
+                            <a class="" href = "category?id=<%=id%>&page=<%=i%>"> <%=i%> </a>
                             <% }%>
 
                             <!--<a href="#" class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>-->
@@ -115,17 +127,34 @@
         </div>
 
         <!-- Start related-product Area -->
-       
+
         <!-- End related-product Area -->
 
         <!-- start footer Area -->
-      
+
         <!-- End footer Area -->
 
         <!-- Modal Quick Product View -->
         <jsp:include page="footer.jsp"/>
 
+        <script>
+            function addToCart(id) {
+                $.ajax({
+                    type: "post",
+                    url: "./add-to-cart?id=" + id,
+                    data: {
 
+                    },
+                    success: function (result) {
+                        alert("Added");
+                    }
+                });
+            }
+
+
+
+
+        </script>
 
         <script src="js/vendor/jquery-2.2.4.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"

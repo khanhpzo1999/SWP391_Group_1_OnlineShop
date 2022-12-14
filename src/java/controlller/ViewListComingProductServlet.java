@@ -49,26 +49,6 @@ public class ViewListComingProductServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-//        String id = request.getParameter("id");
-//        String page = request.getParameter("page");
-//        ProductDAO dao = new ProductDAO();
-//        List<Product> listAllComingProduct = dao.getListComingProduct();
-//        if (page == null) {
-//            List<Product> listProductByCategory = dao.getProductBypage(listAllComingProduct, 1);
-//            request.setAttribute("listProductByCategory", listProductByCategory);
-//        } else {
-//            List<Product> listProductByCategory = dao.getProductBypage(listAllComingProduct, Integer.parseInt(page));
-//            request.setAttribute("listProductByCategory", listProductByCategory);
-//        }
-//        List<Product> listComingProduct= dao.getListComingProduct();
-//        double productSize = listAllComingProduct.size();
-//        double productPerPage = 9;
-//        request.setAttribute("id", Integer.parseInt(id));
-//        request.setAttribute("totalPage", Math.ceil(productSize / productPerPage));
-//        request.setAttribute("listCategory", listComingProduct);
-//        request.setAttribute("listAllComingProduct", listAllComingProduct);
-//        request.getRequestDispatcher("category.jsp").forward(request, response);
-
         ProductDAO dao = new ProductDAO();
         List<Product> listComingProduct = dao.getListComingProduct();
         request.setAttribute("listAllComingProduct", listComingProduct);

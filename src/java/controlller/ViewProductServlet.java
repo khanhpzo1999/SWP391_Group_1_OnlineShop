@@ -61,6 +61,7 @@ public class ViewProductServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         ProductDAO dao = new ProductDAO();
+        
         try {
             ArrayList<Product> list = dao.getAllProduct();
             request.setAttribute("list", list);

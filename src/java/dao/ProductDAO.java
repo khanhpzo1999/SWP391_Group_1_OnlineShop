@@ -82,7 +82,7 @@ public class ProductDAO {
             }
             ps.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
         return list;
     }
@@ -303,11 +303,11 @@ public class ProductDAO {
         return null;
     }
 
-    public static void main(String[] args) throws Exception {
-        ProductDAO dao = new ProductDAO();
-        ArrayList<Product> list = dao.searchProduct("Nike", true);
-//        System.out.println(list);
-    }
+//    public static void main(String[] args) throws Exception {
+//        ProductDAO dao = new ProductDAO();
+//        ArrayList<Product> list = dao.getProductComingDetail("1");
+//        
+//    }
 
     public List<Product> getProductComingDetail(int product_id) {
         List<Product> ListProduct = new ArrayList<>();
