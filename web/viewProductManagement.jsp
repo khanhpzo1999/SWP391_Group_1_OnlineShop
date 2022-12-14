@@ -37,11 +37,13 @@
         <link rel="stylesheet" href="css/magnific-popup.css">
         <link rel="stylesheet" href="css/main.css">
     </head>
+
     <%
         if (session.getAttribute("admin-account") == null) {
             response.sendRedirect("admin-login");
         }
     %>
+
     <body>
 
         <!-- Start Header Area -->
@@ -106,31 +108,39 @@
         <!-- Title Area -->
         <section>
             <div class="container">
-                <div class="row align-items-center justify-content-start" style="height: 300px; padding: 20px 0;">
-                    <div>
-                        <h2>Product Management</h2>
-                    </div>
+                <div class="row align-items-center justify-content-start"  style="padding-top: 145px;padding-left: 34%;">
+                    <h1>Product Management</h1>
                 </div>
-            </div>
         </section>
 
         <!-- start product management -->
         <section style="padding: 30px 0;">
             <div class="container" style="display: flex; justify-items: center; flex-direction: column;">
                 <div>
-                    <table class="table align-middle mb-0 bg-white">
+                    <div style="padding-bottom: 10px;text-align: right">
+                        <a type="submit" class="btn btn-success" style="background-color: blue;margin-bottom: 20px;
+    margin-left: 90%; " href="addProduct">Add Product</a>
+                    </div>
+                    <table class="table align-middle mb-0 bg-white" style="padding-top: 30px">
                         <thead class="bg-light">
                             <tr>
+                                <th>STT</th>
                                 <th>Product Name</th>
                                 <th>Price</th>
                                 <th>Category</th>
                                 <th>Quantity</th>
-                                <th>Actions</th>
+                                <th style="padding-left: 33px" >Edit</th>
+                                <th style="padding-left: 27px" >Delete</th>
                             </tr>
                         </thead>
                         <tbody>
+                            <%int count = 1;
+
+                            %>
                             <c:forEach var="i" items="${list}">
+
                                 <tr>
+                                    <td><%=count++%></td>
                                     <td>
                                         <div class="d-flex align-items-center">
                                             <p class="fw-bold mb-1">${i.product_name}</p>
@@ -144,8 +154,11 @@
                                     </td>
                                     <td>${i.product_quatity}</td>
                                     <td>
-                                        <a type="submit" class="btn btn-primary" href="updateProduct?id=${i.pid}">Update</a>
-                                        <a type="submit" class="btn btn-danger" href="deleteProduct?id=${i.pid}">Delete</a>
+                                        <a type="submit" class="btn btn-primary" style="background-color: blue" href="updateProduct?id=${i.pid}">Update</a>
+
+                                    </td>
+                                    <td>
+                                        <a type="submit" class="btn btn-danger" style="background-color: red"  href="deleteProduct?id=${i.pid}">Delete</a>
                                     </td>
                                 </tr>
                             </c:forEach>                           
@@ -153,6 +166,11 @@
                     </table>
                 </div>
                 <div>
+
+                    <!--                    <div>
+                                            <div class="filter-bar d-flex flex-wrap align-items-center">
+                                                <div class="pagination">
+                    <%                        ProductDAO dao = new ProductDAO();
                     <div>
                         <a type="submit" class="btn btn-success" href="addProduct">Add Product</a>
                     </div>

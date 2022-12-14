@@ -117,7 +117,7 @@
                         </div>
                         <div class="card-body">
                             <div class="text-center">
-                                <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src=""
+                                <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="${p.product_thumbnail}"
                                      alt="Add image here">
                             </div>
                         </div>
@@ -144,6 +144,8 @@
                             <label class="form-label" for="form6Example7">Description of product</label>
                             <textarea class="form-control" id="product_description" rows="4" name="product_description">${p.product_description}</textarea>
                         </div>
+                        <input type="file" id="file-upload" name="image" required />
+                        
                         <div>
                             <input type="hidden" id="pid" class="form-control" name="pid" value="${p.pid}"/>
                         </div>

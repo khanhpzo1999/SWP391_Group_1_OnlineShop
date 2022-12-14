@@ -167,12 +167,11 @@
                         </div>
                         <div class="row mb-4">
                             <div class="col">
-                                <label class="form-label" for="form6Example7">Thumbnail</label>
-                                <input type="text" id="product_thumbnail" class="form-control" name="product_thumbnail"/>
+                                <input type="file" id="file-upload" name="image" required />
                             </div>
                             <div class="col">
-                            <label class="form-label" for="form6Example7">Description of product</label>
-                            <textarea class="form-control" id="product_description" rows="4" name="product_description"></textarea>                               
+                                <label class="form-label" for="form6Example7">Description of product</label>
+                                <textarea class="form-control" id="product_description" rows="4" name="product_description"></textarea>                               
                             </div>
                         </div>
 
