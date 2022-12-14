@@ -39,6 +39,7 @@
         <link rel="stylesheet" href="css/ion.rangeSlider.css" />
         <link rel="stylesheet" href="css/ion.rangeSlider.skinFlat.css" />
         <link rel="stylesheet" href="css/main.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     </head>
 
     <body>
@@ -127,6 +128,9 @@
                 </div>
             </div>
         </section>
+        <div>
+            <input type="text" class="form-control" id="search_input" onchange="search()" placeholder="Search Here">
+        </div>
         <!-- End Banner Area -->
 
         <!--================Single Product Area =================-->
@@ -513,6 +517,38 @@
             </div>
         </footer>
         <!-- End footer Area -->
+
+        <script>
+            function addToCart(id) {
+                $.ajax({
+                    type: "post",
+                    url: "./add-to-cart?id=" + id,
+                    data: {
+
+                    },
+                    success: function (result) {
+                        alert("Added");
+                    }
+                });
+            }
+
+            function search() {
+                var name = $("#search_input").val();
+                console.log(name);
+                $.ajax({
+                    type: "post",
+                    url: "./list?search=" + name,
+                    data: {
+
+                    },
+                    success: function (result) {
+                        document.getElementById("list").innerHTML = result
+                    }
+                });
+            }
+
+
+        </script>
 
         <script src="js/vendor/jquery-2.2.4.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"

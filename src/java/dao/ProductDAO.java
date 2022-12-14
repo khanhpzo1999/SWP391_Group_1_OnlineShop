@@ -33,7 +33,8 @@ public class ProductDAO {
                 + "product_name, "
                 + "product_description, "
                 + "product_quantity, "
-                + "product_price "
+                + "product_price, "
+                + "product_thumbnail "
                 + "from dbo.Product";
         try {
             ps = connection.prepareStatement(sql);
@@ -45,6 +46,7 @@ public class ProductDAO {
                 product.setProduct_description(rs.getString("product_description"));
                 product.setProduct_quatity(rs.getInt("product_quantity"));
                 product.setProduct_price(rs.getFloat("product_price"));
+                product.setProduct_thumbnail(rs.getString("product_thumbnail"));
                 list.add(product);
             }
             ps.close();
@@ -53,7 +55,7 @@ public class ProductDAO {
         }
         return list;
     }
-    
+
     public ArrayList<Product> searchProduct(String name, boolean isComing) throws Exception {
         ArrayList<Product> list = new ArrayList<>();
         PreparedStatement ps = null;
@@ -64,7 +66,7 @@ public class ProductDAO {
                 + "product_description, "
                 + "product_quantity, "
                 + "product_price, product_thumbnail "
-                + "from dbo.Product WHERE product_name LIKE '%" + name + "%' AND product_coming = " + (isComing ? "1" : "0") ;
+                + "from dbo.Product WHERE product_name LIKE '%" + name + "%' AND product_coming = " + (isComing ? "1" : "0");
         try {
             ps = connection.prepareStatement(sql);
             rs = ps.executeQuery();
@@ -204,11 +206,12 @@ public class ProductDAO {
         }
     }
 
-    public void updateProduct(String name, float price, String description, int id) {
+    public void updateProduct(String name, float price, String description,String thumbnail, int id) {
         String sql = "UPDATE [dbo].[Product]\n"
                 + "   SET [product_name] = ?\n"
                 + "      ,[product_price] = ?\n"
                 + "      ,[product_description] = ?\n"
+                 + "      ,[product_thumbnail] = ?\n"
                 + " WHERE [id] = ?";
         try {
             conn = new DBContext().getConnection();
@@ -216,7 +219,8 @@ public class ProductDAO {
             ps.setString(1, name);
             ps.setFloat(2, price);
             ps.setString(3, description);
-            ps.setInt(4, id);
+              ps.setString(4, thumbnail);
+            ps.setInt(5, id);
             ps.executeUpdate();
             ps.close();
         } catch (Exception e) {
@@ -228,7 +232,8 @@ public class ProductDAO {
         List<Product> list = new ArrayList<>();
         String sql = "select P.id, product_name, product_price, product_quantity, category_name\n"
                 + "from Product P join Category C \n"
-                + "on P.category_id = C.id";
+                + "on P.category_id = C.id "
+                + "where p.product_coming = 'false'";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
@@ -300,7 +305,7 @@ public class ProductDAO {
 
     public static void main(String[] args) throws Exception {
         ProductDAO dao = new ProductDAO();
-        ArrayList<Product> list = dao.searchProduct("Nike",true);
+        ArrayList<Product> list = dao.searchProduct("Nike", true);
 //        System.out.println(list);
     }
 

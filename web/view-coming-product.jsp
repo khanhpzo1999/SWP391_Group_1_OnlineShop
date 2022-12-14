@@ -109,7 +109,7 @@
         
         <!-- Start Banner Area -->
         <section class="features-area section_gap" style="margin-top: 100px; width: 80% ; margin-left:auto;margin-right:auto">
-            <button class="click-btn btn btn-default" style="margin-bottom: 20px ; margin-left: 90% ; background-color: orange"><a href="add-coming-product.jsp" style="color: white">Add new coming product</a></button>
+            <button class="click-btn btn btn-default" style="margin-bottom: 20px ; margin-left: 82% ; background-color: blue"><a href="add-coming-product.jsp" style="color: white">Add new coming product</a></button>
             <table class="table">
                 <thead>
                     <tr>
@@ -130,8 +130,8 @@
                         <td><%= cp.getProduct_name()%></td>
                         <td><%= cp.getProduct_price()%></td>
                         <td><%= cp.getProduct_description()%></td>
-                        <td><button class="click-btn btn btn-default" style="background-color: orange"><a style="color: white" href="viewdetailcomingproduct?id=<%= cp.getId()%>">Detail</a></button></td>
-                        <td><button class="click-btn btn btn-default" style="background-color: orange"><a style="color: white" href="delete-coming-product.jsp?id=<%= cp.getId()%>">Delete</a></button></td>
+                        <td><button class="click-btn btn btn-default" style="background-color: blue"><a style="color: white" href="viewdetailcomingproduct?id=<%= cp.getId()%>">Detail</a></button></td>
+                        <td><button class="click-btn btn btn-default" style="background-color: red"><a style="color: white" href="delete-coming-product.jsp?id=<%= cp.getId()%>">Delete</a></button></td>
                     </tr>
                     <%
                         }
