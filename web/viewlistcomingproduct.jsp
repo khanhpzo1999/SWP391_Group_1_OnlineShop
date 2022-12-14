@@ -37,9 +37,15 @@
     </head>
 
     <body id="category">
-
+        <%
+            if (session.getAttribute("admin-account") == null) {
+                response.sendRedirect("admin-login");
+            }
+        %>
         <!-- Start Header Area -->
+
         <jsp:include page="header.jsp"/>
+
         <!-- End Header Area -->
 
         <!-- Start Banner Area -->
@@ -47,7 +53,6 @@
         <!-- End Banner Area -->
         <div class="container">
             <div class="row">
-
                 <div>
                     <!-- Start Filter Bar -->
                     <div class="filter-bar d-flex flex-wrap align-items-between">
@@ -67,9 +72,9 @@
                             <a href="#">6</a>
                             <a href="#" class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
                         </div>
-                          <div>
-                <input type="text" class="form-control" id="search_input" onchange="search()" placeholder="Search Here">
-            </div>
+                        <div>
+                            <input type="text" class="form-control" id="search_input" onchange="search()" placeholder="Search Here">
+                        </div>
                     </div>
                     <!-- End Filter Bar -->
                     <!-- Start Best Seller -->
@@ -85,18 +90,7 @@
                                                 <h6>$${i.product_price}</h6>
                                             </div>
                                             <div class="prd-bottom">
-
-                                                <a href="javascript:void(0)"
-                                                   onclick="addToCart(${i.pid})"
-                                                   class="social-info">
-                                                    <span class="ti-bag"></span>
-                                                    <p class="hover-text">add to bag</p>
-                                                </a>
-                                                <a href="" class="social-info">
-                                                    <span class="lnr lnr-heart"></span>
-                                                    <p class="hover-text">Wishlist</p>
-                                                </a>
-                                                <a href="" class="social-info">
+                                                <a href="viewdetailcomingproduct?id=${i.pid}" class="social-info">
                                                     <span class="lnr lnr-move"></span>
                                                     <p class="hover-text">view more</p>
                                                 </a>
@@ -228,8 +222,8 @@
                     }
                 });
             }
-            
-             function search(){
+
+            function search() {
                 var name = $("#search_input").val();
                 console.log(name);
                 $.ajax({

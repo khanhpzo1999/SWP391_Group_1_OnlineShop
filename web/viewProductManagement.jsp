@@ -38,6 +38,11 @@
         <link rel="stylesheet" href="css/main.css">
     </head>
 
+    <%
+        if (session.getAttribute("admin-account") == null) {
+            response.sendRedirect("admin-login");
+        }
+    %>
 
     <body>
 
@@ -60,28 +65,29 @@
                             <ul class="nav navbar-nav menu_nav ml-auto">
                                 <li class="nav-item active"><a class="nav-link" href="${pageContext.request.contextPath}/dashboard">Home</a></li>
                                 <li class="nav-item submenu dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
-                                       aria-haspopup="true" aria-expanded="false">User</a>
+                                    <a href="list-user" class="nav-link dropdown-toggle" role="button"
+                                       >User</a>
                                 </li>
-                                <li class="nav-item submenu dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
-                                       aria-haspopup="true" aria-expanded="false">Blog</a>
-                                    <ul class="dropdown-menu">
-                                        <li class="nav-item"><a class="nav-link" href="">Blog</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="">Blog Details</a>
-                                        </li>
-                                    </ul>
-                                </li>
+                                <!--                                <li class="nav-item submenu dropdown">
+                                                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                                                                       aria-haspopup="true" aria-expanded="false">Blog</a>
+                                                                    <ul class="dropdown-menu">
+                                                                        <li class="nav-item"><a class="nav-link" href="">Blog</a></li>
+                                                                        <li class="nav-item"><a class="nav-link" href="">Blog Details</a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </li>-->
                                 <li class="nav-item submenu dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
                                        aria-haspopup="true" aria-expanded="false">Products</a>
                                     <ul class="dropdown-menu">
-                                        <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/productManagement">Product Management</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="#">Product Coming</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="productManagement">Product Management</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="view-coming-product.jsp">Product Coming</a></li>
                                     </ul>
                                 </li>
-                                <li class="nav-item"><a class="nav-link" href="">Category</a></li>
-                                <li class="nav-item"><a class="nav-link" href="">Discount</a></li>
+                                <li class="nav-item"><a class="nav-link" href="list-category">Category</a></li>
+                                <li class="nav-item"><a class="nav-link" href="view-discount.jsp">Discount</a></li>
+                                <li class="nav-item"><a class="nav-link" href="list-feedback">Feedback</a></li>
                             </ul>
                         </div>
                     </div>
@@ -165,6 +171,14 @@
                                             <div class="filter-bar d-flex flex-wrap align-items-center">
                                                 <div class="pagination">
                     <%                        ProductDAO dao = new ProductDAO();
+                    <div>
+                        <a type="submit" class="btn btn-success" href="addProduct">Add Product</a>
+                    </div>
+                    <!--                    <div>
+                                            <div class="filter-bar d-flex flex-wrap align-items-center">
+                                                <div class="pagination">
+                    <%
+                        ProductDAO dao = new ProductDAO();
                         List<Product> listAllProduct = dao.getProductManagementList();
                         double productSize = listAllProduct.size();
                         double productPerPage = 6;
